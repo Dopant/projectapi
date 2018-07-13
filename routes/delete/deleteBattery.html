@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang = "en">
+<html ng-app="Demo"></html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/AddPart.css"/>
+</head>
+<body>
+<div class="headerMenu">
+    <h2>Intercity STC Coaches Ltd. -Engineering </h2>
+</div>
+<br><br><br><br>
+<div class="container">
+
+    <div class="row">
+        <div class="col-25">
+            <label for="pname">Select Battery</label>
+        </div>
+        <div class="col-75">
+            <select name="" id="batterydropdown" class="input-field__input input-field__input--small-fixed">
+                <script>
+                    let dropdown6 = document.getElementById('batterydropdown');
+                    dropdown6.length = 0;
+
+                    let defaultOption6 = document.createElement('option');
+                    defaultOption6.text = 'Select batteries';
+
+                    dropdown6.add(defaultOption6);
+                    dropdown6.selectedIndex = 0;
+
+                     const url6 = 'https://eng-api.herokuapp.com/batterieslist';
+                   // const url6 = 'http://localhost:3000/batterieslist';
+
+                    fetch(url6)
+                        .then(
+                            function(response) {
+                                if (response.status !== 200) {
+                                    console.warn('Looks like there was a problem. Status Code: ' +
+                                        response.status);
+                                    return;
+                                }
+
+                                // Examine the text in the response
+                                response.json().then(function(data) {
+                                    let option;
+
+                                    for (let i = 0; i < data.length; i++) {
+                                        option = document.createElement('option');
+                                        option.text = data[i].batteries + " " + data[i].price;
+                                        option.value = data[i].batteries;
+                                        dropdown6.add(option);
+                                    }
+                                });
+                            }
+                        )
+                        .catch(function(err) {
+                            console.error('Fetch Error -', err);
+                        });
+                </script>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <button id="batteryDeleteButton" name="batteryDeleteButton" class="input-field__button">Delete Battery</button>
+    </div>
+</div>
+</div>
+<script src ="./js/jquery.js"></script>
+<script src = "./js/main.js"></script>
+<script src = "./js/sweetalert.min.js"></script>
+<script src = "./js/delete/deleteBattery.js"></script>
+
+</body>
+</html>

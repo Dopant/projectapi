@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang = "en">
+<html ng-app="Demo"></html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/AddPart.css"/>
+</head>
+<body>
+<div class="headerMenu">
+    <h2>Intercity STC Coaches Ltd. -Engineering </h2>
+</div>
+<br><br><br><br>
+<div class="container">
+
+    <div class="row">
+        <div class="col-25">
+            <label for="pname"> Select Part</label>
+        </div>
+        <div class="col-75">
+            <select name="partdropdown" id="partdropdown" class="input-field__input input-field__input--small-fixed">
+                <script>
+                    let dropdown3 = document.getElementById('partdropdown');
+                    dropdown3.length = 0;
+
+                    let defaultOption3 = document.createElement('option');
+                    defaultOption3.text = 'Select Part';
+
+
+                    dropdown3.add(defaultOption3);
+                    dropdown3.selectedIndex = 0;
+
+                   // const url3 = 'http://localhost:3000/partslist';
+                    const url3 = 'https://eng-api.herokuapp.com/partslist';
+                    fetch(url3)
+                        .then(
+                            function(response) {
+                                if (response.status !== 200) {
+                                    console.warn('Looks like there was a problem. Status Code: ' +
+                                        response.status);
+                                    return;
+                                }
+
+                                // Examine the text in the response
+                                response.json().then(function(data) {
+                                    let option;
+
+                                    for (let i = 0; i < data.length; i++) {
+                                        option = document.createElement('option');
+                                        option.text =  data[i].parts;
+                                        option.value = data[i].parts;
+                                        dropdown3.add(option);
+                                    }
+                                });
+                            }
+                        )
+                        .catch(function(err) {
+                            console.error('Fetch Error -', err);
+                        });
+                </script>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-25">
+            <label for="lname">Input New Cost </label>
+        </div>
+        <div class="col-75">
+            <input type="text" id="partCost" name="partCost" placeholder="Input New Cost">
+        </div>
+    </div>
+
+    <div class="row">
+        <button id="partUpdateButton" name="partUpdateButton" class="input-field__button">Update Part</button>
+    </div>
+</div>
+
+
+<script>
+    var partName = document.getElementById('partdropdown');
+    var partcost = document.getElementById('partCost');
+
+    partName.addEventListener('click', function (e) {
+        fetch('https://eng-api.herokuapp.com/partslist')
+        //fetch('http://localhost:3000/partslist')
+            .then(
+                function(response) {
+                    if (response.status !== 200) {
+                        console.warn('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                        return;
+                    }
+
+                    // Examine the text in the response
+                    response.json().then(function(data) {
+                        for (let i = 0; i < data.length; i++) {
+                            if ( partName.value == data[i].parts){
+                                partcost.value = data[i].price;
+                            }
+                        }
+                    });
+                }
+            )
+            .catch(function(err) {
+                console.error('Fetch Error -', err);
+            });
+    });
+</script>
+
+<script src ="./js/jquery.js"></script>
+<script src = "./js/main.js"></script>
+<script src = "./js/sweetalert.min.js"></script>
+<script src = "./js/update/updatePart.js"></script>
+</body>
+</html>

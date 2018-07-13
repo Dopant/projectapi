@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./css/Maintenance.css"/>
+    <title>Maintenance</title>
+</head>
+<body>
+<div class="wrapper">
+    <div class="container">
+
+        <!-- first block -->
+        <div class="form-block">
+            <div class="form-section form-section--horizontal">
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--start">ALL/COP/COM</label>
+                    <select type="text" name="busCategory" id="busCategory" class="input-field__input input-field__input--small">
+                        <option SELECTED DISABLED> SELECT CATEGORY</option>
+                        <option value="COMMERCIAL">COMMERCIAL</option>
+                        <option value="ALLIANCE">ALLIANCE</option>
+                        <option value="COPORATE">COPORATE</option>
+                    </select>
+
+                    <label class="input-field__label input-field__label--start">COA/MIN</label>
+                    <select type="text" name="busType" id="busType" class="input-field__input input-field__input--small">
+                        <option SELECTED DISABLED> SELECT TYPE</option>
+                        <option value="COACHES">COACHES</option>
+                        <option value="MINI-BUS">MINI-BUS</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-section form-section--horizontal">
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--start">Bus RegNo.</label>
+                    <select type="text" name="busdropdown" id="busdropdown" class="input-field__input input-field__input--small">
+                        <script>
+
+                            function removeOptions(selectbox){
+                                for (let i = 0; i < selectbox.length; i++){
+                                    selectbox.remove(i);
+                                }
+                            }
+
+
+                            //  const url = 'http://localhost:3000/buslist';
+                            const url = 'https://eng-api.herokuapp.com/buslist';
+
+                            let category = '';
+                            let type = '';
+
+                            var bus_category = document.getElementById('busCategory');
+                            var bus_type = document.getElementById('busType');
+
+
+
+
+                            bus_category.addEventListener('change' ,function (e) {
+                                let dropdown = document.getElementById('busdropdown');
+                                removeOptions(dropdown);
+                                dropdown.length = 0;
+                                let defaultOption = document.createElement('option');
+                                defaultOption.text = 'Select Bus';
+
+                                dropdown.add(defaultOption);
+                                dropdown.selectedIndex = 0;
+
+                                category = bus_category.value;
+                                type = bus_type.value;
+                                fetch(url)
+                                    .then(
+                                        function(response) {
+                                            if (response.status !== 200) {
+                                                console.warn('Looks like there was a problem. Status Code: ' +
+                                                    response.status);
+                                                return;
+                                            }
+
+                                            // Examine the text in the response
+                                            response.json().then(function(data) {
+                                                let option;
+
+                                                for (let i = 0; i < data.length; i++) {
+                                                    if(category == data[i].category && type == data[i].type  ){
+                                                        option = document.createElement('option');
+                                                        option.text = data[i].registry_no;
+                                                        option.value = data[i].registry_no;
+                                                        dropdown.add(option);
+                                                    }
+
+                                                }
+                                            });
+                                        }
+                                    )
+                                    .catch(function(err) {
+                                        console.error('Fetch Error -', err);
+                                    });
+                            });
+
+                            bus_type.addEventListener('change',function (e) {
+                                let dropdown = document.getElementById('busdropdown');
+                                removeOptions(dropdown);
+                                dropdown.length = 0;
+
+                                let defaultOption = document.createElement('option');
+                                defaultOption.text = 'Select Bus';
+
+                                dropdown.add(defaultOption);
+                                dropdown.selectedIndex = 0;
+
+                                category = bus_category.value;
+                                type = bus_type.value;
+                                fetch(url)
+                                    .then(
+                                        function(response) {
+                                            if (response.status !== 200) {
+                                                console.warn('Looks like there was a problem. Status Code: ' +
+                                                    response.status);
+                                                return;
+                                            }
+
+                                            // Examine the text in the response
+                                            response.json().then(function(data) {
+                                                let option;
+
+                                                for (let i = 0; i < data.length; i++) {
+                                                    if(category == data[i].category && type == data[i].type  ){
+                                                        option = document.createElement('option');
+                                                        option.text = data[i].registry_no;
+                                                        option.value = data[i].registry_no;
+                                                        dropdown.add(option);
+                                                    }
+
+                                                }
+                                            });
+                                        }
+                                    )
+                                    .catch(function(err) {
+                                        console.error('Fetch Error -', err);
+                                    });
+                            });
+
+
+                            //   const url = 'https://eng-api.herokuapp.com/buslist';
+
+
+
+
+                        </script>
+                    </select>
+                    <input type="date" class="input-field__input input-field__input--small" name="date" id="date" placeholder="Curdate">
+                    <!-- <button class="input-field__button">Curdate</button> -->
+                    <a href="/Add" class="input-field__button input-field__button--small">Add Bus</a>
+                </div>
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--small">Maintenance Type</label>
+                    <select name="typedropdown" id="typedropdown" class="input-field__input input-field__input--small">
+                        <script>
+                            let dropdown1= document.getElementById('typedropdown');
+                            dropdown1.length = 0;
+
+                            let defaultOption1 = document.createElement('option');
+                            defaultOption1.text = 'Select Maintenance type';
+
+                            dropdown1.add(defaultOption1);
+                            dropdown1.selectedIndex = 0;
+
+                            const url1 = 'https://eng-api.herokuapp.com/maintenance_typelist';
+                            //   const url1 = 'http://localhost:3000/maintenance_typelist';
+
+                            fetch(url1)
+                                .then(
+                                    function(response) {
+                                        if (response.status !== 200) {
+                                            console.warn('Looks like there was a problem. Status Code: ' +
+                                                response.status);
+                                            return;
+                                        }
+
+                                        // Examine the text in the response
+                                        response.json().then(function(data) {
+                                            let option;
+
+                                            for (let i = 0; i < data.length; i++) {
+                                                option = document.createElement('option');
+                                                option.text = data[i].maintenance_type;
+                                                option.value = data[i].maintenance_type;
+                                                dropdown1.add(option);
+                                            }
+                                        });
+                                    }
+                                )
+                                .catch(function(err) {
+                                    console.error('Fetch Error -', err);
+                                });
+                        </script>
+                    </select>
+                </div>
+            </div>
+            <div class="form-section form-section--horizontal">
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--start">Station</label>
+                    <select name="stationdropdown" type="text" name="" id="stationdropdown" class="input-field__input input-field__input--small">
+                        <script>
+                            let dropdown2 = document.getElementById('stationdropdown');
+                            dropdown2.length = 0;
+
+                            let defaultOption2 = document.createElement('option');
+                            defaultOption2.text = 'Select Station';
+
+                            dropdown2.add(defaultOption2);
+                            dropdown2.selectedIndex = 0;
+
+                            const url2 = 'https://eng-api.herokuapp.com/stationlist';
+                            //  const url2 = 'http://localhost:3000/stationlist';
+                            fetch(url2)
+                                .then(
+                                    function(response) {
+                                        if (response.status !== 200) {
+                                            console.warn('Looks like there was a problem. Status Code: ' +
+                                                response.status);
+                                            return;
+                                        }
+
+                                        // Examine the text in the response
+                                        response.json().then(function(data) {
+                                            let option;
+
+                                            for (let i = 0; i < data.length; i++) {
+                                                option = document.createElement('option');
+                                                option.text = data[i].station;
+                                                option.value = data[i].station;
+                                                dropdown2.add(option);
+                                            }
+                                        });
+                                    }
+                                )
+                                .catch(function(err) {
+                                    console.error('Fetch Error -', err);
+                                });
+                        </script>
+                    </select>
+                    <label class="input-field__label input-field__label--small"> </label>
+                    <input name="extra_contract" id="extra_contract" type="" class="input-field__input input-field__input--small" placeholder="extra contract">
+                    <!-- <button class="input-field__button">Curdate</button> -->
+                    <a href="/Add1" class="input-field__button">Add Station</a>
+                </div>
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--small">Current Mileage</label>
+                    <input name="current_milleage" id="current_milleage" class="input-field__input input-field__input--small" >
+
+                </div>
+            </div>
+            <div class="form-section">
+                <div class="input-field input-field--center">
+
+                </div>
+                <div class="input-field input-field--center">
+
+                </div>
+            </div>
+            <div class="input-field__label--right">
+                <button   class="input-field__button" id="maintenance_save"  > Save </button>
+            </div>
+        </div>
+        </form>
+
+
+        <!-- second block -->
+
+        <div class="form-block">
+            <div class="form-section form-section--horizontal">
+                <div class="input-field input-field--horizontal">
+
+                    <label class="input-field__label input-field__label--start">Part Name</label>
+                    <select name="partdropdown" id="partdropdown" class="input-field__input input-field__input--small-fixed">
+                        <script>
+                            let dropdown3 = document.getElementById('partdropdown');
+                            dropdown3.length = 0;
+
+                            let defaultOption3 = document.createElement('option');
+                            defaultOption3.text = 'Select Part';
+
+
+                            dropdown3.add(defaultOption3);
+                            dropdown3.selectedIndex = 0;
+
+                            //  const url3 = 'http://localhost:3000/partslist';
+                            const url3 = 'https://eng-api.herokuapp.com/partslist';
+                            fetch(url3)
+                                .then(
+                                    function(response) {
+                                        if (response.status !== 200) {
+                                            console.warn('Looks like there was a problem. Status Code: ' +
+                                                response.status);
+                                            return;
+                                        }
+
+                                        // Examine the text in the response
+                                        response.json().then(function(data) {
+                                            let option;
+
+                                            for (let i = 0; i < data.length; i++) {
+                                                option = document.createElement('option');
+                                                option.text =  data[i].parts + " " + data[i].price;
+                                                option.value = data[i].parts;
+                                                dropdown3.add(option);
+                                            }
+                                        });
+                                    }
+                                )
+                                .catch(function(err) {
+                                    console.error('Fetch Error -', err);
+                                });
+                        </script>
+                    </select>
+                </div>
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--right">Cost</label>
+                    <input name="partCost" type="number" id="partCost" class="input-field__input input-field__input--tiny-fixed">
+                </div>
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--right">Ouantity</label>
+                    <input name="parts_quantity" type="number" id="partOuantity" class="input-field__input input-field__input--tiny-fixed">
+                </div>
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--right">Total</label>
+                    <input name="parts_total" type="number" id="partTotal" class="input-field__input input-field__input--tiny-fixed">
+                </div>
+                <div class="input-field input-field--horizontal input-field--center">
+                    <button  id="addPartButton"  name="submit" class="input-field__button part"> Add </button>
+
+                </div>
+            </div>
+            <div class="form-section form-section--horizontal">
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--start">Bus RegNo</label>
+                    <input name="partbus" id="partbus" class="input-field__input input-field__input--small" >
+
+                    <label class="input-field__label input-field__label--right"> Date </label>
+                    <input name="" id="partDate" type="date" class="input-field__input input-field__input--small" >
+
+                    <label class="input-field__label input-field__label--right">Station</label>
+                    <input name="partStation" id="partStation" class="input-field__input input-field__input--small" >
+
+                </div>
+            </div>
+            <div class="form-section">
+                <div class="table-field">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="table__head">Bus</th>
+                            <th class="table__head">Part Name</th>
+                            <th class="table__head">Cost</th>
+                            <th class="table__head">Quantity</th>
+                            <th class="table__head">Total (GhC)</th>
+                        </tr>
+                        </thead>
+                        <tbody id="partTableBody">
+                        <!-- remove the td when working with data. this is for only styling -->
+                        <!-- <tr>
+                            <td>Emma</td>
+                            <td>47</td>
+                            <td>1</td>
+                            <td>12</td>
+                        </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- third block -->
+
+        <div class="form-block">
+            <div class="form-section form-section--horizontal">
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--start">Consumable Name</label>
+                    <select name="consumabledropdown" id="consumabledropdown" class="input-field__input input-field__input--small-fixed">
+                        <script>
+                            let dropdown4= document.getElementById('consumabledropdown');
+                            dropdown4.length = 0;
+
+                            let defaultOption4 = document.createElement('option');
+                            defaultOption4.text = 'Select Consumable';
+
+                            dropdown4.add(defaultOption4);
+                            dropdown4.selectedIndex = 0;
+
+                            const url4 = 'https://eng-api.herokuapp.com/consumableslist';
+                            // const url4 = 'http://localhost:3000/consumableslist';
+
+                            fetch(url4)
+                                .then(
+                                    function(response) {
+                                        if (response.status !== 200) {
+                                            console.warn('Looks like there was a problem. Status Code: ' +
+                                                response.status);
+                                            return;
+                                        }
+
+                                        // Examine the text in the response
+                                        response.json().then(function(data) {
+                                            let option;
+
+                                            for (let i = 0; i < data.length; i++) {
+                                                option = document.createElement('option');
+                                                option.text = data[i].consumables + " " + data[i].price;
+                                                option.value = data[i].consumables;
+                                                dropdown4.add(option);
+                                            }
+                                        });
+                                    }
+                                )
+                                .catch(function(err) {
+                                    console.error('Fetch Error -', err);
+                                });
+                        </script>
+                    </select>
+                </div>
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--right">Cost</label>
+                    <input name="" type="number" id="consumableCost" class="input-field__input input-field__input--tiny-fixed">
+                </div>
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--right">Ouantity</label>
+                    <input name="consumables_quantity" type="number" id="consumableOuantity" class="input-field__input input-field__input--tiny-fixed">
+                </div>
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--right">Total</label>
+                    <input  name="consumables_total" type="number" id="consumableTotal" class="input-field__input input-field__input--tiny-fixed">
+                </div>
+                <div class="input-field input-field--horizontal input-field--center">
+                    <button  id="addConsumableButton"  name="addConsumableButton" class="input-field__button part"> Add </button>
+                </div>
+            </div>
+            <div class="form-section form-section--horizontal">
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--start">Bus RegNo</label>
+                    <input name="consumablebus" id="consumablebus" class="input-field__input input-field__input--small" >
+
+                    <label class="input-field__label input-field__label--right"> Date </label>
+                    <input name="" id="consumableDate" type="date" class="input-field__input input-field__input--small" >
+
+                    <label class="input-field__label input-field__label--right">Station</label>
+                    <input name="consumableStation" id="consumableStation" class="input-field__input input-field__input--small" >
+
+                </div>
+            </div>
+            <div class="form-section">
+                <div class="table-field">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="table__head">Bus</th>
+                            <th class="table__head">Consumable Name</th>
+                            <th class="table__head">Cost</th>
+                            <th class="table__head">Quantity</th>
+                            <th class="table__head">Total (GhC)</th>
+                        </tr>
+                        </thead>
+                        <tbody id="consumableTableBody">
+                        <tr>
+                            <!-- remove the td when working with data. this is for only styling -->
+                            <!-- <td>Emma</td>
+                            <td>47</td>
+                            <td>1</td>
+                            <td>12</td> -->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Fourth block -->
+        <div class="form-block">
+            <div class="form-section form-section--horizontal">
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--start">Tyre name</label>
+                    <select name="" id="tyredropdown" class="input-field__input input-field__input--small-fixed">
+                        <script>
+                            let dropdown5 = document.getElementById('tyredropdown');
+                            dropdown5.length = 0;
+
+                            let defaultOption5 = document.createElement('option');
+                            defaultOption5.text = 'Select Tyre';
+
+                            dropdown5.add(defaultOption5);
+                            dropdown5.selectedIndex = 0;
+
+                            const url5 = 'https://eng-api.herokuapp.com/tyreslist';
+                            // const url5 = 'http://localhost:3000/tyreslist';
+
+                            fetch(url5)
+                                .then(
+                                    function(response) {
+                                        if (response.status !== 200) {
+                                            console.warn('Looks like there was a problem. Status Code: ' +
+                                                response.status);
+                                            return;
+                                        }
+
+                                        // Examine the text in the response
+                                        response.json().then(function(data) {
+                                            let option;
+
+                                            for (let i = 0; i < data.length; i++) {
+                                                option = document.createElement('option');
+                                                option.text = data[i].tyres + " " + data[i].price;
+                                                option.value = data[i].tyres;
+                                                dropdown5.add(option);
+                                            }
+                                        });
+                                    }
+                                )
+                                .catch(function(err) {
+                                    console.error('Fetch Error -', err);
+                                });
+                        </script>
+                    </select>
+                </div>
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--right">Cost</label>
+                    <input name="" type="number" id="tyreCost" class="input-field__input input-field__input--tiny-fixed">
+                </div>
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--right">Ouantity</label>
+                    <input name="" type="number" id="tyreOuantity" class="input-field__input input-field__input--tiny-fixed">
+                </div>
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--right">Total</label>
+                    <input name="" type="number" id="tyreTotal" class="input-field__input input-field__input--tiny-fixed">
+                </div>
+                <div class="input-field input-field--horizontal input-field--center">
+                    <button type="button" id="addTyreButton" class="input-field__button"> Add </button>
+                </div>
+            </div>
+
+            <div class="form-section form-section--horizontal">
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--start">Bus RegNo</label>
+                    <input name="tyrebus" id="tyrebus" class="input-field__input input-field__input--small" >
+
+                    <label class="input-field__label input-field__label--right"> Date </label>
+                    <input name="" id="tyreDate" type="date" class="input-field__input input-field__input--small" >
+
+                    <label class="input-field__label input-field__label--right">Station</label>
+                    <input name="tyreStation" id="tyreStation" class="input-field__input input-field__input--small" >
+
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="table-field">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="table__head">Bus</th>
+                            <th class="table__head">Tyre Name</th>
+                            <th class="table__head">Cost</th>
+                            <th class="table__head">Quantity</th>
+                            <th class="table__head">Total (GhC)</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tyreTableBody">
+                        <tr>
+                            <!-- remove the td when working with data. this is for only styling -->
+                            <!-- <td>Emma</td>
+                            <td>47</td>
+                            <td>1</td>
+                            <td>12</td> -->
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Fifth block -->
+        <div class="form-block">
+            <div class="form-section form-section--horizontal">
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--start">Battery Name</label>
+                    <select name="" id="batterydropdown" class="input-field__input input-field__input--small-fixed">
+                        <script>
+                            let dropdown6 = document.getElementById('batterydropdown');
+                            dropdown6.length = 0;
+
+                            let defaultOption6 = document.createElement('option');
+                            defaultOption6.text = 'Select batteries';
+
+                            dropdown6.add(defaultOption6);
+                            dropdown6.selectedIndex = 0;
+
+                            const url6 = 'https://eng-api.herokuapp.com/batterieslist';
+                            // const url6 = 'http://localhost:3000/batterieslist';
+
+                            fetch(url6)
+                                .then(
+                                    function(response) {
+                                        if (response.status !== 200) {
+                                            console.warn('Looks like there was a problem. Status Code: ' +
+                                                response.status);
+                                            return;
+                                        }
+
+                                        // Examine the text in the response
+                                        response.json().then(function(data) {
+                                            let option;
+
+                                            for (let i = 0; i < data.length; i++) {
+                                                option = document.createElement('option');
+                                                option.text = data[i].batteries + " " + data[i].price;
+                                                option.value = data[i].batteries;
+                                                dropdown6.add(option);
+                                            }
+                                        });
+                                    }
+                                )
+                                .catch(function(err) {
+                                    console.error('Fetch Error -', err);
+                                });
+                        </script>
+                    </select>
+                </div>
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--right">Cost</label>
+                    <input name="" type="number" id="batteryCost" class="input-field__input input-field__input--tiny-fixed">
+                </div>
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--right">Ouantity</label>
+                    <input name="" type="number" id="batteryOuantity" class="input-field__input input-field__input--tiny-fixed">
+                </div>
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--right">Total</label>
+                    <input name="" type="number" id="batteryTotal" class="input-field__input input-field__input--tiny-fixed">
+                </div>
+                <div class="input-field input-field--horizontal input-field--center">
+                    <button type="button" id="addBatteriesButton" class="input-field__button"> Add </button>
+                </div>
+            </div>
+
+            <div class="form-section form-section--horizontal">
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--start">Bus RegNo</label>
+                    <input name="batterybus" id="batterybus" class="input-field__input input-field__input--small" >
+
+
+                    <label class="input-field__label input-field__label--right"> Date </label>
+                    <input name="" id="batteryDate" type="date" class="input-field__input input-field__input--small" >
+
+                    <label class="input-field__label input-field__label--right">Station</label>
+                    <input name="batteryStation" id="batteryStation" class="input-field__input input-field__input--small" >
+
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="table-field">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="table__head">Bus</th>
+                            <th class="table__head">Battery Name</th>
+                            <th class="table__head">Cost</th>
+                            <th class="table__head">Quantity</th>
+                            <th class="table__head">Total (GhC)</th>
+                        </tr>
+                        </thead>
+                        <tbody id="batteryTableBody">
+                        <tr>
+                            <!-- remove the td when working with data. this is for only styling -->
+                            <!-- <td>Emma</td>
+                            <td>47</td>
+                            <td>1</td>
+                            <td>12</td> -->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sixth block -->
+        <div class="form-block">
+            <div class="form-section form-section--horizontal">
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--start">Lubricant Name</label>
+                    <select name="" id="lubricantdropdown" class="input-field__input input-field__input--small-fixed">
+                        <script>
+                            let dropdown7 = document.getElementById('lubricantdropdown');
+                            dropdown7.length = 0;
+
+                            let defaultOption7 = document.createElement('option');
+                            defaultOption7.text = 'Select lubricant';
+
+                            dropdown7.add(defaultOption7);
+                            dropdown7.selectedIndex = 0;
+
+                            const url7 = 'https://eng-api.herokuapp.com/lubricantslist';
+                            // const url7 = 'http://localhost:3000/lubricantslist';
+
+                            fetch(url7)
+                                .then(
+                                    function(response) {
+                                        if (response.status !== 200) {
+                                            console.warn('Looks like there was a problem. Status Code: ' +
+                                                response.status);
+                                            return;
+                                        }
+
+                                        // Examine the text in the response
+                                        response.json().then(function(data) {
+                                            let option;
+
+                                            for (let i = 0; i < data.length; i++) {
+                                                option = document.createElement('option');
+                                                option.text = data[i].lubricants + " " + data[i].price;
+                                                option.value = data[i].lubricants;
+                                                dropdown7.add(option);
+                                            }
+                                        });
+                                    }
+                                )
+                                .catch(function(err) {
+                                    console.error('Fetch Error -', err);
+                                });
+                        </script>
+                    </select>
+                </div>
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--right">Cost</label>
+                    <input name="" type="number" id="lubricantCost" class="input-field__input input-field__input--tiny-fixed">
+                </div>
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--right">Ouantity</label>
+                    <input name="" type="number" id="lubricantOuantity" class="input-field__input input-field__input--tiny-fixed">
+                </div>
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--right">Total</label>
+                    <input name="" type="number" id="lubricantTotal" class="input-field__input input-field__input--tiny-fixed">
+                </div>
+                <div class="input-field input-field--horizontal input-field--center">
+                    <button type="button" id="addLubricantButton" class="input-field__button"> Add </button>
+                </div>
+            </div>
+
+            <div class="form-section form-section--horizontal">
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--start">Bus RegNo</label>
+                    <input name="lubricantbus" id="lubricantbus" class="input-field__input input-field__input--small" >
+
+                    <label class="input-field__label input-field__label--right"> Date </label>
+                    <input name="" id="lubricantDate" type="date" class="input-field__input input-field__input--small" >
+
+                    <label class="input-field__label input-field__label--right">Station</label>
+                    <input name="lubricantStation" id="lubricantStation" class="input-field__input input-field__input--small" >
+
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="table-field">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="table__head">Bus</th>
+                            <th class="table__head">Lubricant Name</th>
+                            <th class="table__head">Cost</th>
+                            <th class="table__head">Quantity</th>
+                            <th class="table__head">Total (GhC)</th>
+                        </tr>
+                        </thead>
+                        <tbody id="lubricantTableBody">
+                        <tr>
+                            <!-- remove the td when working with data. this is for only styling -->
+                            <!-- <td>Emma</td>
+                            <td>47</td>
+                            <td>1</td>
+                            <td>12</td> -->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    //part names for changing prices( not be confused with those for making table)
+    var part_name = document.getElementById('partdropdown');
+    var consumable_name = document.getElementById('consumabledropdown');
+    var tyre_name = document.getElementById('tyredropdown');
+    var batteries_name = document.getElementById('batterydropdown');
+    var lubricant_name = document.getElementById('lubricantdropdown');
+
+    var busName = document.getElementById('busdropdown');
+    var partbus = document.getElementById('partbus');
+    var consumablebus = document.getElementById('consumablebus');
+    var tyrebus = document.getElementById('tyrebus');
+    var batterybus = document.getElementById('batterybus');
+    var lubricantbus = document.getElementById('lubricantbus');
+
+    var stationName = document.getElementById('stationdropdown');
+    var partStation = document.getElementById('partStation');
+    var consumableStation = document.getElementById('consumableStation');
+    var tyreStation = document.getElementById('tyreStation');
+    var batteryStation = document.getElementById('batteryStation');
+    var lubricantStation = document.getElementById('lubricantStation');
+
+
+
+
+    //add other busnames
+
+
+    var part_cost = document.getElementById('partCost');
+    var consumable_cost = document.getElementById('consumableCost');
+    var tyre_cost = document.getElementById('tyreCost');
+    var batteries_cost = document.getElementById('batteryCost');
+    var lubricant_cost = document.getElementById('lubricantCost');
+
+    //dates
+    var maintenanceDate = document.getElementById('date');
+
+    var partDate = document.getElementById('partDate');
+    var consumableDate = document.getElementById('consumableDate');
+    var tyreDate = document.getElementById('tyreDate');
+    var batteryDate = document.getElementById('batteryDate');
+    var lubricantDate = document.getElementById('lubricantDate');
+
+
+    maintenanceDate.addEventListener('click',function (e) {
+        partDate.value = maintenanceDate.value;
+        consumableDate.value = maintenanceDate.value;
+        tyreDate.value = maintenanceDate.value;
+        batteryDate.value = maintenanceDate.value;
+        lubricantDate.value = maintenanceDate.value;
+    });
+
+
+
+    busName.addEventListener('change' , function (e) {
+        partbus.value = busName.value;
+        consumablebus.value = busName.value;
+        tyrebus.value = busName.value;
+        batterybus.value = busName.value;
+        lubricantbus.value = busName.value;
+    });
+
+    stationName.addEventListener('change' , function () {
+        partStation.value = stationName.value;
+        consumableStation.value = stationName.value;
+        tyreStation.value = stationName.value;
+        batteryStation.value = stationName.value;
+        lubricantStation.value = stationName.value;
+    });
+
+
+
+    part_name.addEventListener('click' , function (e) {
+        fetch('https://eng-api.herokuapp.com/partslist')
+        // fetch('http://localhost:3000/partslist')
+            .then(
+                function(response) {
+                    if (response.status !== 200) {
+                        console.warn('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                        return;
+                    }
+
+                    // Examine the text in the response
+                    response.json().then(function(data) {
+                        for (let i = 0; i < data.length; i++) {
+                            if ( part_name.value == data[i].parts){
+                                part_cost.value = data[i].price;
+                            }
+                        }
+                    });
+                }
+            )
+            .catch(function(err) {
+                console.error('Fetch Error -', err);
+            });
+    });
+
+
+    consumable_name.addEventListener('click' , function (e) {
+        fetch('https://eng-api.herokuapp.com/consumableslist')
+        // fetch('http://localhost:3000/consumableslist')
+            .then(
+                function(response) {
+                    if (response.status !== 200) {
+                        console.warn('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                        return;
+                    }
+                    // Examine the text in the response
+                    response.json().then(function(data) {
+                        for (let i = 0; i < data.length; i++) {
+                            if ( consumable_name.value == data[i].consumables){
+                                consumable_cost.value = data[i].price;
+                            }
+                        }
+                    });
+                }
+            )
+            .catch(function(err) {
+                console.error('Fetch Error -', err);
+            });
+    });
+
+    batteries_name.addEventListener('click' , function (e) {
+        fetch('https://eng-api.herokuapp.com/batterieslist')
+        // fetch('http://localhost:3000/batterieslist')
+            .then(
+                function(response) {
+                    if (response.status !== 200) {
+                        console.warn('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                        return;
+                    }
+
+                    // Examine the text in the response
+                    response.json().then(function(data) {
+                        for (let i = 0; i < data.length; i++) {
+                            if ( batteries_name.value == data[i].batteries){
+                                batteries_cost.value = data[i].price;
+                            }
+                        }
+                    });
+                }
+            )
+            .catch(function(err) {
+                console.error('Fetch Error -', err);
+            });
+    });
+
+    tyre_name.addEventListener('click' , function (e) {
+        fetch('https://eng-api.herokuapp.com/tyreslist')
+        // fetch('http://localhost:3000/tyreslist')
+            .then(
+                function(response) {
+                    if (response.status !== 200) {
+                        console.warn('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                        return;
+                    }
+
+                    // Examine the text in the response
+                    response.json().then(function(data) {
+                        for (let i = 0; i < data.length; i++) {
+                            if ( tyre_name.value == data[i].tyres){
+                                tyre_cost.value = data[i].price;
+                            }
+                        }
+                    });
+                }
+            )
+            .catch(function(err) {
+                console.error('Fetch Error -', err);
+            });
+    });
+
+    lubricant_name.addEventListener('click' , function (e) {
+        fetch('https://eng-api.herokuapp.com/lubricantslist')
+        //fetch('http://localhost:3000/lubricantslist')
+            .then(
+                function(response) {
+                    if (response.status !== 200) {
+                        console.warn('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                        return;
+                    }
+
+                    // Examine the text in the response
+                    response.json().then(function(data) {
+                        for (let i = 0; i < data.length; i++) {
+                            if ( lubricant_name.value == data[i].lubricants){
+                                lubricant_cost.value = data[i].price;
+                            }
+                        }
+                    });
+                }
+            )
+            .catch(function(err) {
+                console.error('Fetch Error -', err);
+            });
+    });
+
+
+</script>
+<script src="./js/jquery.js"></script>
+<script src="./js/maintenance.js"></script>
+<script src="./js/sweetalert.min.js"></script>
+<script src="./js/parts.js"></script>
+<script src="./js/tyres.js"></script>
+<script src="./js/consumables.js"></script>
+<script src="./js/batteries.js"></script>
+<script src="./js/lubricants.js"></script>
+
+</body>
+</html>

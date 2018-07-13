@@ -1,0 +1,113 @@
+<html>
+    <head>
+        <title>Topic</title>
+        <link rel="stylesheet" type="text/css" href="./css/topic.css"/>
+        <meta name="viewport" content="width=device-width, initial-sclale =1.0">
+        </head>
+        
+        <script>
+            function toggleSidebar(){
+            document.getElementById("sidebar").classList.toggle('active'); 
+            }
+
+                            //Function To Display Popup
+                            function div_show() {
+                    document.getElementById('add_post').style.display = "block";
+                    }
+                    //Function to Hide Popup
+                    function div_hide(){
+                    document.getElementById('add_post').style.display = "none";
+                    }
+            </script>
+
+    <body>
+        <div class="headerMenu">
+                <div id="wrapper">
+                    <div class="logo">
+                            <a href="homepage.html">
+                                    <img src="./img/logo.png">
+                                </a>
+                    </div>
+                    <form class="search_box">
+                            <input type="search" class="search" placeholder=" Search..."/>
+                    </form>
+                        <div id="menu">
+                            <a href="trending_page.html">
+                                <img src="./img/trending.png">
+                            </a>
+                            <a href="messaging_page.html">
+                                <img src="./img/message1.png">
+                            </a>
+                            <a href="profile_page.html">
+                                <img src="./img/profile2.png">
+                            </a>
+                        </div>
+                        
+                </div>
+        </div>
+        <div id="sidebar">
+                <div class="toggle-btn" onclick="toggleSidebar()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                    <ul>
+                        <br />
+                        <br />
+                        <br />
+                        <li><a href="profile_page.html" style="text-decoration:none" >Profile</a></li>
+                        <li><a href="trending_page.html" style="text-decoration:none">Topics</a></li>
+                        <br />
+                        <br />
+                        <li><a href="#" style="text-decoration:none">Settings and Privacy</a></li>
+                        <li><a href="#" style="text-decoration:none">Help Center</a></li>
+                        <li><a href="#" style="text-decoration:none">Log Out</a></li>  
+                      </ul>
+            </div>
+
+            <div class="content">
+                    <div id="card">
+                            <div class="card-header">
+                                <img src="./img/profilepic.jpg" style="display:inline;position:relative; bottom:10px; width:50px; height:50px; border-radius:100px; border:1px solid #FDA2A2;">
+                                <h5 style="display:inline;bottom:28px; position:relative;">Gamerz Zone</h5>
+                            </div>
+                            <div class="card-body">
+                                <img src="./img/wall.jpg" style="width:615px; height:450;">
+                            </div>
+                            <div class="card-footer">
+                                <textarea type="text" id="comment_box" placeholder="Add Comment"></textarea>
+                                <right>
+                                <button>
+                                 send
+                                    </button>
+                                </right>
+                            </div>
+                    </div>
+                    <div class="message_card">
+                        <div class="m_header">
+                            
+                            </div>
+                        <div class="m_body">
+
+                            </div>
+                        <div class="m_footer">
+                            <textarea type="text" id="comment_box" placeholder="Add comment" ></textarea>
+                        </div>
+                    </div>
+                    </div>
+
+                    
+            <div id="add_post">
+                <div id="post_form">
+                <img id="close" src="./img/close.png" onclick ="div_hide()">
+                <textarea id="post_box" name="post" placeholder="Enter your post here" type="text"></textarea>
+                <input id="upload_box" name="upload" type="file">
+                <textarea id="caption_box" name="caption" placeholder="#Caption"></textarea>
+                <button type="upload" id="upload">upload</button>
+                <button type="submit" id="send">send</button>
+                </div>
+            </div>
+                <button id="popup" onclick="div_show()">Add Post</button>
+            </div>
+        </body>
+    </html>

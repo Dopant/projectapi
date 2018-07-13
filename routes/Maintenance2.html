@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./css/Maintenance.css"/>
+    <title>Maintenace</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <form class="form">
+                <!-- first block -->
+                <div class="form-block">
+                    <div class="form-section form-section--horizontal">
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--start">Bus RegNo.</label>
+                            <select type="text" name="" id="" class="input-field__input input-field__input--small">
+                                <option >AG122233</option>  
+                                <option >AG1212</option>  
+                                <option >AG125</option>
+                            </select>
+                            <input type="date" class="input-field__input input-field__input--small" placeholder="Curdate">
+                            <!-- <button class="input-field__button">Curdate</button> -->
+                            <a href="Add.html" class="input-field__button input-field__button--small">Add Bus</a>
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--small">Maintenance Type</label>
+                            <select name="" id="" class="input-field__input input-field__input--small">
+                                <option >Fuel Injector</option>  
+                                <option >Tank</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-section form-section--horizontal">
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--start">Station</label>
+                            <select type="text" name="" id="" class="input-field__input input-field__input--small">
+                                <option >Kumasi</option>  
+                                <option >Accra</option>  
+                                <option >Bolga</option>  
+                            </select>
+                            <input type="date" class="input-field__input input-field__input--small" placeholder="Curdate">
+                            <!-- <button class="input-field__button">Curdate</button> -->
+                            <a href="Add1.html" class="input-field__button">Add Station</a>
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--small">Current Mileage</label>
+                            <input name="" id="" class="input-field__input input-field__input--small">
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <div class="input-field input-field--center">
+                            <label class="input-field__label">Parts Total</label>
+                            <input type="text" class="input-field__input input-field__input--small-fixed">
+                        </div>
+                        <div class="input-field input-field--center">
+                            <label class="input-field__label">Consumable Total</label>
+                            <input type="text" class="input-field__input input-field__input--small-fixed">
+                        </div>
+                    </div>
+                </div>
+                <!-- second block -->
+                <div class="form-block">
+                    <div class="form-section form-section--horizontal">
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--start">Part Name</label>
+                            <select name="" id="partName" class="input-field__input input-field__input--small-fixed">
+                                <option >Bellow</option>  
+                                <option >Tank</option>  
+                                <option >Fuse</option> 
+                            </select>
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Cost</label>
+                            <input name="" type="number" id="partCost" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Ouantity</label>
+                            <input name="" type="number" id="partOuantity" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Total</label>
+                            <input name="" type="number" id="partTotal" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal input-field--center">
+                            <button type="button" id="addPartButton" class="input-field__button">Add Part</button>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <div class="table-field">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="table__head">Name</th>
+                                        <th class="table__head">Cost</th>
+                                        <th class="table__head">Quantity</th>
+                                        <th class="table__head">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="partTableBody">
+                                    <!-- remove the td when working with data. this is for only styling -->
+                                    <!-- <tr>
+                                        <td>Emma</td>
+                                        <td>47</td>
+                                        <td>1</td>
+                                        <td>12</td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- third block -->
+                <div class="form-block">
+                    <div class="form-section form-section--horizontal">
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--start">Consumable Name</label>
+                            <select name="" id="consumableName" class="input-field__input input-field__input--small-fixed">
+                                <option >Injector</option>  
+                                <option >Tank</option>  
+                                <option >Fuse</option>  
+                            </select>
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Cost</label>
+                            <input name="" type="number" id="consumableCost" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Ouantity</label>
+                            <input name="" type="number" id="consumableOuantity" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Total</label>
+                            <input name="" type="number" id="consumableTotal" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal input-field--center">
+                            <button type="button" id="addConsumableButton" class="input-field__button">Add Consumable</button>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <div class="table-field">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="table__head">Name</th>
+                                        <th class="table__head">Cost</th>
+                                        <th class="table__head">Quantity</th>
+                                        <th class="table__head">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="consumableTableBody">
+                                    <tr>
+                                        <!-- remove the td when working with data. this is for only styling -->
+                                        <!-- <td>Emma</td>
+                                        <td>47</td>
+                                        <td>1</td>
+                                        <td>12</td> -->
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Fourth block -->
+                 <div class="form-block">
+                    <div class="form-section form-section--horizontal">
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--start"><h1>Tyres</h1></label>
+                            <select name="" id="tyreName" class="input-field__input input-field__input--small-fixed">
+                                <option>Tyres</option>
+                            </select>
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Cost</label>
+                            <input name="" type="number" id="tyreCost" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Ouantity</label>
+                            <input name="" type="number" id="tyreOuantity" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Total</label>
+                            <input name="" type="number" id="tyreTotal" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal input-field--center">
+                            <button type="button" id="addTyreButton" class="input-field__button">Add Tyre</button>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <div class="table-field">
+                                <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="table__head">Name</th>
+                                                <th class="table__head">Cost</th>
+                                                <th class="table__head">Quantity</th>
+                                                <th class="table__head">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tyreTableBody">
+                                            <tr>
+                                                <!-- remove the td when working with data. this is for only styling -->
+                                                <!-- <td>Emma</td>
+                                                <td>47</td>
+                                                <td>1</td>
+                                                <td>12</td> -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                          
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Fifth block -->
+                 <div class="form-block">
+                    <div class="form-section form-section--horizontal">
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--start"><h1>Batteries</h1></label>
+                            <select name="" id="batteriesName" class="input-field__input input-field__input--small-fixed">
+                                <option>Batteries</option>
+                            </select>
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Cost</label>
+                            <input name="" type="number" id="batteriesCost" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Ouantity</label>
+                            <input name="" type="number" id="batteriesOuantity" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Total</label>
+                            <input name="" type="number" id="batteriesTotal" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal input-field--center">
+                            <button type="button" id="addBatteriesButton" class="input-field__button">Add Batteries</button>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <div class="table-field">
+                                <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="table__head">Name</th>
+                                                <th class="table__head">Cost</th>
+                                                <th class="table__head">Quantity</th>
+                                                <th class="table__head">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="batteriesTableBody">
+                                            <tr>
+                                                <!-- remove the td when working with data. this is for only styling -->
+                                                <!-- <td>Emma</td>
+                                                <td>47</td>
+                                                <td>1</td>
+                                                <td>12</td> -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                          
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Sixth block -->
+                 <div class="form-block">
+                    <div class="form-section form-section--horizontal">
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--start"><h1>Lubricant</h1></label>
+                            <select name="" id="lubricantName" class="input-field__input input-field__input--small-fixed">
+                                <option>Lubricant</option>
+                            </select>
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Cost</label>
+                            <input name="" type="number" id="lubricantCost" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Ouantity</label>
+                            <input name="" type="number" id="lubricantOuantity" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Total</label>
+                            <input name="" type="number" id="lubricantTotal" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal input-field--center">
+                            <button type="button" id="addLubricantButton" class="input-field__button">Add Lubricant</button>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <div class="table-field">
+                                <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="table__head">Name</th>
+                                                <th class="table__head">Cost</th>
+                                                <th class="table__head">Quantity</th>
+                                                <th class="table__head">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="lubricantTableBody">
+                                            <tr>
+                                                <!-- remove the td when working with data. this is for only styling -->
+                                                <!-- <td>Emma</td>
+                                                <td>47</td>
+                                                <td>1</td>
+                                                <td>12</td> -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                        </div>
+                    </div>
+                </div>
+
+
+        </div>
+    </div>    
+
+    <script>
+        var partName = document.getElementById('partName');
+        var partCost = document.getElementById('partCost');
+        var partOuantity = document.getElementById('partOuantity');
+        var partTotal = document.getElementById('partTotal');
+        var partTableBody = document.getElementById('partTableBody');
+        var addPartButton = document.getElementById('addPartButton');
+
+        var consumableName = document.getElementById('consumableName');
+        var consumableCost = document.getElementById('consumableCost');
+        var consumableOuantity = document.getElementById('consumableOuantity');
+        var consumableTotal = document.getElementById('consumableTotal');
+        var consumableTableBody = document.getElementById('consumableTableBody');
+        var addConsumableButton = document.getElementById('addConsumableButton');
+
+        var tyreName = document.getElementById('tyreName');
+        var tyreCost = document.getElementById('tyreCost');
+        var tyreOuantity = document.getElementById('tyreOuantity');
+        var tyreTotal = document.getElementById('tyreTotal');
+        var tyreTableBody = document.getElementById('tyreTableBody');
+        var addTyreButton = document.getElementById('addTyreButton');
+        
+        
+        var batteriesName = document.getElementById('batteriesName');
+        var batteriesCost = document.getElementById('batteriesCost');
+        var batteriesOuantity = document.getElementById('batteriesOuantity');
+        var batteriesTotal = document.getElementById('batteriesTotal');
+        var batteriesTableBody = document.getElementById('batteriesTableBody');
+        var addBatteriesButton = document.getElementById('addBatteriesButton');
+
+        var lubricantName = document.getElementById('lubricantName');
+        var lubricantCost = document.getElementById('lubricantCost');
+        var lubricantOuantity = document.getElementById('lubricantOuantity');
+        var lubricantTotal = document.getElementById('lubricantTotal');
+        var lubricantTableBody = document.getElementById('lubricantTableBody');
+        var addLubricantButton = document.getElementById('addLubricantButton');
+
+        function dataCell(value){
+            var cell = document.createElement('td');
+            var text = document.createTextNode(value);
+            cell.appendChild(text);
+            return cell;
+        }
+
+        addPartButton.addEventListener('click', function(e){
+            // create a table row to hold the new data inputted
+            var tableRow = document.createElement('tr');
+            // create a data column for each input data
+            // get the value in the partName element and create a new data cell
+            var name = dataCell(partName.value);
+            tableRow.appendChild(name);
+            var cost = dataCell(partCost.value);
+            tableRow.appendChild(cost);
+            var quantity = dataCell(partOuantity.value);
+            tableRow.appendChild(quantity);
+            var total = dataCell(partTotal.value);
+            tableRow.appendChild(total);
+            partTableBody.appendChild(tableRow);
+        });
+
+        addConsumableButton.addEventListener('click', function(e){
+            // create a table row to hold the new data inputted
+            var tableRow = document.createElement('tr');
+            // create a data column for each input data
+            // get the value in the partName element and create a new data cell
+            var name = dataCell(consumableName.value);
+            tableRow.appendChild(name);
+            var cost = dataCell(consumableCost.value);
+            tableRow.appendChild(cost);
+            var quantity = dataCell(consumableOuantity.value);
+            tableRow.appendChild(quantity);
+            var total = dataCell(consumableTotal.value);
+            tableRow.appendChild(total);
+            consumableTableBody.appendChild(tableRow);
+        });
+        addTyreButton.addEventListener('click', function(e){
+            // create a table row to hold the new data inputted
+            var tableRow = document.createElement('tr');
+            // create a data column for each input data
+            // get the value in the partName element and create a new data cell
+            var name = dataCell(tyreName.value);
+            tableRow.appendChild(name);
+            var cost = dataCell(tyreCost.value);
+            tableRow.appendChild(cost);
+            var quantity = dataCell(tyreOuantity.value);
+            tableRow.appendChild(quantity);
+            var total = dataCell(tyreTotal.value);
+            tableRow.appendChild(total);
+            tyreTableBody.appendChild(tableRow);
+        });
+
+        addBatteriesButton.addEventListener('click', function(e){
+            // create a table row to hold the new data inputted
+            var tableRow = document.createElement('tr');
+            // create a data column for each input data
+            // get the value in the partName element and create a new data cell
+            var name = dataCell(batteriesName.value);
+            tableRow.appendChild(name);
+            var cost = dataCell(batteriesCost.value);
+            tableRow.appendChild(cost);
+            var quantity = dataCell(batteriesOuantity.value);
+            tableRow.appendChild(quantity);
+            var total = dataCell(batteriesTotal.value);
+            tableRow.appendChild(total);
+            batteriesTableBody.appendChild(tableRow);
+        });
+
+        addLubricantButton.addEventListener('click', function(e){
+            // create a table row to hold the new data inputted
+            var tableRow = document.createElement('tr');
+            // create a data column for each input data
+            // get the value in the partName element and create a new data cell
+            var name = dataCell(lubricantName.value);
+            tableRow.appendChild(name);
+            var cost = dataCell(lubricantCost.value);
+            tableRow.appendChild(cost);
+            var quantity = dataCell(lubricantOuantity.value);
+            tableRow.appendChild(quantity);
+            var total = dataCell(lubricantTotal.value);
+            tableRow.appendChild(total);
+            lubricantTableBody.appendChild(tableRow);
+        });
+    </script>
+
+
+
+
+    <!-- <div>
+            <h2>Intercity STC Coaches Ltd. -Engineering </h2>
+    </div>
+    <div>
+        <form>
+        <div id="BusId">
+        <h4>Bus RegNo</h4>
+        </div>      
+        <select type="text" id="box1">  
+        </select>
+    </div>
+</div>
+<div id="Date">
+    <input type="text"  name="Date" placeholder="Current Date">  
+    <a href="Add.html">Add BusNumber</a> 
+  </div>
+</form>
+        
+<form style="position:relative;top:10px;left:10px;">
+    
+        <div id="Station">
+        <h4>Station </style="font:Times New Roman"></h4>
+         <div style="position:relative;top:-20px;left:40px;">      
+        <select type="text" id="box2"/>
+    </div>
+    </div>
+    
+    <div id="Date1">
+            <input type="text"  name="Date1" placeholder="Current date">  
+            <button><a href="Add1.html" style="text-decoration:none" >Add Station</a></button> 
+                </div> 
+      
+  
+      
+    
+    </form>
+
+
+
+
+
+    <form style="position:relative;top:10px;left:10px;">
+            
+                <div id="Maintenance">
+                <h4>Maintenance Type </style="font:Times New Roman;"></h4>
+                 <div style="position:relative;top:-20px;left:40px;">      
+                <select type="text" id="box2"/>
+            </div>
+            </div>
+            
+            <div id="Date1">
+                    <input type="text"  name="Date1" placeholder="Current Date">  
+                    <button><a href="MaintenanceForm.html" style="text-decoration:none" >Maintenace Type</a></button> 
+                        </div> 
+              
+          
+              
+            
+            </form>
+
+
+           
+            <form style="position:relative;top:10px;left:10px;padding:1em " >    
+                        <div id="Mileage">
+                                <h4>Current Mileage </style="font:Times New Roman;"></h4>
+                                <input type="text"  name="Date1" placeholder="">  
+                    </div>
+            
+                </div>   
+                    </form>
+
+            <form style="position:relative;top:10px;left:10px;" >    
+                <div id="Extra Contract">
+                        <h4>Extra Contract </style="font:Times New Roman;"></h4>
+                        <input type="text"  name="Econtract" placeholder="Extra Contract">  
+            </div>
+    
+        </div>  
+    
+            <div id="Parts Total">
+                    <h4>Parts Total </style="font:Times New Roman;"></h4>
+                    <input type="text"  name="PTotal" placeholder="Parts Total">  
+        </div>
+
+    </div>   
+     
+            </form>
+
+         
+
+        </form>
+        
+                    <form style="position:relative;top:10px;left:10px;">    
+                        <div id="Consumable Total">
+                                <h4>Consumable Total </style="font:Times New Roman;"></h4>
+                                <input type="text"  name="CTotal" placeholder="Consumable Total">  
+                    </div>
+            
+                </div>   
+                    </form>
+            
+                    
+   
+
+
+                    <div class="card1">
+                        <form style="position:relative;top:10px;left:10px;">
+                            
+                                <div id="Parts">
+                                <h4>Part Name </style="font:Times New Roman;"></h4>
+                                 <div>      
+                                <select type="text" id="box3"/> 
+                            </div>
+                            </div>
+                            
+                            <div id="Date1">
+                                    <input type="text"  name="Date1" placeholder="Add Part">  
+                                    <button><a href="AddPart.html" style="text-decoration:none" >Add Part</a></button> 
+                                        </div> 
+                              
+                            </form>
+                                <div id="Quantity">
+                                        <h4>Quantity </style="font:Times New Roman;"></h4>
+                                        <input type="text"  name="Qnty" placeholder="Quantity">  
+                            </div>
+                              
+                     
+                            <div id="Part Total">
+                                <h4>Part Total </style="font:Times New Roman;"></h4>
+                                <input type="text"  name="PTotal" placeholder="Part Total">  
+                    </div>
+                     
+
+                  
+
+
+
+
+ 
+
+                    <div class="card2">
+                        <form style="position:relative;top:10px;left:10px;">
+                            
+                                <div id="Consumable">
+                                <h4>Consumable Name </style="font:Times New Roman;"></h4>
+                                 <div>      
+                                <select type="text" id="box4"/>
+                            </div>
+                            </div>
+                            
+                            <div id="Date1">
+                                    <input type="text"  name="Date3" placeholder="Add Consumable">  
+                                    <button><a href="AddConsumer.html " style="text-decoration:none" >Add Consumable</a></button> 
+                                        </div> 
+                              
+                            </form>
+                                <div id="Quantity">
+                                        <h4>Quantity </style="font:Times New Roman;"></h4>
+                                        <input type="text"  name="Qnty" placeholder="Quantity">  
+                            </div>
+                              
+                     
+                            <div id="Part Total">
+                                <h4>Part Total </style="font:Times New Roman;"></h4>
+                                <input type="text"  name="PTotal" placeholder="Part Total">  
+                    </div>
+
+
+
+
+
+                </div>  -->
+</body>
+    </html>

@@ -1,0 +1,214 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px; 
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: #F8F6F6;
+    overflow-x:hidden; 
+}
+.headerMenu{
+    border-bottom: 1px solid #E0E0E0;
+    background-color:white;
+    height: 70px;
+    width:100%;
+    margin-top: 0px;
+    position: fixed;;
+}
+#wrapper{
+    background-color:white;
+    height: 60px;
+    width:100%;
+    margin-top: 0px;
+}
+.logo{
+    position: relative;
+    padding-left:9px;
+    float: left;
+    width: 5px;
+    margin:0;
+    height: 7px;
+    background: white;
+    padding-top: -4px;
+    }
+
+    .logo img{
+        width:200px;
+        height: 80px;
+
+    }
+    .search_box{
+        position: relative;
+        left:550px;
+        top:20px;
+        background: white;
+    }
+    .search{
+        width:200px;
+        height: 30px;
+        border: 1px solid #CAC9C9;
+        border-radius: 4px;
+        background-color:white;
+        }
+    
+    #menu a img{
+        width:21px;
+        height: 21px;
+    }
+    @media screen and (max-width:1280px){
+    #menu{
+        position: absolute;
+        top:0px;
+        right: 0px;
+        height: 0px;
+        padding-top: 19px;
+        margin-right: 4%;
+    }
+}
+@media screen and (min-width:1280px){
+    #menu{
+        position: absolute;
+        top:0px;
+        right: 0px;
+        height: 0px;
+        padding-top: 19px;
+        margin-right: 10%;
+    }
+}
+@media screen and (min-width:1920px){
+    #menu{
+        position: absolute;
+        top:0px;
+        right: 0px;
+        height: 0px;
+        padding-top: 19px;
+        margin-right: 25%;
+    }
+}
+    #menu a{
+        text-decoration: none;
+        font-size: 14px;
+        padding-top: 19px;
+        padding-bottom: 22px;
+        padding-left: 10px;
+        padding-right: 10px;
+        cursor :pointer;
+    }
+    
+
+ #sidebar{
+    position:fixed;
+    top:70px;
+    width:200px;
+    height:100%;
+    background: white;
+    transition: all 500ms linear;  
+    left:0px;
+    border-right: solid 1px #E4E2E2;
+    -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+    }
+     #sidebar.active{
+    left:-200px;
+    }
+    #sidebar ul li {
+    color:black;
+    list-style: none;
+    padding: 15px 10px;
+    border-bottom:1px solid rgba(100,100,100,0.3);
+    text-decoration: none;
+    }
+    #sidebar ul li a{
+    color:black;
+    font-size: 16px;
+    font-weight: bold;
+    }
+    #sidebar .toggle-btn{
+    position:absolute;
+    left:230px;
+    top:20px;
+    }
+            
+    #sidebar .toggle-btn span{
+    display:block;
+    width:20px;
+    height:4px;
+    background:#151719;
+    margin:3px 0px;
+    border-radius: 5px;
+    }
+    ::-webkit-scrollbar{
+        width:10px;
+    }
+    ::-webkit-scrollbar-track{
+        background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb{
+        background: #888;
+    }
+    
+    input[type="text"],input[type="password"],textarea,select{
+        outline: none;
+    }
+    .topic_list{
+        position: fixed;
+        left:930px;
+        bottom: 140px;
+        width:330px;
+        height:450px;
+    }
+    .head{
+        height: 50px;
+        border:none;
+    }
+    .body{
+        height: 290px;
+        overflow-y: scroll;
+        border-top:1px solid #D3D2D2;
+        border-bottom: 1px solid #C5C5C5;
+    }
+    .footer{
+        position: relative;
+        top:15px;
+        height: 60px;
+        border:none;
+    }
+    h7{
+        font: sans-serif;
+        color:#A7A7A7;
+    }
+    .body ul li{
+        font: sans-serif;
+        font-size: 16px;
+        text-decoration:none;
+        list-style: none;
+        padding:15px 10px;
+    }
+    .content{
+        position: relative;
+        left:350px;
+        top:150px;
+        background-color:#F8F6F6;
+        height: 500px;
+        width: 450px;
+    }
+    .p_header{
+        height: 60px;
+    }
+    .p_body{
+        border-top:1px solid #D3D2D2;
+        border-bottom:1px solid #D3D2D2;
+        height: 320px;
+    }
+    .p_footer{
+        height: 90px;
+    }
+    .p_footer ul li{
+        list-style: none;
+        display: inline;
+        padding:15px 10px;
+        position: relative;
+        top:10px;
+    }

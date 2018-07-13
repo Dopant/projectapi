@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <link rel="stylesheet" type="text/css" href="./css/Tyres.css"/>
+</head>
+        <div class="form-block">
+                <div class="input-field input-field--horizontal">
+                        <label class="input-field__label input-field__label--right"> Date</label>
+                        <input type="date" class="input-field__input input-field__input--small" id="offDate"placeholder="Date">
+                        
+                    </div>
+                <div class="form-section form-section--horizontal">
+                    <div class="input-field input-field--horizontal">
+                        <label class="input-field__label input-field__label--start"><h1>Repairs and Maintenance</h1></label>
+                        <select name="" id="tyreName" class="input-field__input input-field__input--small-fixed">
+                            <option>Repairs and Maintenance</option>
+                        </select>
+                    </div>
+                    <div class="input-field input-field--horizontal">
+                        <label class="input-field__label input-field__label--start">Bus RegNo.</label>
+                        <input type="text" class="input-field__input input-field__input--small" id="busReg"placeholder="Bus RegNo.">
+                        <!-- <input type="date" class="input-field__input input-field__input--small" placeholder="Curdate"> -->
+                        <!-- <button class="input-field__button">Curdate</button> -->
+                        <a href="/Add" class="input-field__button input-field__button--small">Add Bus</a>
+                    </div>
+                    
+                    <div class="input-field input-field--horizontal input-field--center">
+                            <button type="button" id="addButton" class="input-field__button">Add</button>
+                        </div>
+                   
+                    <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Job Number</label>
+                            <input name="" type="number" id="jobNumber" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Mileage</label>
+                            <input name="" type="number" id="mileage" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Material</label>
+                            <input name="" type="number" id="material" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Labour</label>
+                            <input name="" type="number" id="labour" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Total</label>
+                            <input name="" type="text" id="total" class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+                       
+                       
+                       
+                      
+                            <div class="input-field input-field--horizontal">
+                                    <label class="input-field__label input-field__label--right">Nature of Repairs </label>
+                                    <input name="" type="text" id="nature" class="input-field__input input-field__input--tiny-fixed">
+                                </div>
+                               
+                           
+                   
+                </div>
+                <div class="form-section">
+                    <div class="table-field">
+                            <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="table__head">Mileage</th>
+                                            <th class="table__head">Nature_of_Repairs</th>
+                                            <th class="table__head">Material </th>
+                                            <th class="table__head">Labour</th>
+                                            <th class="table__head">Total</th>
+                                        
+                                        </tr>
+                                    </thead>
+                                    <tbody id="repairsTableBody">
+                                        <tr>
+                                            <!-- remove the td when working with data. this is for only styling -->
+                                            <!-- <td>Emma</td>
+                                            <td>47</td>
+                                            <td>1</td>
+                                            <td>12</td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                      
+                    </div>
+                </div>
+            </div>
+
+
+
+            <script>
+
+        var mileage = document.getElementById('mileage');
+        var nature = document.getElementById('nature');
+        var material = document.getElementById('material');
+        var labour = document.getElementById('labour');
+        var total = document.getElementById('total');
+        var repairsTableBody = document.getElementById('repairsTableBody');
+        var addButton = document.getElementById('addButton');
+                  
+            
+                    function dataCell(value){
+                        var cell = document.createElement('td');
+                        var text = document.createTextNode(value);
+                        cell.appendChild(text);
+                        return cell;
+                    }
+            
+                    addButton.addEventListener('click', function(e){
+            // create a table row to hold the new data inputted
+            var tableRow = document.createElement('tr');
+            // create a data column for each input data
+            // get the value in the partName element and create a new data cell
+            var Mileage = dataCell(mileage.value);
+            tableRow.appendChild(Mileage);
+            var Nature_of_Repairs = dataCell(nature.value);
+            tableRow.appendChild(Nature_of_Repairs);
+            var Material = dataCell(material.value);
+            tableRow.appendChild(Material);
+            var Labour = dataCell(labour.value);
+            tableRow.appendChild(Labour);
+            var Total = dataCell(total.value);
+            tableRow.appendChild(Total);
+            repairsTableBody.appendChild(tableRow);
+        });
+            
+                
+                </script>
+
+        <script src="./js/jquery.js"></script>
+        <script src="./js/Repairs.js"></script>
+        <script src="./js/sweetalert.min.js"></script>
+
+    </html>

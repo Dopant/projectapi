@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./css/Maintenance.css"/>
+    <title>Maintenance</title>
+</head>
+<body>
+<div class="wrapper">
+    <div class="container">
+        <form class="form">
+
+            <!-- second block -->
+            <div class="form-block">
+                <div class="form-section form-section--horizontal">
+                    <div class="form-section">
+                        <div class="input-field input-field--center">
+                            <label class="input-field__label"><h2>Parts</h2></label>
+
+                        </div>
+
+                    </div>
+                    <div class="input-field input-field--horizontal">
+
+
+                        <input type="date" class="input-field__input input-field__input--small" name="date" id="date1" placeholder="Curdate">
+                        <input type="date" class="input-field__input input-field__input--small" name="date" id="date2" placeholder="Curdate">
+                    </div>
+                    <div class="input-field input-field--horizontal input-field--center">
+                        <button type="button" id="partReportButton" class="input-field__button">Generate Report</button>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <div class="table-field">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="table__head">Number</th>
+
+                                <th class="table__head">Registry_No</th>
+
+                                <th class="table__head">Total</th>
+
+                            </tr>
+                            </thead>
+                            <tbody id="partReportTableBody">
+                            <!-- remove the td when working with data. this is for only styling -->
+                            <!-- <tr>
+                                <td>Emma</td>
+                                <td>47</td>
+                                <td>1</td>
+                                <td>12</td>
+                            </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="input-field input-field--left">
+                        <label class="input-field__label">PARTS TOTAL (GhC)</label>
+                        <input name="partTotal" id="partTotal" type="" class="input-field__input input-field__input--small" placeholder="Part Total">
+                    </div>
+                </div>
+            </div>
+            <!-- third block -->
+            <div class="form-block">
+                <div class="form-section form-section--horizontal">
+
+
+                    <div class="form-section">
+                        <div class="input-field input-field--center">
+                            <label class="input-field__label"><h2>Consumable</h2></label>
+
+                        </div>
+
+                    </div>
+                    <div class="input-field input-field--horizontal">
+
+
+                        <input type="date" class="input-field__input input-field__input--small" name="date" id="date3" placeholder="Curdate">
+                        <input type="date" class="input-field__input input-field__input--small" name="date" id="date4" placeholder="Curdate">
+                    </div>
+
+                    <div class="input-field input-field--horizontal input-field--center">
+                        <button type="button" id="consumableReportButton" class="input-field__button">Generate Report</button>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <div class="table-field">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="table__head">Number</th>
+
+                                <th class="table__head">Registry_No</th>
+
+                                <th class="table__head">Total</th>
+                            </tr>
+                            </thead>
+                            <tbody id="consumableReportTableBody">
+                            <tr>
+                                <!-- remove the td when working with data. this is for only styling -->
+                                <!-- <td>Emma</td>
+                                <td>47</td>
+                                <td>1</td>
+                                <td>12</td> -->
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="input-field input-field--left">
+                        <label class="input-field__label">CONSUMABLES TOTAL (GhC)</label>
+                        <input name="partTotal" id="consumableTotal" type="" class="input-field__input input-field__input--small" placeholder="Consumable Total">
+                    </div>
+
+                </div>
+            </div>
+            <!-- Fourth block -->
+            <div class="form-block">
+                <div class="form-section form-section--horizontal">
+
+                    <div class="form-section">
+                        <div class="input-field input-field--center">
+                            <label class="input-field__label"><h2>Tyre</h2></label>
+
+                        </div>
+
+                    </div>
+                    <div class="input-field input-field--horizontal">
+
+
+
+                        <input type="date" class="input-field__input input-field__input--small" name="date" id="date5" placeholder="Curdate">
+                        <input type="date" class="input-field__input input-field__input--small" name="date" id="date6" placeholder="Curdate">
+                    </div>
+
+                    <div class="input-field input-field--horizontal input-field--center">
+                        <button type="button" id="tyreReportButton" class="input-field__button">Generate Report</button>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <div class="table-field">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="table__head">Number</th>
+
+                                <th class="table__head">Registry_No</th>
+
+                                <th class="table__head">Total</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tyreReportTableBody">
+                            <tr>
+                                <!-- remove the td when working with data. this is for only styling -->
+                                <!-- <td>Emma</td>
+                                <td>47</td>
+                                <td>1</td>
+                                <td>12</td> -->
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="input-field input-field--left">
+                        <label class="input-field__label">TYRES TOTAL (GhC)</label>
+                        <input name="tyreTotal" id="tyreTotal" type="" class="input-field__input input-field__input--small" placeholder="Tyre Total">
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Fifth block -->
+            <div class="form-block">
+                <div class="form-section form-section--horizontal">
+
+                    <div class="form-section">
+                        <div class="input-field input-field--center">
+                            <label class="input-field__label"><h2>Batteries</h2></label>
+
+                        </div>
+
+                    </div>
+                    <div class="input-field input-field--horizontal">
+
+
+                        <input type="date" class="input-field__input input-field__input--small" name="date7" id="date7" placeholder="Curdate">
+                        <input type="date" class="input-field__input input-field__input--small" name="date8" id="date8" placeholder="Curdate">
+                    </div>
+
+
+                    <div class="input-field input-field--horizontal input-field--center">
+                        <button type="button" id="batteryReportButton" class="input-field__button">Generate Report</button>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <div class="table-field">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="table__head">Number</th>
+
+                                <th class="table__head">Registry_No</th>
+
+                                <th class="table__head">Total</th>
+                            </tr>
+                            </thead>
+                            <tbody id="batteryReportTableBody">
+                            <tr>
+                                <!-- remove the td when working with data. this is for only styling -->
+                                <!-- <td>Emma</td>
+                                <td>47</td>
+                                <td>1</td>
+                                <td>12</td> -->
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="input-field input-field--left">
+                        <label class="input-field__label">BATTERIES TOTAL (GhC)</label>
+                        <input name="batteryTotal" id="batteryTotal" type="" class="input-field__input input-field__input--small" placeholder="Battery Total">
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Sixth block -->
+            <div class="form-block">
+                <div class="form-section form-section--horizontal">
+
+                    <div class="form-section">
+                        <div class="input-field input-field--center">
+                            <label class="input-field__label"><h2>Lubricant</h2></label>
+
+                        </div>
+
+                    </div>
+                    <div class="input-field input-field--horizontal">
+
+
+                        <input type="date" class="input-field__input input-field__input--small" name="date" id="date9" placeholder="Curdate">
+                        <input type="date" class="input-field__input input-field__input--small" name="date" id="date10" placeholder="Curdate">
+                    </div>
+
+
+                    <div class="input-field input-field--horizontal input-field--center">
+                        <button type="button" id="lubricantReportButton" class="input-field__button">Generate Report</button>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <div class="table-field">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="table__head">Number</th>
+
+                                <th class="table__head">Registry_No</th>
+
+                                <th class="table__head">Total</th>
+                            </tr>
+                            </thead>
+                            <tbody id="lubricantReportTableBody">
+                            <tr>
+                                <!-- remove the td when working with data. this is for only styling -->
+                                <!-- <td>Emma</td>
+                                <td>47</td>
+                                <td>1</td>
+                                <td>12</td> -->
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="input-field input-field--left">
+                        <label class="input-field__label">LUBRICANTS TOTAL (GhC)</label>
+                        <input name="lubricantTotal" id="lubricantTotal" type="" class="input-field__input input-field__input--small" placeholder="Lubricant Total">
+                    </div>
+
+                </div>
+            </div>
+            <div class="input-field__label--right">
+
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/sweetalert.min.js"></script>
+<script src="./js/total/PartsTotal.js"></script>
+<script src="./js/total/ConsumablesTotal.js"></script>
+<script src="./js/total/TyresTotal.js"></script>
+<script src="./js/total/BatteriesTotal.js"></script>
+<script src="./js/total/LubricantsTotal.js"></script>
+

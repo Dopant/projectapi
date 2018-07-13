@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang = "en">
+<html ng-app="Demo"></html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/AddPart.css"/>
+</head>
+<body>
+<div class="headerMenu">
+    <h2>Intercity STC Coaches Ltd. -Engineering </h2>
+</div>
+<br><br><br><br>
+<div class="container">
+
+    <div class="row">
+        <div class="col-25">
+            <label for="pname"> Select Consumable</label>
+        </div>
+        <div class="col-75">
+            <select name="consumabledropdown" id="consumabledropdown" class="input-field__input input-field__input--small-fixed">
+                <script>
+                    let dropdown3 = document.getElementById('consumabledropdown');
+                    dropdown3.length = 0;
+
+                    let defaultOption3 = document.createElement('option');
+                    defaultOption3.text = 'Select Consumable';
+
+
+                    dropdown3.add(defaultOption3);
+                    dropdown3.selectedIndex = 0;
+
+                   // const url3 = 'http://localhost:3000/consumableslist';
+                    const url3 = 'https://eng-api.herokuapp.com/consumableslist';
+                    fetch(url3)
+                        .then(
+                            function(response) {
+                                if (response.status !== 200) {
+                                    console.warn('Looks like there was a problem. Status Code: ' +
+                                        response.status);
+                                    return;
+                                }
+
+                                // Examine the text in the response
+                                response.json().then(function(data) {
+                                    let option;
+
+                                    for (let i = 0; i < data.length; i++) {
+                                        option = document.createElement('option');
+                                        option.text =  data[i].consumables;
+                                        option.value = data[i].consumables;
+                                        dropdown3.add(option);
+                                    }
+                                });
+                            }
+                        )
+                        .catch(function(err) {
+                            console.error('Fetch Error -', err);
+                        });
+                </script>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-25">
+            <label for="lname">Input New Cost </label>
+        </div>
+        <div class="col-75">
+            <input type="text" id="consumableCost" name="consumableCost" placeholder="Input New Cost">
+        </div>
+    </div>
+
+    <div class="row">
+        <button id="consumableUpdateButton" name="consumableUpdateButton" class="input-field__button">Update Consumable</button>
+    </div>
+</div>
+
+
+<script>
+    var consumableName = document.getElementById('consumabledropdown');
+    var consumablecost = document.getElementById('consumableCost');
+
+    consumableName.addEventListener('click', function (e) {
+        fetch('https://eng-api.herokuapp.com/consumableslist')
+        //fetch('http://localhost:3000/consumableslist')
+            .then(
+                function(response) {
+                    if (response.status !== 200) {
+                        console.warn('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                        return;
+                    }
+
+                    // Examine the text in the response
+                    response.json().then(function(data) {
+                        for (let i = 0; i < data.length; i++) {
+                            if ( consumableName.value == data[i].consumables){
+                                consumablecost.value = data[i].price;
+                            }
+                        }
+                    });
+                }
+            )
+            .catch(function(err) {
+                console.error('Fetch Error -', err);
+            });
+    });
+</script>
+
+<script src ="./js/jquery.js"></script>
+<script src = "./js/main.js"></script>
+<script src = "./js/sweetalert.min.js"></script>
+<script src = "./js/update/updateConsumer.js"></script>
+</body>
+</html>

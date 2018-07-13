@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang = "en">
+<html ng-app="Demo"></html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/AddPart.css"/>
+</head>
+<body>
+<div class="headerMenu">
+    <h2>Intercity STC Coaches Ltd. -Engineering </h2>
+</div>
+<br><br><br><br>
+<div class="container">
+
+    <div class="row">
+        <div class="col-25">
+            <label for="pname">Select Lubricant</label>
+        </div>
+        <div class="col-75">
+            <select name="" id="lubricantdropdown" class="input-field__input input-field__input--small-fixed">
+                <script>
+                    let dropdown7 = document.getElementById('lubricantdropdown');
+                    dropdown7.length = 0;
+
+                    let defaultOption7 = document.createElement('option');
+                    defaultOption7.text = 'Select lubricant';
+
+                    dropdown7.add(defaultOption7);
+                    dropdown7.selectedIndex = 0;
+
+                     const url7 = 'https://eng-api.herokuapp.com/lubricantslist';
+                   // const url7 = 'http://localhost:3000/lubricantslist';
+
+                    fetch(url7)
+                        .then(
+                            function(response) {
+                                if (response.status !== 200) {
+                                    console.warn('Looks like there was a problem. Status Code: ' +
+                                        response.status);
+                                    return;
+                                }
+
+                                // Examine the text in the response
+                                response.json().then(function(data) {
+                                    let option;
+
+                                    for (let i = 0; i < data.length; i++) {
+                                        option = document.createElement('option');
+                                        option.text = data[i].lubricants + " " + data[i].price;
+                                        option.value = data[i].lubricants;
+                                        dropdown7.add(option);
+                                    }
+                                });
+                            }
+                        )
+                        .catch(function(err) {
+                            console.error('Fetch Error -', err);
+                        });
+                </script>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <button id="lubricantDeleteButton" name="lubricantDeleteButton" class="input-field__button">Delete Lubricant</button>
+    </div>
+</div>
+</div>
+<script src ="./js/jquery.js"></script>
+<script src = "./js/main.js"></script>
+<script src = "./js/sweetalert.min.js"></script>
+<script src = "./js/delete/deleteLubricant.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang = "en">
+<html ng-app="Demo"></html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/AddPart.css"/>
+</head>
+<body>
+<div class="headerMenu">
+    <h2>Intercity STC Coaches Ltd. -Engineering </h2>
+</div>
+<br><br><br><br>
+<div class="container">
+
+    <div class="row">
+        <div class="col-25">
+            <label for="pname"> Select Station </label>
+        </div>
+        <div class="col-75">
+            <select name="stationdropdown" type="text" name="" id="stationdropdown" class="input-field__input input-field__input--small">
+                <script>
+                    let dropdown2 = document.getElementById('stationdropdown');
+                    dropdown2.length = 0;
+
+                    let defaultOption2 = document.createElement('option');
+                    defaultOption2.text = 'Select Station';
+
+                    dropdown2.add(defaultOption2);
+                    dropdown2.selectedIndex = 0;
+
+                     const url2 = 'https://eng-api.herokuapp.com/stationlist';
+                     // const url2 = 'http://localhost:3000/stationlist';
+                    fetch(url2)
+                        .then(
+                            function(response) {
+                                if (response.status !== 200) {
+                                    console.warn('Looks like there was a problem. Status Code: ' +
+                                        response.status);
+                                    return;
+                                }
+
+                                // Examine the text in the response
+                                response.json().then(function(data) {
+                                    let option;
+
+                                    for (let i = 0; i < data.length; i++) {
+                                        option = document.createElement('option');
+                                        option.text = data[i].station;
+                                        option.value = data[i].station;
+                                        dropdown2.add(option);
+                                    }
+                                });
+                            }
+                        )
+                        .catch(function(err) {
+                            console.error('Fetch Error -', err);
+                        });
+                </script>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <button id="stationDeleteButton" name="stationDeleteButton" class="input-field__button"> Delete Station </button>
+    </div>
+</div>
+</div>
+<script src ="./js/jquery.js"></script>
+<script src = "./js/main.js"></script>
+<script src = "./js/sweetalert.min.js"></script>
+<script src = "./js/delete/deleteStation.js"></script>
+
+</body>
+</html>

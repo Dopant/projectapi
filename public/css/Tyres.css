@@ -1,0 +1,193 @@
+/* styles for the main body element */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* set the styles for the wrapper element */
+.wrapper{
+    box-sizing: border-box;
+    width: inherit;
+    min-height: 100vh;
+    background: url(../Images/Capture.PNG) center no-repeat;
+    background-size: cover;
+}
+
+.container{
+    max-width: 80%;
+    margin: auto;
+}
+
+/* form styles */
+.form{
+    padding: 1rem 0;
+}
+
+/* styles for a block in the form */
+.form-block{
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+    background: #f4f4f4;
+    padding: 1rem 0.5rem;
+    margin-bottom: 1rem;
+    width: auto;
+    height: auto;
+}
+
+/* styles for the form sections */
+.form-section{
+    padding: 0.5rem 0;
+}
+
+
+/* modifiers for the form-section styles */
+.form-section--horizontal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    flex-flow: row wrap;
+}
+
+/* styles for the input field */
+.input-field{
+    margin: 0.5rem 1rem;
+    box-sizing: border-box;
+}
+
+/* modifiers for the input field styles */
+.input-field--horizontal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1;
+}
+
+.input-field--center{
+    text-align: center;
+    justify-content: center;
+}
+
+/* input field labels styling */
+.input-field__label{
+    /* font-size: 1.1rem; */
+    margin: 0 0.9rem;
+    font-size: 0.9rem;
+}
+
+/* modifiers for the input label */
+.input-field__label--small{
+    margin: 0;
+}
+
+.input-field__label--right{
+    text-align: right;
+}
+
+.input-field__label--start{
+    min-width: 80px
+}
+
+/* input element styles */
+.input-field__input{
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+    outline: none;
+    border: 1px solid #dddddd;
+    background: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+/* modifiers for the input element styles */
+.input-field__input--small,
+.input-field__input--small-fixed{
+    width: 200px;
+    margin: 0 0.5rem;
+}
+
+.input-field__input--tiny-fixed{
+    width: 90px;
+    margin: 0 0.5rem;
+}
+
+/* input field buttons styles */
+.input-field__button{
+    outline: none;
+    border: 1px solid transparent;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.9rem;
+    text-align: center;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    text-decoration: none;
+    background: rgb(42, 170, 255);
+    color: white;
+    min-width: 80px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* modifiers for the input field button */
+.input-field__button--small{
+    padding: 0.5rem 0.5rem;
+}
+
+.input-field__button--large{
+    font-size: 1.2rem;
+    padding: 0.8rem 1.2rem;
+    line-height: normal;
+}
+
+/* styles for the table field */
+.table-field{
+    padding: 0.5rem 2rem;
+}
+
+/* styles for the table */
+.table{
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #dddddd;
+    box-sizing: border-box;
+}
+
+/* styles for the table head */
+.table__head{
+    border: 1px solid #dddddd;
+    font-size: 1.12rem;
+    padding: 0.4rem 0 0.2rem;
+    box-sizing: border-box;
+    font-weight: 600;
+    /* background: #dddddd52 */
+}
+
+/* styles for the table body */
+.table td{
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 0.5rem 0;
+    font-weight: lighter;
+}
+
+@media (max-width: 61rem){
+    .container{
+        max-width: 95%;
+    }
+
+    .input-field--horizontal,
+    .form-section--horizontal{
+        display: block !important;
+    }
+    .input-field__input--small{
+        width: 100%;
+        margin: 0 0 0.5rem;
+    }
+
+    /* styles for the table field */
+    .table-field{
+        overflow-x: scroll;
+    }
+}

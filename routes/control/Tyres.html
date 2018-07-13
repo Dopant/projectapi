@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <link rel="stylesheet" type="text/css" href="./css/Tyres.css"/>
+</head>
+
+        <div class="wrapper">
+            <div class="container">
+                <div class="form">
+                    <div class="form-block">
+                        <div class="form-section form-section--horizontal">
+                            <div class="input-field input-field--horizontal">
+                                <label class="input-field__label input-field__label--start">Bus RegNo.</label>
+                                <input type="text" class="input-field__input input-field__input--small" id="busReg"placeholder="Bus RegNo.">
+                                <a href="/Add" class="input-field__button input-field__button--small">Add Bus</a>
+
+                                <label class="input-field__label input-field__label--right">Taken Off Date</label>
+                                <input type="date" class="input-field__input input-field__input--small" id="offDate"placeholder="Date">
+
+                                <label class="input-field__label input-field__label--right" >Taken Off Mileage</label>
+                                <input type="text" class="input-field__input input-field__input--small" id ="offMileage" placeholder="Mileage">
+                            </div>
+
+                            <div class="input-field input-field--horizontal">
+
+                            </div>
+                        </div>
+                        <div class="form-section form-section--horizontal">
+                            <div class="input-field input-field--horizontal">
+                                <label class="input-field__label input-field__label--start"><h1>Tyres</h1></label>
+                                <select name="" id="tyreName" class="input-field__input input-field__input--small-fixed">
+                                    <option>Tyres</option>
+                                </select>
+                                <button type="button" id="addTyreButton" class="input-field__button">Add Tyre</button>
+                            </div>
+                            <div class="input-field input-field--horizontal">
+                                <label class="input-field__label input-field__label--right">Fitted on Date</label>
+                                <input type="date" class="input-field__input input-field__input--small" id="onDate" placeholder="Date">
+                            </div>
+                            <div class="input-field input-field--horizontal">
+                                <label class="input-field__label input-field__label--right">Fitted on Mileage</label>
+                                <input type="text" class="input-field__input input-field__input--small" id="onMileage" placeholder="Mileage">
+                            </div>
+                            <div class="input-field input-field--horizontal">
+                                <label class="input-field__label input-field__label--right">S.I.V No</label>
+                                <input name="" type="number" id="siv" class="input-field__input input-field__input--tiny-fixed">
+                            </div>
+                            <div class="input-field input-field--horizontal">
+                                <label class="input-field__label input-field__label--right">Make and Type</label>
+                                <input name="" type="text" id="makeTake" class="input-field__input input-field__input--tiny-fixed">
+                            </div>
+                            <div class="input-field input-field--horizontal">
+                                <label class="input-field__label input-field__label--right">Serial Number</label>
+                                <input name="" type="number" id="serialNumber" class="input-field__input input-field__input--tiny-fixed">
+                            </div>
+                            <div class="input-field input-field--horizontal">
+                                <label class="input-field__label input-field__label--right">Total Mileage Run</label>
+                                <input name="" type="number" id="totalMileage" class="input-field__input input-field__input--tiny-fixed">
+                            </div>
+                            <div class="input-field input-field--horizontal">
+                                <label class="input-field__label input-field__label--right">Remarks</label>
+                                <input name="" type="text" id="remarks" class="input-field__input input-field__input--tiny-fixed">
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <div class="table-field">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="table__head">SIVNo</th>
+                                        <th class="table__head">Make_and_Type</th>
+                                        <th class="table__head">Serial_Number</th>
+                                        <th class="table__head">Total_Mileage_Run</th>
+                                        <th class="table__head">Remarks</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tyreTableBody">
+                                    <tr>
+                                        <!-- remove the td when working with data. this is for only styling -->
+                                        <!-- <td>Emma</td>
+                                        <td>47</td>
+                                        <td>1</td>
+                                        <td>12</td> -->
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <script>
+
+        var siv = document.getElementById('siv');
+        var makeTake = document.getElementById('makeTake');
+        var serialNumber = document.getElementById('serialNumber');
+        var totalMileage = document.getElementById('totalMileage');
+        var remarks = document.getElementById('remarks');
+        var tyreTableBody = document.getElementById('tyreTableBody');
+        var addTyreButton = document.getElementById('addTyreButton');
+                  
+            
+                    function dataCell(value){
+                        var cell = document.createElement('td');
+                        var text = document.createTextNode(value);
+                        cell.appendChild(text);
+                        return cell;
+                    }
+            
+                    addTyreButton.addEventListener('click', function(e){
+            // create a table row to hold the new data inputted
+            var tableRow = document.createElement('tr');
+            // create a data column for each input data
+            // get the value in the partName element and create a new data cell
+            var SIVNo = dataCell(siv.value);
+            tableRow.appendChild(SIVNo);
+            var Make_and_Type = dataCell(makeTake.value);
+            tableRow.appendChild(Make_and_Type);
+            var Serial_Number = dataCell(serialNumber.value);
+            tableRow.appendChild(Serial_Number);
+            var Total_Mileage_Run = dataCell(totalMileage.value);
+            tableRow.appendChild(Total_Mileage_Run);
+            var Remarks = dataCell(remarks.value);
+            tableRow.appendChild(Remarks);
+            tyreTableBody.appendChild(tableRow);
+        });
+            
+                
+                </script>
+ <script src="./js/jquery.js"></script>
+<script src="./js/Tyres.js"></script>
+ <script src="./js/sweetalert.min.js"></script>
+</html>

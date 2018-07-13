@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang = "en">
+<html ng-app="Demo"></html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/AddPart.css"/>
+</head>
+<body>
+<div class="headerMenu">
+    <h2>Intercity STC Coaches Ltd. -Engineering </h2>
+</div>
+<br><br><br><br>
+<div class="container">
+
+    <div class="row">
+        <div class="col-25">
+            <label for="pname"> Select Maintenance Type</label>
+        </div>
+        <div class="col-75">
+            <select name="typedropdown" id="typedropdown" class="input-field__input input-field__input--small">
+                <script>
+                    let dropdown1= document.getElementById('typedropdown');
+                    dropdown1.length = 0;
+
+                    let defaultOption1 = document.createElement('option');
+                    defaultOption1.text = 'Select Maintenance type';
+
+                    dropdown1.add(defaultOption1);
+                    dropdown1.selectedIndex = 0;
+
+                     const url1 = 'https://eng-api.herokuapp.com/maintenance_typelist';
+                   // const url1 = 'http://localhost:3000/maintenance_typelist';
+
+                    fetch(url1)
+                        .then(
+                            function(response) {
+                                if (response.status !== 200) {
+                                    console.warn('Looks like there was a problem. Status Code: ' +
+                                        response.status);
+                                    return;
+                                }
+
+                                // Examine the text in the response
+                                response.json().then(function(data) {
+                                    let option;
+
+                                    for (let i = 0; i < data.length; i++) {
+                                        option = document.createElement('option');
+                                        option.text = data[i].maintenance_type;
+                                        option.value = data[i].maintenance_type;
+                                        dropdown1.add(option);
+                                    }
+                                });
+                            }
+                        )
+                        .catch(function(err) {
+                            console.error('Fetch Error -', err);
+                        });
+                </script>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <button id="typeDeleteButton" name="typeDeleteButton" class="input-field__button">Delete Maintenance Type</button>
+    </div>
+</div>
+</div>
+<script src ="./js/jquery.js"></script>
+<script src = "./js/main.js"></script>
+<script src = "./js/sweetalert.min.js"></script>
+<script src = "./js/delete/deleteType.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+<style type="text/css">
+
+    body,html{
+        margin:0;
+        padding:0;
+        font-family: sans-serif;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+
+    }
+    .wrapper{
+        box-sizing: border-box;
+        width: inherit;
+        min-height: 200%;
+        background: url('./Images/Capture.PNG') center no-repeat;
+        background-size: cover;
+    }
+
+    .alert{
+        position:relative;
+        padding:.75rem 1.25rem;
+        margin-bottom:1rem;
+        border:1px solid transparent;
+        border-radius:.25rem
+    }
+    .alert-danger
+    {
+        color:#721c24;
+        background-color:#f8d7da;
+        border-color:#f5c6cb
+    }
+    .alert-warning{
+        color:#856404;
+        background-color:#fff3cd;
+        border-color:#ffeeba
+    }
+    .login-box{
+        margin: auto;
+        width: 550px;
+        height: 420px;
+        position: absolute;
+        background: rgba( 0, 0, 0, 0.5);
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        color: #fff;
+        box-sizing: border-box;
+        padding: 70px 30px;
+
+
+
+    }
+    .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        top: -50px;
+        left: calc(50% - 50px);
+    }
+    h1 {
+        margin:0;
+        padding: 0 0 20px;
+        text-align: center;
+        font-size: 22px;
+    }
+    .login-box p{
+        margin: 0;
+        padding: 0;
+        font-weight:bold ;
+        font-size: 15px;
+    }
+    .login-box input{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .login-box input[type='text'], input[type="password"]
+    {
+        border : none;
+        border-bottom: 1px solid #fff;
+        background: transparent;
+        outline: 40px;
+        color: #fff;
+        font-size: 16px;
+    }
+    .login-box button[id="registerButton"]
+    {
+        width: 100%;
+        margin-bottom: 20px;
+        border:none;
+        outline: none;
+        height: 40px;
+        background: #1c8adb;
+        color: #fff;
+        font-size: 18px;
+        border-radius: 20px;
+    }
+    .login-box input[type="submit"]
+    {
+        width: 100%;
+        margin-bottom: 20px;
+        border:none;
+        outline: none;
+        height: 40px;
+        background: #1c8adb;
+        color: #fff;
+        font-size: 18px;
+        border-radius: 20px;
+    }
+    .login-box button[id="registerButton"]:hover
+    {
+        cursor: pointer;
+        background: #39dc79;
+        color: #000;
+    }
+    .login-box input[type="submit"]:hover
+    {
+        cursor: pointer;
+        background: #39dc79;
+        color: #000;
+    }
+    .login-box a{
+        text-decoration: none;
+        font-size: 14px;
+        color: #fff;
+    }
+    .login-box a:hover
+    {
+        color: #39dc79;
+    }
+
+
+</style>
+<div class="wrapper">
+    <h1>
+        <div class="alert alert-warning">
+            {{title}}
+        </div>
+
+    </h1>
+
+
+    <div class="login-box">
+        <img src="./Images/User_Avatar_2.png" class="avatar"  >
+    <p>
+        {{#if errors}}
+            {{#each errors}}
+                <div class="alert alert-danger">
+                    {{this.msg}}
+                </div>
+
+            {{/each}}
+        {{/if}}
+
+        </p>
+
+
+        <form method="post" action="/log_in">
+            <p>Username</p>
+            <input type="text" name="user_name" placeholder="">
+            <p>Password</p>
+            <input type="password" name="password" placeholder="">
+            <input type="submit" value="Login">
+            <a href="/">New User? Create an account here </a>
+        </form>
+
+    </div>
+</div>

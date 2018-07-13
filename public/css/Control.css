@@ -1,0 +1,278 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: #F8F6F6;
+    background: gray url(../Images/kente.jpg) repeat 0 0;
+}
+h2{
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    margin: -10px -40px;
+    padding:30px;
+    color:green;
+    font-size: 20px;
+}
+.headerMenu{
+    border-bottom: 1px solid #E0E0E0;
+    background-color:yellow;
+    height: 70px;
+    width:100%;
+    top: 0px;
+    overflow: hidden;
+    position: fixed;
+}
+#wrapper{
+    background-color:white;
+    height: 60px;
+    width:100%;
+    margin-top: 0px;
+}
+
+
+
+
+#menu a img{
+    width:21px;
+    height: 21px;
+}
+@media screen and (max-width:1280px){
+    #menu{
+        position: absolute;
+        top:0px;
+        right: 0px;
+        height: 0px;
+        padding-top: 19px;
+        margin-right: 4%;
+    }
+}
+@media screen and (min-width:1280px){
+    #menu{
+        position: absolute;
+        top:0px;
+        right: 0px;
+        height: 0px;
+        padding-top: 19px;
+        margin-right: 10%;
+    }
+}
+@media screen and (min-width:1920px){
+    #menu{
+        position: absolute;
+        top:0px;
+        right: 0px;
+        height: 0px;
+        padding-top: 19px;
+        margin-right: 25%;
+    }
+}
+#menu a{
+    text-decoration: none;
+    font-size: 14px;
+    padding-top: 19px;
+    padding-bottom: 22px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor :pointer;
+}
+h2{
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    margin: -10px -40px;
+    padding:30px;
+    color:green;
+}
+
+Setup{
+    color:green;
+}
+Maintenance{
+    color:green;
+}
+Report{
+    color:green
+}
+Logout{
+    color:green;
+}
+#sidebar{
+    position:fixed;
+    top:70px;
+    width:280px;
+    height:100%;
+    background: white;
+    transition: all 500ms linear;
+    left:0px;
+    border-right: solid 1px #E4E2E2;
+    -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+}
+#sidebar.active{
+    left:-200px;
+}
+#sidebar ul li {
+    color:black;
+    list-style: none;
+    padding: 15px 10px;
+    border-bottom:1px solid rgba(100,100,100,0.3);
+    text-decoration: none;
+}
+#sidebar ul li a{
+    color:black;
+    font-size: 16px;
+    font-weight: bold;
+}
+#sidebar .toggle-btn{
+    position:absolute;
+    left:230px;
+    top:20px;
+}
+
+#sidebar .toggle-btn span{
+    display:block;
+    width:20px;
+    height:4px;
+    background:#151719;
+    margin:3px 0px;
+    border-radius: 5px;
+}
+.content{
+    height:630px;
+    width:1060px;
+    position: relative;
+    left:300px;
+    top:70px;
+    overflow-y:scroll;
+}
+#card{
+    border: 1px solid #E0E0E0;
+    position: absolute;
+    top:50px;
+    width:600px;
+    height:700px;
+    border-radius:3px/3px;
+    padding-left:5px;
+    padding-right:10px;
+    padding-top:20px;
+    background-color: white;
+}
+.card-header{
+    height: 50px;
+}
+.card-body{
+    height: 570;
+}
+.card-footer{
+    height: 60px;
+}
+.card-body img{
+    position: relative;
+    bottom: 5px;
+    right: 5px;
+}
+
+.m_header{
+    height: 70px;
+}
+.m_body{
+    height:250px;
+}
+.m_footer{
+    height:60px;
+}
+#post_text{
+    position: relative;
+    height: 250px;
+    top:10px;
+    width:570px;
+    left: 10px;
+    right: 10px;
+    border-color: white;
+}
+::-webkit-scrollbar{
+    width:10px;
+}
+::-webkit-scrollbar-track{
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb{
+    background: #888;
+}
+
+input[type="text"],input[type="password"],textarea,select{
+    outline: none;
+}
+.topic_list{
+    position: fixed;
+    left:980px;
+    bottom: 120px;
+    width:330px;
+    height:450px;
+}
+.head{
+    height: 50px;
+    border:none;
+}
+.body{
+    height: 290px;
+    overflow-y: scroll;
+    border-top:1px solid #D3D2D2;
+    border-bottom: 1px solid #C5C5C5;
+}
+.footer{
+    position: relative;
+    top:15px;
+    height: 60px;
+    border:none;
+}
+h7{
+    font: sans-serif;
+    color:#A7A7A7;
+}
+.body ul li{
+    font: sans-serif;
+    font-size: 16px;
+    text-decoration:none;
+    list-style: none;
+    padding:15px 10px;
+}
+h8{
+    font: sans-serif;
+    font-size: 20px;
+    align-content: center;
+}
+
+.fa-thumbs-up{
+    position: relative;
+    top:8px;
+    left:20px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.fa-thumbs-down{
+    position: relative;
+    top:8px;
+    left:35px;
+    cursor: pointer;
+    user-select: none;
+}
+#click{
+    position: relative;
+    left:20px;
+    font-weight: bold;
+}
+h4{
+    position: relative;
+    bottom:14px;
+    left:30px;
+
+}
+
+.fa:hover {
+    color: darkblue;
+}

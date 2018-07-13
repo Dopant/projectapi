@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang = "en">
+<html ng-app="Demo"></html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/Add.css"/>
+</head>
+
+
+<body>
+<div class="headerMenu">
+    <h2>Intercity STC Coaches Ltd. -Engineering </h2>
+</div>
+<br><br><br><br>
+<div class="container">
+
+    <div class="row">
+        <div class="col-25">
+            <label for="fname">Input Registration Number</label>
+        </div>
+        <div class="col-75">
+            <input type="text" id="registry_no" name="registry_no"  placeholder="Registration Number">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-25">
+            <label for="fname">Select Bus Category</label>
+        </div>
+        <div class="col-75">
+            <select type="text" name="busCategory" id="busCategory" class="input-field__input input-field__input--small">
+                <option value="COMMERCIAL">COMMERCIAL</option>
+                <option value="ALLIANCE">ALLIANCE</option>
+                <option value="COPORATE">COPORATE</option>
+            </select>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-25">
+                <label for="fname">Select Bus Category</label>
+            </div>
+            <div class="col-75">
+                <select type="text" name="busType" id="busType" class="input-field__input input-field__input--small">
+                    <option value="COACHES">COACHES</option>
+                    <option value="MINI-BUS">MINI-BUS</option>
+                </select>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <button id="addVehicleButton" name="addVehicleButton" class="input-field__button">Add Vehicle</button>
+        </div>
+
+    </div>
+</div>
+<script src ="./js/jquery.js"></script>
+<script src = "./js/main.js"></script>
+<script src ="./js/add.js"></script>
+<script src ="./js/add1.js"></script>
+<script src="./js/sweetalert.min.js"></script>
+</body>
+</html>
