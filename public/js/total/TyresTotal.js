@@ -8,13 +8,10 @@ $(function () {
         //get everyone
 
         var tyreReportTableBody = document.getElementById('tyreReportTableBody');
-
-        var from = document.getElementById('date1');
-        var to = document.getElementById('date2');
         var tyreTotal = document.getElementById('tyreTotal');
-        let overallTotal;
-
-
+        var from = document.getElementById('date5');
+        var to = document.getElementById('date6');
+        let tyreCost = 0;
 
         swal({
             title: "Confirm Request",
@@ -55,11 +52,12 @@ $(function () {
                                         }
                                         // Examine the text in the response
                                         response.json().then(function(data) {
+                                            let k = 1;
 
                                             for (let i = 0; i < data.length; i++) {
 
                                                 let busTotalCost = 0;
-                                                let k = 1;
+
 
                                                 for ( let j = 0 ; j < json.length; j++ ){
 
@@ -71,6 +69,7 @@ $(function () {
 
                                                 }
 
+                                                tyreCost = tyreCost + busTotalCost;
                                                 if ( !(busTotalCost === 0)) {
 
                                                     function dataCell(value){
@@ -99,14 +98,15 @@ $(function () {
 
                                                 }
 
-
                                             }
+                                            tyreTotal.value = tyreCost;
                                         });
                                     }
                                 )
                                 .catch(function(err) {
                                     console.error('Fetch Error -', err);
                                 });
+
 
                         },
 

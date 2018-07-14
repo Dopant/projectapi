@@ -166,8 +166,8 @@
                             dropdown1.add(defaultOption1);
                             dropdown1.selectedIndex = 0;
 
-                            const url1 = 'https://eng-api.herokuapp.com/maintenance_typelist';
-                            //   const url1 = 'http://localhost:3000/maintenance_typelist';
+                                 const url1 = 'https://eng-api.herokuapp.com/maintenance_typelist';
+                              // const url1 = 'http://localhost:3000/maintenance_typelist';
 
                             fetch(url1)
                                 .then(
@@ -212,8 +212,8 @@
                             dropdown2.add(defaultOption2);
                             dropdown2.selectedIndex = 0;
 
-                            const url2 = 'https://eng-api.herokuapp.com/stationlist';
-                            //  const url2 = 'http://localhost:3000/stationlist';
+                               const url2 = 'https://eng-api.herokuapp.com/stationlist';
+                           //  const url2 = 'http://localhost:3000/stationlist';
                             fetch(url2)
                                 .then(
                                     function(response) {
@@ -287,7 +287,7 @@
                             dropdown3.selectedIndex = 0;
 
                             //  const url3 = 'http://localhost:3000/partslist';
-                            const url3 = 'https://eng-api.herokuapp.com/partslist';
+                              const url3 = 'https://eng-api.herokuapp.com/partslist';
                             fetch(url3)
                                 .then(
                                     function(response) {
@@ -389,8 +389,8 @@
                             dropdown4.add(defaultOption4);
                             dropdown4.selectedIndex = 0;
 
-                            const url4 = 'https://eng-api.herokuapp.com/consumableslist';
-                            // const url4 = 'http://localhost:3000/consumableslist';
+                               const url4 = 'https://eng-api.herokuapp.com/consumableslist';
+                           //  const url4 = 'http://localhost:3000/consumableslist';
 
                             fetch(url4)
                                 .then(
@@ -490,8 +490,8 @@
                             dropdown5.add(defaultOption5);
                             dropdown5.selectedIndex = 0;
 
-                            const url5 = 'https://eng-api.herokuapp.com/tyreslist';
-                            // const url5 = 'http://localhost:3000/tyreslist';
+                                const url5 = 'https://eng-api.herokuapp.com/tyreslist';
+                            //  const url5 = 'http://localhost:3000/tyreslist';
 
                             fetch(url5)
                                 .then(
@@ -596,7 +596,7 @@
                             dropdown6.selectedIndex = 0;
 
                             const url6 = 'https://eng-api.herokuapp.com/batterieslist';
-                            // const url6 = 'http://localhost:3000/batterieslist';
+                          //   const url6 = 'http://localhost:3000/batterieslist';
 
                             fetch(url6)
                                 .then(
@@ -701,7 +701,7 @@
                             dropdown7.selectedIndex = 0;
 
                             const url7 = 'https://eng-api.herokuapp.com/lubricantslist';
-                            // const url7 = 'http://localhost:3000/lubricantslist';
+                           //  const url7 = 'http://localhost:3000/lubricantslist';
 
                             fetch(url7)
                                 .then(
@@ -943,7 +943,7 @@
     });
 
     tyre_name.addEventListener('click' , function (e) {
-        fetch('https://eng-api.herokuapp.com/tyreslist')
+          fetch('https://eng-api.herokuapp.com/tyreslist')
         // fetch('http://localhost:3000/tyreslist')
             .then(
                 function(response) {
@@ -970,7 +970,7 @@
 
     lubricant_name.addEventListener('click' , function (e) {
         fetch('https://eng-api.herokuapp.com/lubricantslist')
-        //fetch('http://localhost:3000/lubricantslist')
+       // fetch('http://localhost:3000/lubricantslist')
             .then(
                 function(response) {
                     if (response.status !== 200) {

@@ -9,10 +9,10 @@ $(function () {
 
         var batteryReportTableBody = document.getElementById('batteryReportTableBody');
 
-        var from = document.getElementById('date1');
-        var to = document.getElementById('date2');
+        var from = document.getElementById('date7');
+        var to = document.getElementById('date8');
         var batteryTotal = document.getElementById('batteryTotal');
-        let overallTotal;
+        let batteryCost = 0;
 
 
 
@@ -55,11 +55,11 @@ $(function () {
                                         }
                                         // Examine the text in the response
                                         response.json().then(function(data) {
-
+                                            let k = 1;
                                             for (let i = 0; i < data.length; i++) {
 
                                                 let busTotalCost = 0;
-                                                let k = 1;
+
 
                                                 for ( let j = 0 ; j < json.length; j++ ){
 
@@ -71,6 +71,7 @@ $(function () {
 
                                                 }
 
+                                                batteryCost = batteryCost + busTotalCost;
                                                 if ( !(busTotalCost === 0)) {
 
                                                     function dataCell(value){
@@ -95,12 +96,13 @@ $(function () {
 
                                                     batteryReportTableBody.appendChild(tableRow);
 
-                                                    overallTotal = overallTotal + busTotalCost;
+
 
                                                 }
 
 
                                             }
+                                            batteryTotal.value = batteryCost;
                                         });
                                     }
                                 )

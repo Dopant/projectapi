@@ -11,7 +11,7 @@ $(function () {
         var partTotal = document.getElementById('partTotal');
         var from = document.getElementById('date1');
         var to = document.getElementById('date2');
-        var partCost = 500;
+        var partCost = 0;
 
         swal({
             title: "Confirm Request",
@@ -52,11 +52,12 @@ $(function () {
                                         }
                                         // Examine the text in the response
                                         response.json().then(function(data) {
+                                            let k = 1;
 
                                             for (let i = 0; i < data.length; i++) {
 
                                                 let busTotalCost = 0;
-                                                let k = 1;
+
 
                                                 for ( let j = 0 ; j < json.length; j++ ){
 
@@ -68,6 +69,7 @@ $(function () {
 
                                                 }
 
+                                                partCost = partCost + busTotalCost;
                                                 if ( !(busTotalCost === 0)) {
 
                                                     function dataCell(value){
@@ -96,8 +98,8 @@ $(function () {
 
                                                 }
 
-
                                             }
+                                            partTotal.value = partCost;
                                         });
                                     }
                                 )

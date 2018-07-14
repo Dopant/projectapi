@@ -9,10 +9,10 @@ $(function () {
 
         var lubricantReportTableBody = document.getElementById('lubricantReportTableBody');
 
-        var from = document.getElementById('date1');
-        var to = document.getElementById('date2');
+        var from = document.getElementById('date9');
+        var to = document.getElementById('date10');
         var lubricantTotal = document.getElementById('lubricantTotal');
-        let overallTotal;
+        let lubricantCost = 0;
 
 
 
@@ -55,11 +55,11 @@ $(function () {
                                         }
                                         // Examine the text in the response
                                         response.json().then(function(data) {
-
+                                            let k = 1;
                                             for (let i = 0; i < data.length; i++) {
 
                                                 let busTotalCost = 0;
-                                                let k = 1;
+
 
                                                 for ( let j = 0 ; j < json.length; j++ ){
 
@@ -71,6 +71,7 @@ $(function () {
 
                                                 }
 
+                                                lubricantCost = lubricantCost + busTotalCost;
                                                 if ( !(busTotalCost === 0)) {
 
                                                     function dataCell(value){
@@ -94,12 +95,13 @@ $(function () {
                                                     tableRow.appendChild(total_cost);
 
                                                     lubricantReportTableBody.appendChild(tableRow);
-                                                    overallTotal = overallTotal + busTotalCost;
+
 
                                                 }
 
 
                                             }
+                                            lubricantTotal.value = lubricantCost;
                                         });
                                     }
                                 )
