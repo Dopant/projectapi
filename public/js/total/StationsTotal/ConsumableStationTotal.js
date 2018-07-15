@@ -3,16 +3,15 @@
  */
 $(function () {
 
-    $('#tyreReportButton ').on('click',function (event) {
+    $('#consumableReportButton ').on('click',function (event) {
         event.preventDefault();
         //get everyone
 
-        var tyreReportTableBody = document.getElementById('tyreReportTableBody');
-        var tyreTotal = document.getElementById('tyreTotal');
-        var from = document.getElementById('date5');
-        var to = document.getElementById('date6');
-        let tyreCost = 0;
-
+        var consumableReportTableBody = document.getElementById('consumableReportTableBody');
+        var consumableTotal = document.getElementById('consumableTotal');
+        var from = document.getElementById('date3');
+        var to = document.getElementById('date4');
+        let consumableCost = 0;
         swal({
             title: "Confirm Request",
             text: "Click OK to confirm",
@@ -24,23 +23,23 @@ $(function () {
                 if (willDelete) {
                     $.ajax({
                         method: 'GET',
-                        url:'/tyres',
+                        url:'/consumables',
                         data:{
                             'from':from.value,
                             'to':to.value,
                         },
                         success: function (json){
-
+                            console.log();
                             swal({
                                 title: "Completed!",
                                 text: "Success!",
                                 icon: "success",
                                 button: "ok",
                             });
+                            //console.log(data);
 
-
-                             const url = 'https://eng-api.herokuapp.com/buslist';
-                            //const url = 'http://localhost:3000/buslist';
+                            const url = 'https://eng-api.herokuapp.com/stationlist';
+                            //const url = 'http://localhost:3000/stationlist';
 
                             fetch(url)
                                 .then(
@@ -61,15 +60,14 @@ $(function () {
 
                                                 for ( let j = 0 ; j < json.length; j++ ){
 
-                                                    if ( json[j].registry_no === data[i].registry_no) {
+                                                    if ( json[j].station === data[i].station) {
 
                                                         busTotalCost = busTotalCost + json[j].total_cost;
 
                                                     }
 
                                                 }
-
-                                                tyreCost = tyreCost + busTotalCost;
+                                                consumableCost = consumableCost + busTotalCost;
                                                 if ( !(busTotalCost === 0)) {
 
                                                     function dataCell(value){
@@ -86,20 +84,21 @@ $(function () {
                                                     tableRow.appendChild(Number);
                                                     k++;
 
-                                                    var registry_no = dataCell(data[i].registry_no);
-                                                    tableRow.appendChild(registry_no);
+                                                    var station = dataCell(data[i].station);
+                                                    tableRow.appendChild(station);
 
                                                     var total_cost = dataCell(busTotalCost);
                                                     tableRow.appendChild(total_cost);
 
-                                                    tyreReportTableBody.appendChild(tableRow);
-
+                                                    consumableReportTableBody.appendChild(tableRow);
 
 
                                                 }
 
+
                                             }
-                                            tyreTotal.value = tyreCost;
+
+                                            consumableTotal.value = consumableCost;
                                         });
                                     }
                                 )

@@ -3,15 +3,18 @@
  */
 $(function () {
 
-    $('#tyreReportButton ').on('click',function (event) {
+    $('#lubricantReportButton ').on('click',function (event) {
         event.preventDefault();
         //get everyone
 
-        var tyreReportTableBody = document.getElementById('tyreReportTableBody');
-        var tyreTotal = document.getElementById('tyreTotal');
-        var from = document.getElementById('date5');
-        var to = document.getElementById('date6');
-        let tyreCost = 0;
+        var lubricantReportTableBody = document.getElementById('lubricantReportTableBody');
+
+        var from = document.getElementById('date9');
+        var to = document.getElementById('date10');
+        var lubricantTotal = document.getElementById('lubricantTotal');
+        let lubricantCost = 0;
+
+
 
         swal({
             title: "Confirm Request",
@@ -24,23 +27,23 @@ $(function () {
                 if (willDelete) {
                     $.ajax({
                         method: 'GET',
-                        url:'/tyres',
+                        url:'/lubricants',
                         data:{
                             'from':from.value,
                             'to':to.value,
                         },
                         success: function (json){
-
+                            console.log();
                             swal({
                                 title: "Completed!",
                                 text: "Success!",
                                 icon: "success",
                                 button: "ok",
                             });
+                            //console.log(data);
 
-
-                             const url = 'https://eng-api.herokuapp.com/buslist';
-                            //const url = 'http://localhost:3000/buslist';
+                            const url = 'https://eng-api.herokuapp.com/stationlist';
+                           //  const url = 'http://localhost:3000/stationlist';
 
                             fetch(url)
                                 .then(
@@ -53,7 +56,6 @@ $(function () {
                                         // Examine the text in the response
                                         response.json().then(function(data) {
                                             let k = 1;
-
                                             for (let i = 0; i < data.length; i++) {
 
                                                 let busTotalCost = 0;
@@ -61,7 +63,7 @@ $(function () {
 
                                                 for ( let j = 0 ; j < json.length; j++ ){
 
-                                                    if ( json[j].registry_no === data[i].registry_no) {
+                                                    if ( json[j].station === data[i].station ) {
 
                                                         busTotalCost = busTotalCost + json[j].total_cost;
 
@@ -69,7 +71,7 @@ $(function () {
 
                                                 }
 
-                                                tyreCost = tyreCost + busTotalCost;
+                                                lubricantCost = lubricantCost + busTotalCost;
                                                 if ( !(busTotalCost === 0)) {
 
                                                     function dataCell(value){
@@ -86,27 +88,26 @@ $(function () {
                                                     tableRow.appendChild(Number);
                                                     k++;
 
-                                                    var registry_no = dataCell(data[i].registry_no);
-                                                    tableRow.appendChild(registry_no);
+                                                    var station = dataCell(data[i].station);
+                                                    tableRow.appendChild(station);
 
                                                     var total_cost = dataCell(busTotalCost);
                                                     tableRow.appendChild(total_cost);
 
-                                                    tyreReportTableBody.appendChild(tableRow);
-
+                                                    lubricantReportTableBody.appendChild(tableRow);
 
 
                                                 }
 
+
                                             }
-                                            tyreTotal.value = tyreCost;
+                                            lubricantTotal.value = lubricantCost;
                                         });
                                     }
                                 )
                                 .catch(function(err) {
                                     console.error('Fetch Error -', err);
                                 });
-
 
                         },
 

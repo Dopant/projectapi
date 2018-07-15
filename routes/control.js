@@ -33,7 +33,7 @@ router.get('/Particulars', function(req, resp, next) {
     // return next();
 });
 
-router.get('/Tyres', function(req, resp, next) {
+router.get('/Tyre', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){

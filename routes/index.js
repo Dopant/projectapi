@@ -238,6 +238,19 @@ router.get('/BusesTotal', function(req, resp, next) {
     }
 
 });
+
+router.get('/StationsTotal', function(req, resp, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    if (req.isAuthenticated()){
+        resp.sendFile(path.join(__dirname + '/StationsTotal.html'))
+    }
+    else {
+        resp.render('login', { title: 'Please Login' });
+    }
+
+})
+
 router.get('/test', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
@@ -1825,7 +1838,7 @@ router.post('/log_in',function(req, resp, next){
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                var sql = "select password from registry where username = '" + req.body.user_name +"'" ; ;
+                var sql = "select password from registry where username = '" + req.body.user_name +"'" ;
                 console.log(req.body.user_name);
                 con.query(sql, function (err, rows, fields) {
                     if (err) {

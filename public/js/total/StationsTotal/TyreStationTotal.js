@@ -39,8 +39,8 @@ $(function () {
                             });
 
 
-                             const url = 'https://eng-api.herokuapp.com/buslist';
-                            //const url = 'http://localhost:3000/buslist';
+                            const url = 'https://eng-api.herokuapp.com/stationlist';
+                           // const url = 'http://localhost:3000/stationlist';
 
                             fetch(url)
                                 .then(
@@ -61,7 +61,7 @@ $(function () {
 
                                                 for ( let j = 0 ; j < json.length; j++ ){
 
-                                                    if ( json[j].registry_no === data[i].registry_no) {
+                                                    if ( json[j].station === data[i].station) {
 
                                                         busTotalCost = busTotalCost + json[j].total_cost;
 
@@ -86,8 +86,8 @@ $(function () {
                                                     tableRow.appendChild(Number);
                                                     k++;
 
-                                                    var registry_no = dataCell(data[i].registry_no);
-                                                    tableRow.appendChild(registry_no);
+                                                    var station = dataCell(data[i].station);
+                                                    tableRow.appendChild(station);
 
                                                     var total_cost = dataCell(busTotalCost);
                                                     tableRow.appendChild(total_cost);
