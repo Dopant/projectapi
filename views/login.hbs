@@ -1,56 +1,57 @@
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="./css/main.css"/>
 <style type="text/css">
 
-    body,html{
-        margin:0;
-        padding:0;
+    body, html {
+        margin: 0;
+        padding: 0;
         font-family: sans-serif;
-        height: 100%;
-        width: 100%;
-        box-sizing: border-box;
-
-    }
-    .wrapper{
-        box-sizing: border-box;
-        width: inherit;
-        min-height: 200%;
+        height: 400px;
         background: url('./Images/Capture.PNG') center no-repeat;
+        box-sizing: border-box;
         background-size: cover;
+
     }
 
-    .alert{
-        position:relative;
-        padding:.75rem 1.25rem;
-        margin-bottom:1rem;
-        border:1px solid transparent;
-        border-radius:.25rem
+    .wrapper1 {
+
     }
-    .alert-danger
-    {
-        color:#721c24;
-        background-color:#f8d7da;
-        border-color:#f5c6cb
+
+    .alert {
+        position: relative;
+        padding: .75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: .25rem
     }
-    .alert-warning{
-        color:#856404;
-        background-color:#fff3cd;
-        border-color:#ffeeba
+
+    .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb
     }
-    .login-box{
+
+    .alert-warning {
+        color: #856404;
+        background-color: #fff3cd;
+        border-color: #ffeeba
+    }
+
+    .login-box {
         margin: auto;
         width: 550px;
-        height: 420px;
+        height: inherit;
         position: absolute;
-        background: rgba( 0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.5);
         top: 55%;
         left: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
         color: #fff;
         box-sizing: border-box;
         padding: 70px 30px;
 
-
-
     }
+
     .avatar {
         width: 100px;
         height: 100px;
@@ -59,36 +60,39 @@
         top: -50px;
         left: calc(50% - 50px);
     }
+
     h1 {
-        margin:0;
+        margin: 0;
         padding: 0 0 20px;
         text-align: center;
         font-size: 22px;
     }
-    .login-box p{
+
+    .login-box p {
         margin: 0;
         padding: 0;
-        font-weight:bold ;
+        font-weight: bold;
         font-size: 15px;
     }
-    .login-box input{
+
+    .login-box input {
         width: 100%;
         margin-bottom: 20px;
     }
-    .login-box input[type='text'], input[type="password"]
-    {
-        border : none;
+
+    .login-box input[type='text'], input[type="password"] {
+        border: none;
         border-bottom: 1px solid #fff;
         background: transparent;
         outline: 40px;
         color: #fff;
         font-size: 16px;
     }
-    .login-box button[id="registerButton"]
-    {
+
+    .login-box button[id="registerButton"] {
         width: 100%;
         margin-bottom: 20px;
-        border:none;
+        border: none;
         outline: none;
         height: 40px;
         background: #1c8adb;
@@ -96,11 +100,11 @@
         font-size: 18px;
         border-radius: 20px;
     }
-    .login-box input[type="submit"]
-    {
+
+    .login-box input[type="submit"] {
         width: 100%;
         margin-bottom: 20px;
-        border:none;
+        border: none;
         outline: none;
         height: 40px;
         background: #1c8adb;
@@ -108,41 +112,52 @@
         font-size: 18px;
         border-radius: 20px;
     }
-    .login-box button[id="registerButton"]:hover
-    {
+
+    .login-box button[id="registerButton"]:hover {
         cursor: pointer;
         background: #39dc79;
         color: #000;
     }
-    .login-box input[type="submit"]:hover
-    {
+
+    .login-box input[type="submit"]:hover {
         cursor: pointer;
         background: #39dc79;
         color: #000;
     }
-    .login-box a{
+
+    .login-box a {
         text-decoration: none;
         font-size: 14px;
         color: #fff;
     }
-    .login-box a:hover
-    {
+
+    .login-box a:hover {
         color: #39dc79;
     }
 
 
 </style>
-<div class="wrapper">
-    <h1>
-        <div class="alert alert-warning">
-            {{title}}
-        </div>
 
-    </h1>
+<header id="header">
+    <div class="logo"><a href="index.html">ISTC <span> TECHNICAL</span></a></div>
+    <a href="#menu">Menu</a>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/register">Register</a></li>
+        <li><a href="/login">Login</a></li>
+    </ul>
+</nav>
+
+
+<div class="wrapper1">
 
 
     <div class="login-box">
-        <img src="./Images/User_Avatar_2.png" class="avatar"  >
+        <img src="./Images/User_Avatar_2.png" class="avatar">
     <p>
         {{#if errors}}
             {{#each errors}}
@@ -162,8 +177,15 @@
             <p>Password</p>
             <input type="password" name="password" placeholder="">
             <input type="submit" value="Login">
-            <a href="/">New User? Create an account here </a>
+            <a href="/register">New User? Create an account here </a>
         </form>
 
     </div>
 </div>
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery.scrolly.min.js"></script>
+<script src="./js/jquery.scrollex.min.js"></script>
+<script src="./js/skel.min.js"></script>
+<script src="./js/util.js"></script>
+<script src="./js/main.js"></script>

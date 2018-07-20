@@ -2,55 +2,361 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="./css/Particulars.css"/>
+
 </head>
-<div class="form-style-5">
 
-    <fieldset>
-    <legend><span class="number">1</span> Particulars of Vehical</legend>
-    <input type="text" name="field1" id="vehicle" placeholder="Vehicle Reg No ">
-    <input type="text" name="field2" id="engine" placeholder="Engine No">
-    <input type="text" name="field3" id="chasis" placeholder="Chasis No">
-    <input type="text" name="field4" id="make" placeholder="Make and Year">
-    <input type="text" name="field6" id="permissible" placeholder="Permissible Gross Weight">
-    <input type="text" name="field7" id="nett" placeholder="Nett Weight ">
-    <input type="text" name="field8" id="person" placeholder="Persons Allowed">
-    <input type="text" name="field9" id="amortised" placeholder="Amortised Life">
-    <input type="text" name="field10" id="rate" placeholder="Rate of depreciation">
-    <input type="text" name="field11" id="annual" placeholder="Annual Licence">
-    <input type="text" name="field12" id="indent" placeholder="Indent/Invoice No ">
-    <input type="text" name="field13" id="suppliers" placeholder="Suppliers">
-    <input type="text" name="field14" id="date_purchased" placeholder="Date Purchased">
-    <input type="text" name="field15" id="price" placeholder="Price Paid c.i.f">
-    <input type="text" name="field16" id="cost" placeholder="Cost of Bodywork">
-    <input type="text" name="field17" id="total" placeholder="Total Cost">
-    <input type="text" name="field18" id="date_written" placeholder="Date Written off">
-    <input type="text" name="field19" id="date_sold" placeholder="Date sold/Dismantled">
-    <input type="text" name="field20" id="amount_sold" placeholder="Amount sold for">
-        <button class="" id="particularsAdd">Save</button>
-    
- 
-    
-        
-    </fieldset>
-    <fieldset>
-    <legend><span class="number">2</span> Capacities</legend>
-        <input type="text" name="field26" id="Reg" placeholder="Vehicle Reg No">
-    <input type="text" name="field21" id="engine_" placeholder="Engine">
-    <input type="text" name="field22" id="gear" placeholder="Gear Box">
-    <input type="text" name="field23" id="black" placeholder="Black Axle">
-    <input type="text" name="field24" id="radiator" placeholder="Radiator">
-    <input type="text" name="field25" id="fuel" placeholder="Fuel Tank">
-    </fieldset>
-   
-    <button class="" id="particularsAddButton">Save</button>
 
+<body>
+<header id="header">
+    <div class="logo"><a href="index.html">CONTROL-<span>PARTICULARS OF VEHICLE</span></a></div>
+    <a href="#menu">Menu</a>
+</header>
+
+<div class="wrapper">
+    <div class="container">
+        <div class="form-style-5">
+            <div class="form">
+                <div>
+                    <legend><span class="number">1</span> Particulars of Vehicle</legend>
+                    <label class="input-field__label input-field__label--start">SELECT BUS CATEGORY</label>
+                    <select type="text" name="busCategory" id="busCategory"
+                            class="input-field__input input-field__input--small">
+                        <option SELECTED DISABLED> SELECT CATEGORY</option>
+                        <option value="COMMERCIAL">COMMERCIAL</option>
+                        <option value="ALLIANCE">ALLIANCE</option>
+                        <option value="COPORATE">COPORATE</option>
+                    </select>
+                    <label class="input-field__label input-field__label--start">SELECT BUS TYPE</label>
+                    <select type="text" name="busType" id="busType"
+                            class="input-field__input input-field__input--small">
+                        <option SELECTED DISABLED> SELECT TYPE</option>
+                        <option value="COACHES">COACHES</option>
+                        <option value="MINI-BUS">MINI-BUS</option>
+                    </select>
+
+                    <label class="input-field__label input-field__label--start">REGISTRY NUMBER</label>
+                    <select type="text" name="busdropdown" id="busdropdown"
+                            class="input-field__input input-field__input--small">
+                        <script>
+
+                            function removeOptions(selectbox) {
+                                for (let i = 0; i < selectbox.length; i++) {
+                                    selectbox.remove(i);
+                                }
+                            }
+
+
+                           // const url = 'http://localhost:3000/buslist';
+                             const url = 'https://eng-api.herokuapp.com/buslist';
+
+                            let category = '';
+                            let type = '';
+
+                            var bus_category = document.getElementById('busCategory');
+                            var bus_type = document.getElementById('busType');
+
+
+                            bus_category.addEventListener('click', function (e) {
+                                let dropdown = document.getElementById('busdropdown');
+                                removeOptions(dropdown);
+                                dropdown.length = 0;
+                                let defaultOption = document.createElement('option');
+                                defaultOption.text = 'Select Bus';
+
+                                dropdown.add(defaultOption);
+                                dropdown.selectedIndex = 0;
+
+                                category = bus_category.value;
+                                type = bus_type.value;
+                                fetch(url)
+                                    .then(
+                                        function (response) {
+                                            if (response.status !== 200) {
+                                                console.warn('Looks like there was a problem. Status Code: ' +
+                                                    response.status);
+                                                return;
+                                            }
+
+                                            // Examine the text in the response
+                                            response.json().then(function (data) {
+                                                let option;
+
+                                                for (let i = 0; i < data.length; i++) {
+                                                    if (category == data[i].category && type == data[i].type) {
+                                                        option = document.createElement('option');
+                                                        option.text = data[i].registry_no;
+                                                        option.value = data[i].registry_no;
+                                                        dropdown.add(option);
+                                                    }
+
+                                                }
+                                            });
+                                        }
+                                    )
+                                    .catch(function (err) {
+                                        console.error('Fetch Error -', err);
+                                    });
+                            });
+
+                            bus_type.addEventListener('click', function (e) {
+                                let dropdown = document.getElementById('busdropdown');
+                                removeOptions(dropdown);
+                                dropdown.length = 0;
+
+                                let defaultOption = document.createElement('option');
+                                defaultOption.text = 'Select Bus';
+
+                                dropdown.add(defaultOption);
+                                dropdown.selectedIndex = 0;
+
+                                category = bus_category.value;
+                                type = bus_type.value;
+                                fetch(url)
+                                    .then(
+                                        function (response) {
+                                            if (response.status !== 200) {
+                                                console.warn('Looks like there was a problem. Status Code: ' +
+                                                    response.status);
+                                                return;
+                                            }
+
+                                            // Examine the text in the response
+                                            response.json().then(function (data) {
+                                                let option;
+
+                                                for (let i = 0; i < data.length; i++) {
+                                                    if (category == data[i].category && type == data[i].type) {
+                                                        option = document.createElement('option');
+                                                        option.text = data[i].registry_no;
+                                                        option.value = data[i].registry_no;
+                                                        dropdown.add(option);
+                                                    }
+
+                                                }
+                                            });
+                                        }
+                                    )
+                                    .catch(function (err) {
+                                        console.error('Fetch Error -', err);
+                                    });
+                            });
+                        </script>
+                    </select>
+                    <label class="input-field__label input-field__label--start">ENGINE NUMBER</label>
+                    <input type="text" name="field2" id="engine" placeholder="Engine No">
+                    <label class="input-field__label input-field__label--start">CHASIS NUMBER</label>
+                    <input type="text" name="field3" id="chasis" placeholder="Chasis No">
+                    <label class="input-field__label input-field__label--start">MAKE AND YEAR</label>
+                    <input type="text" name="field4" id="make" placeholder="Make and Year">
+                    <label class="input-field__label input-field__label--start">PERMISSIBLE GROSS WEIGHT</label>
+                    <input type="text" name="field6" id="permissible" placeholder="Permissible Gross Weight">
+                    <label class="input-field__label input-field__label--start">NET WEIGHT</label>
+                    <input type="text" name="field7" id="net" placeholder="Nett Weight ">
+                    <label class="input-field__label input-field__label--start">NO. OF PERSONS ALLOWED</label>
+                    <input type="text" name="field8" id="person" placeholder="Persons Allowed">
+                    <label class="input-field__label input-field__label--start">AMORTISED LIFE</label>
+                    <input type="text" name="field9" id="amortised" placeholder="Amortised Life">
+                    <label class="input-field__label input-field__label--start">RATE OF DEPRECIATION</label>
+                    <input type="text" name="field10" id="rate" placeholder="Rate of depreciation">
+                    <label class="input-field__label input-field__label--start">ANNUAL LICENSE</label>
+                    <input type="text" name="field11" id="annual" placeholder="Annual Licence">
+                    <label class="input-field__label input-field__label--start">INDENT/INVOICE NUMBER</label>
+                    <input type="text" name="field12" id="indent" placeholder="Indent/Invoice No ">
+                    <label class="input-field__label input-field__label--start">SUPPLIERS</label>
+                    <input type="text" name="field13" id="suppliers" placeholder="Suppliers">
+                    <label class="input-field__label input-field__label--start">DATE PURCHASED</label>
+                    <input type="date" name="field14" id="date_purchased" placeholder="Date Purchased">
+                    <label class="input-field__label input-field__label--start">PRICE PAID C.I.F</label>
+                    <input type="text" name="field15" id="price" placeholder="Price Paid c.i.f">
+                    <label class="input-field__label input-field__label--start">SCOST OF BODYWORK</label>
+                    <input type="text" name="field16" id="cost" placeholder="Cost of Bodywork">
+                    <label class="input-field__label input-field__label--start">TOTAL COST (GHC) </label>
+                    <input type="text" name="field17" id="total" placeholder="Total Cost">
+                    <label class="input-field__label input-field__label--start">DATE WRITTEN OFF</label>
+                    <input type="date" name="field18" id="date_written" placeholder="Date Written off">
+                    <label class="input-field__label input-field__label--start">DATE SOLD OR DISMANTLED</label>
+                    <input type="date" name="field19" id="date_sold" placeholder="Date sold/Dismantled">
+                    <label class="input-field__label input-field__label--start">AMOUNT SOLD FOR</label>
+                    <input type="text" name="field20" id="amount_sold" placeholder="Amount sold for">
+                    <button class="input-field__button" id="particularsAdd">Save</button>
+                </div>
+
+
+                <fieldset>
+                    <legend><span class="number">2</span> Capacities</legend>
+                    <label class="input-field__label input-field__label--start">SELECT BUS CATEGORY</label>
+                    <select type="text" name="busCategory" id="busCategory1"
+                            class="input-field__input input-field__input--small">
+                        <option SELECTED DISABLED> SELECT CATEGORY</option>
+                        <option value="COMMERCIAL">COMMERCIAL</option>
+                        <option value="ALLIANCE">ALLIANCE</option>
+                        <option value="COPORATE">COPORATE</option>
+                    </select>
+                    <label class="input-field__label input-field__label--start">SELECT BUS TYPE</label>
+                    <select type="text" name="busType" id="busType1"
+                            class="input-field__input input-field__input--small">
+                        <option SELECTED DISABLED> SELECT TYPE</option>
+                        <option value="COACHES">COACHES</option>
+                        <option value="MINI-BUS">MINI-BUS</option>
+                    </select>
+
+                    <label class="input-field__label input-field__label--start">REGISTRY NUMBER</label>
+                    <select type="text" name="busdropdown" id="busdropdown1"
+                            class="input-field__input input-field__input--small">
+                        <script>
+
+                            function removeOptions(selectbox) {
+                                for (let i = 0; i < selectbox.length; i++) {
+                                    selectbox.remove(i);
+                                }
+                            }
+
+
+                            const url1 = 'http://localhost:3000/buslist';
+                            // const url1 = 'https://eng-api.herokuapp.com/buslist';
+
+                            let category1 = '';
+                            let type1 = '';
+
+                            var bus_category1 = document.getElementById('busCategory1');
+                            var bus_type1 = document.getElementById('busType1');
+
+
+                            bus_category1.addEventListener('click', function (e) {
+                                let dropdown1 = document.getElementById('busdropdown1');
+                                removeOptions(dropdown1);
+                                dropdown1.length = 0;
+                                let defaultOption1 = document.createElement('option');
+                                defaultOption1.text = 'Select Bus';
+
+                                dropdown1.add(defaultOption1);
+                                dropdown1.selectedIndex = 0;
+
+                                category1 = bus_category1.value;
+                                type1 = bus_type1.value;
+                                fetch(url1)
+                                    .then(
+                                        function (response) {
+                                            if (response.status !== 200) {
+                                                console.warn('Looks like there was a problem. Status Code: ' +
+                                                    response.status);
+                                                return;
+                                            }
+
+                                            // Examine the text in the response
+                                            response.json().then(function (data) {
+                                                let option1;
+
+                                                for (let i = 0; i < data.length; i++) {
+                                                    if (category1 == data[i].category && type1 == data[i].type) {
+                                                        option1 = document.createElement('option');
+                                                        option1.text = data[i].registry_no;
+                                                        option1.value = data[i].registry_no;
+                                                        dropdown1.add(option1);
+                                                    }
+
+                                                }
+                                            });
+                                        }
+                                    )
+                                    .catch(function (err) {
+                                        console.error('Fetch Error -', err);
+                                    });
+                            });
+
+                            bus_type1.addEventListener('click', function (e) {
+                                let dropdown1 = document.getElementById('busdropdown1');
+                                removeOptions(dropdown1);
+                                dropdown1.length = 0;
+
+                                let defaultOption1 = document.createElement('option');
+                                defaultOption1.text = 'Select Bus';
+
+                                dropdown1.add(defaultOption1);
+                                dropdown1.selectedIndex = 0;
+
+                                category1 = bus_category1.value;
+                                type1 = bus_type1.value;
+                                fetch(url1)
+                                    .then(
+                                        function (response) {
+                                            if (response.status !== 200) {
+                                                console.warn('Looks like there was a problem. Status Code: ' +
+                                                    response.status);
+                                                return;
+                                            }
+
+                                            // Examine the text in the response
+                                            response.json().then(function (data) {
+                                                let option1;
+
+                                                for (let i = 0; i < data.length; i++) {
+                                                    if (category1 == data[i].category && type1 == data[i].type) {
+                                                        option1 = document.createElement('option');
+                                                        option1.text = data[i].registry_no;
+                                                        option1.value = data[i].registry_no;
+                                                        dropdown1.add(option1);
+                                                    }
+
+                                                }
+                                            });
+                                        }
+                                    )
+                                    .catch(function (err) {
+                                        console.error('Fetch Error -', err);
+                                    });
+                            });
+                        </script>
+                    </select>
+                    <label class="input-field__label input-field__label--start">ENGINE</label>
+                    <input type="text" name="field21" id="engine_" placeholder="Engine">
+                    <label class="input-field__label input-field__label--start">GEAR BOX</label>
+                    <input type="text" name="field22" id="gear" placeholder="Gear Box">
+                    <label class="input-field__label input-field__label--start">BLACK AXLE</label>
+                    <input type="text" name="field23" id="black" placeholder="Black Axle">
+                    <label class="input-field__label input-field__label--start">RADIATOR</label>
+                    <input type="text" name="field24" id="radiator" placeholder="Radiator">
+                    <label class="input-field__label input-field__label--start">FUEL TANK</label>
+                    <input type="text" name="field25" id="fuel" placeholder="Fuel Tank">
+                </fieldset>
+
+                <button class="input-field__button" id="particularsAddButton">Save</button>
+            </div>
+        </div>
     </div>
+</div>
+
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+
+        <li><a href="/Particulars">Particulars of Vehicles</a></li>
+        <li><a href="/Tyre">Tyres</a></li>
+        <li><a href="/Repairs">Report and maintenance record</a></li>
+        <li><a href="/Oil">Date of oil change</a></li>
+        <li><a href="/Monthly">Monthly Mileage and km/lt</a></li>
+        <li><a href="#">Report</a></li>
+        <li><a href="/grid">Home</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+
+<!-- Banner -->
+
+<!-- Scripts -->
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery.scrolly.min.js"></script>
+<script src="./js/jquery.scrollex.min.js"></script>
+<script src="./js/skel.min.js"></script>
+<script src="./js/util.js"></script>
+<script src="./js/main.js"></script>
+
 <script src="./js/jquery.js"></script>
-<script src="./js/add.js"></script>
-<script src="./js/addCapacity.js"></script>
-
-
+<script src="./js/control/add.js"></script>
+<script src="./js/control/addCapacity.js"></script>
 <script src="./js/sweetalert.min.js"></script>
+
+</body>
 
 
 </html>

@@ -3,7 +3,7 @@ $(function () {
     $('#particularsAddButton ').on('click',function (event) {
         event.preventDefault();
 
-        var $Reg =$('#Reg');
+        var $busdropdown =$('#busdropdown1');
         var $engine_ = $('#engine_');
         var $gear = $('#gear');
         var $black = $('#black');
@@ -21,9 +21,9 @@ $(function () {
                 if (willDelete) {
                     $.ajax({
                         method: 'POST',
-                        url:'/Capacities',
+                        url:'/capacities',
                         data: {
-                            Reg :$Reg.val(),
+                            busdropdown :$busdropdown.val(),
                             engine_ :$engine_.val(),
                             gear : $gear.val(),
                             black : $black.val(),

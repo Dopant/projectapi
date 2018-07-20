@@ -1,144 +1,273 @@
 <!DOCTYPE html>
 <html>
-        <head>
-                <link rel="stylesheet" type="text/css" href="./css/Tyres.css"/>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/Tyres.css"/>
 </head>
-        <div class="form-block">
-                <div class="input-field input-field--horizontal">
-                       
-                        
-                    </div>
+
+<body>
+<header id="header">
+    <div class="logo"><a href="index.html">CONTROL-<span>DATE OF OIL CHANGE</span></a></div>
+    <a href="#menu">Menu</a>
+</header>
+
+<div class="wrapper">
+    <div class="container">
+        <div class="form">
+            <div class="form-block">
                 <div class="form-section form-section--horizontal">
                     <div class="input-field input-field--horizontal">
-                        <label class="input-field__label input-field__label--start"><h1>Date of Oil Change</h1></label>
-                        <select name="" id="Name" class="input-field__input input-field__input--small-fixed">
-                            <option>Date of Oil Changee</option>
+
+                        <label class="input-field__label input-field__label--start">ALL/COP/COM</label>
+                        <select type="text" name="busCategory" id="busCategory"
+                                class="input-field__input input-field__input--small">
+                            <option SELECTED DISABLED> SELECT CATEGORY</option>
+                            <option value="COMMERCIAL">COMMERCIAL</option>
+                            <option value="ALLIANCE">ALLIANCE</option>
+                            <option value="COPORATE">COPORATE</option>
                         </select>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">COA/MIN</label>
+                            <select type="text" name="busType" id="busType"
+                                    class="input-field__input input-field__input--small">
+                                <option SELECTED DISABLED> SELECT TYPE</option>
+                                <option value="COACHES">COACHES</option>
+                                <option value="MINI-BUS">MINI-BUS</option>
+                            </select>
+                        </div>
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--right">Bus Reg No</label>
+
+                            <select type="text" name="busdropdown" id="busdropdown"
+                                    class="input-field__input input-field__input--small">
+                                <script>
+
+                                    function removeOptions(selectbox) {
+                                        for (let i = 0; i < selectbox.length; i++) {
+                                            selectbox.remove(i);
+                                        }
+                                    }
+
+
+                                  //  const url = 'http://localhost:3000/buslist';
+                                     const url = 'https://eng-api.herokuapp.com/buslist';
+
+                                    let category = '';
+                                    let type = '';
+
+                                    var bus_category = document.getElementById('busCategory');
+                                    var bus_type = document.getElementById('busType');
+
+
+                                    bus_category.addEventListener('click', function (e) {
+                                        let dropdown = document.getElementById('busdropdown');
+                                        removeOptions(dropdown);
+                                        dropdown.length = 0;
+                                        let defaultOption = document.createElement('option');
+                                        defaultOption.text = 'Select Bus';
+
+                                        dropdown.add(defaultOption);
+                                        dropdown.selectedIndex = 0;
+
+                                        category = bus_category.value;
+                                        type = bus_type.value;
+                                        fetch(url)
+                                            .then(
+                                                function (response) {
+                                                    if (response.status !== 200) {
+                                                        console.warn('Looks like there was a problem. Status Code: ' +
+                                                            response.status);
+                                                        return;
+                                                    }
+
+                                                    // Examine the text in the response
+                                                    response.json().then(function (data) {
+                                                        let option;
+
+                                                        for (let i = 0; i < data.length; i++) {
+                                                            if (category == data[i].category && type == data[i].type) {
+                                                                option = document.createElement('option');
+                                                                option.text = data[i].registry_no;
+                                                                option.value = data[i].registry_no;
+                                                                dropdown.add(option);
+                                                            }
+
+                                                        }
+                                                    });
+                                                }
+                                            )
+                                            .catch(function (err) {
+                                                console.error('Fetch Error -', err);
+                                            });
+                                    });
+
+                                    bus_type.addEventListener('click', function (e) {
+                                        let dropdown = document.getElementById('busdropdown');
+                                        removeOptions(dropdown);
+                                        dropdown.length = 0;
+
+                                        let defaultOption = document.createElement('option');
+                                        defaultOption.text = 'Select Bus';
+
+                                        dropdown.add(defaultOption);
+                                        dropdown.selectedIndex = 0;
+
+                                        category = bus_category.value;
+                                        type = bus_type.value;
+                                        fetch(url)
+                                            .then(
+                                                function (response) {
+                                                    if (response.status !== 200) {
+                                                        console.warn('Looks like there was a problem. Status Code: ' +
+                                                            response.status);
+                                                        return;
+                                                    }
+
+                                                    // Examine the text in the response
+                                                    response.json().then(function (data) {
+                                                        let option;
+
+                                                        for (let i = 0; i < data.length; i++) {
+                                                            if (category == data[i].category && type == data[i].type) {
+                                                                option = document.createElement('option');
+                                                                option.text = data[i].registry_no;
+                                                                option.value = data[i].registry_no;
+                                                                dropdown.add(option);
+                                                            }
+
+                                                        }
+                                                    });
+                                                }
+                                            )
+                                            .catch(function (err) {
+                                                console.error('Fetch Error -', err);
+                                            });
+                                    });
+
+                                </script>
+                            </select>
+                        </div>
                     </div>
-                    
+
+
+                </div>
+
+                <div class="form-section form-section--horizontal">
                     <div class="input-field input-field--horizontal">
-                        <label class="input-field__label input-field__label--start">Bus RegNo.</label>
-                        <input type="text" class="input-field__input input-field__input--small" id="busReg"placeholder="Bus RegNo.">
-                        <!-- <input type="date" class="input-field__input input-field__input--small" placeholder="Curdate"> -->
-                        <!-- <button class="input-field__button">Curdate</button> -->
-                        <a href="/Add" class="input-field__button input-field__button--small">Add Bus</a>
-                    </div>
-                    <div class="input-field input-field--horizontal input-field--center">
-                            <button type="button" id="addButton" class="input-field__button">Add</button>
-                        </div>
-                   
-                    <div class="input-field input-field--horizontal">
-                            <label class="input-field__label input-field__label--right">Engine</label>
-                            <input name="" type="number" id="engine" class="input-field__input input-field__input--tiny-fixed">
-                        </div>
+
                         <div class="input-field input-field--horizontal">
-                            <label class="input-field__label input-field__label--right">Mileage</label>
-                            <input name="" type="number" id="mileage" class="input-field__input input-field__input--tiny-fixed">
+                            <label class="input-field__label input-field__label--start">Engine</label>
+                            <input name="current_milleage" id="engine"
+                                   class="input-field__input input-field__input--small">
                         </div>
+
                         <div class="input-field input-field--horizontal">
-                            <label class="input-field__label input-field__label--right">Gear Box</label>
-                            <input name="" type="number" id="gear" class="input-field__input input-field__input--tiny-fixed">
-                        </div>
-                        <div class="input-field input-field--horizontal">
-                            <label class="input-field__label input-field__label--right">Back Axle</label>
-                            <input name="" type="number" id="back" class="input-field__input input-field__input--tiny-fixed">
+                            <label class="input-field__label input-field__label--right"> Steering</label>
+                            <input name="current_milleage" id="steering"
+                                   class="input-field__input input-field__input--small">
                         </div>
 
                         <div class="input-field input-field--horizontal">
                             <label class="input-field__label input-field__label--right">Date</label>
-                            <input name="" type="date" id="date" class="input-field__input input-field__input--tiny-fixed">
+                            <input type="date" class="input-field__input input-field__input--small" name="date"
+                                   id="date"
+                                   placeholder="Curdate">
                         </div>
-                        <div class="input-field input-field--horizontal">
-                            <label class="input-field__label input-field__label--right">Steering</label>
-                            <input name="" type="text" id="steering" class="input-field__input input-field__input--tiny-fixed">
-                        </div>
-                       
-                      
-                            <div class="input-field input-field--horizontal">
-                                    <label class="input-field__label input-field__label--right">Remarks </label>
-                                    <input name="" type="text" id="remarks" class="input-field__input input-field__input--tiny-fixed">
-                                </div>
-                               
-                           
-                   
+                    </div>
+
                 </div>
-                <div class="form-section">
-                    <div class="table-field">
-                            <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th class="table__head">Mileage</th>
-                                            <th class="table__head">Engine</th>
-                                            <th class="table__head">Gear_Box </th>
-                                            <th class="table__head">Back_Axle</th>
-                                            <th class="table__head">Steering</th>
-                                            <th class="table__head">Remarks</th>
-                                        
-                                        </tr>
-                                    </thead>
-                                    <tbody id="TableBody">
-                                        <tr>
-                                            <!-- remove the td when working with data. this is for only styling -->
-                                            <!-- <td>Emma</td>
-                                            <td>47</td>
-                                            <td>1</td>
-                                            <td>12</td> -->
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                
-                      
+
+                <div class="form-section form-section--horizontal">
+                    <div class="input-field input-field--horizontal">
+
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--start">Mileage </label>
+                            <input name="extra_contract" id="mileage" type=""
+                                   class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--start">Gear Box</label>
+                            <input name="current_milleage" id="gearBox" type=""
+                                   class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--start">Back Axle</label>
+                            <input name="current_milleage" id="backAxle" type=""
+                                   class="input-field__input input-field__input--tiny-fixed">
+                        </div>
+
+                        <div class="input-field input-field--horizontal">
+                            <label class="input-field__label input-field__label--start">Remarks</label>
+                            <input name="current_milleage" id="remarks" type="text"
+                                   class="input-field__input input-field__input--small">
+                        </div>
                     </div>
                 </div>
+
+                <div class="input-field__label--right">
+                    <button class="input-field__button" id="addOilButton"> Save</button>
+                </div>
+
+                <div class="form-section">
+                    <div class="table-field">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="table__head">Registry No</th>
+                                <th class="table__head">Engine</th>
+                                <th class="table__head">Gear Box</th>
+                                <th class="table__head">Back Axle</th>
+                                <th class="table__head">Steering</th>
+                                <th class="table__head">Remarks</th>
+                            </tr>
+                            </thead>
+                            <tbody id="oilTableBody">
+                            <!-- remove the td when working with data. this is for only styling -->
+                            <!-- <tr>
+                                <td>Emma</td>
+                                <td>47</td>
+                                <td>1</td>
+                                <td>12</td>
+                            </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
+        </div>
+    </div>
+
+</div>
+<nav id="menu">
+    <ul class="links">
+
+        <li><a href="/Particulars">Particulars of Vehicles</a></li>
+        <li><a href="/Tyre">Tyres</a></li>
+        <li><a href="/Repairs">Report and maintenance record</a></li>
+        <li><a href="/Oil">Date of oil change</a></li>
+        <li><a href="/Monthly">Monthly Mileage and km/lt</a></li>
+        <li><a href="#">Report</a></li>
+        <li><a href="/grid">Home</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+
+<!-- Banner -->
+
+<!-- Scripts -->
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery.scrolly.min.js"></script>
+<script src="./js/jquery.scrollex.min.js"></script>
+<script src="./js/skel.min.js"></script>
+<script src="./js/util.js"></script>
+<script src="./js/main.js"></script>
 
 
+<script src="./js/jquery.js"></script>
+<script src="./js/control/Oil.js"></script>
+<script src="./js/sweetalert.min.js"></script>
+</body>
 
-            <script>
-
-        var mileage = document.getElementById('mileage');
-        var engine = document.getElementById('engine');
-        var gear = document.getElementById('gear');
-        var back = document.getElementById('back');
-        var steering = document.getElementById('steering');
-        var remarks = document.getElementById('remarks');
-        var TableBody = document.getElementById('TableBody');
-        var addButton = document.getElementById('addButton');
-                  
-            
-                    function dataCell(value){
-                        var cell = document.createElement('td');
-                        var text = document.createTextNode(value);
-                        cell.appendChild(text);
-                        return cell;
-                    }
-            
-                    addButton.addEventListener('click', function(e){
-            // create a table row to hold the new data inputted
-            var tableRow = document.createElement('tr');
-            // create a data column for each input data
-            // get the value in the partName element and create a new data cell
-            var Mileage = dataCell(mileage.value);
-            tableRow.appendChild(Mileage);
-            var Engine = dataCell(engine.value);
-            tableRow.appendChild(Engine);
-            var Gear_box = dataCell(gear.value);
-            tableRow.appendChild(Gear_box);
-            var Back_Axle = dataCell(back.value);
-            tableRow.appendChild(Back_Axle);
-            var Steering = dataCell(steering.value);
-            tableRow.appendChild(Steering);
-            var Remarks = dataCell(remarks.value);
-            tableRow.appendChild(Remarks);
-            TableBody.appendChild(tableRow);
-        });
-            
-                
-                </script>
-
-
-        <script src="./js/jquery.js"></script>
-        <script src="./js/Oil.js"></script>
-        <script src="./js/sweetalert.min.js"></script>
-
-    </html>
+</html>

@@ -3,12 +3,12 @@ $(function () {
     $('#particularsAdd ').on('click',function (event) {
         event.preventDefault();
 
-        var $vehicle = $('#vehicle');
+        var $busdropdown = $('#busdropdown');
         var $engine = $('#engine');
         var $chasis = $('#chasis');
         var $make = $('#make');
         var $permissible = $('#permissible');
-        var $nett = $('#nett');
+        var $net = $('#net');
         var $person = $('#person');
         var $amortised = $('#amortised');
         var $rate = $('#rate');
@@ -35,26 +35,26 @@ $(function () {
                 if (willDelete) {
                     $.ajax({
                         method: 'POST',
-                        url:'/Particulars',
+                        url:'/particulars',
                         data: {
-                            vehicle : $vehicle.val(),
+                            busdropdown : $busdropdown.val(),
                             engine : $engine.val(),
                             chasis : $chasis.val(),
                             make  : $make.val(),
                             permissible: $permissible.val(),
-                            nett : $nett.val(),
+                            net : $net.val(),
                             person : $person.val(),
-                            amortised :$amortised.val(),
-                            rate:$rate.val(),
-                            annual:$annual.val(),
-                            indent:$indent.val(),
-                            suppliers:$suppliers.val(),
-                            date_purchased:$date_purchased.val(),
-                            price :$price.val(),
-                            cost :$cost.val(),
-                            total :$total.val(),
-                            date_written :$date_written.val(),
-                            date_sold :$date_sold.val(),
+                            amortised : $amortised.val(),
+                            rates : $rate.val(),
+                            annual : $annual.val(),
+                            indent : $indent.val(),
+                            suppliers : $suppliers.val(),
+                            date_purchased : $date_purchased.val(),
+                            price : $price.val(),
+                            cost : $cost.val(),
+                            total_cost : $total.val(),
+                            date_written : $date_written.val(),
+                            date_sold : $date_sold.val(),
                             amount_sold: $amount_sold.val(),
 
 

@@ -15,10 +15,10 @@ router.get('/', function(req, res, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
 
-  res.render('index', { title: 'Welcome to STC-ENGINEERING' });
+    res.sendFile(path.join(__dirname + '/index.html'))
 });
 
-router.get('/homepage', function(req, resp, next) {
+router.get('/engineering', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
@@ -28,6 +28,15 @@ router.get('/homepage', function(req, resp, next) {
         resp.render('login', { title: 'Please Login' });
     }
        // return next();
+});
+
+router.get('/register', function(req, resp, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+
+        resp.render('index', { title: 'Please Register' });
+
+    // return next();
 });
 
 

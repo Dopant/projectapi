@@ -1,22 +1,26 @@
 $(function () {
 
-    $('#addOilButton ').on('click',function (event) {
+    $('#addMonthlyButton ').on('click',function (event) {
         event.preventDefault();
         var bus = document.getElementById('busdropdown');
-        var busEngine = document.getElementById('engine');
-        var busGear = document.getElementById('gearBox');
-        var busBack = document.getElementById('backAxle');
-        var busSteering = document.getElementById('steering');
-        var busRemarks = document.getElementById('remarks');
-        var oilTableBody = document.getElementById('oilTableBody');
+        var busKm = document.getElementById('currentKm');
+        var busFuelLitres = document.getElementById('fuelLitres');
+        var busFuelLitresKm = document.getElementById('fuelLitresKm');
+        var busOilLitres = document.getElementById('oilLitres');
+        var busOilLitresKm = document.getElementById('oilLitresKm');
+        var monthlyTableBody = document.getElementById('monthlyTableBody');
+
+        busFuelLitresKm.value = ( busKm.value  / busFuelLitres.value );
+
+        busOilLitresKm.value = ( busKm.value /  busOilLitres.value );
 
         var $busdropdown = $('#busdropdown');
-        var $engine =$('#engine');
-        var $mileage = $('#mileage');
-        var $gearBox = $('#gearBox');
-        var $backAxle = $('#backAxle');
+        var $currentKm =$('#currentKm');
+        var $fuelL = $('#fuelLitres');
+        var $fuelLK = $('#fuelLitresKm');
+        var $oilL = $('#oilLitres');
+        var $oilLK = $('#oilLitresKm');
         var $date = $('#date');
-        var $steering = $('#steering');
         var $remarks = $('#remarks');
 
 
@@ -32,17 +36,16 @@ $(function () {
                 if (willDelete) {
                     $.ajax({
                         method: 'POST',
-                        url:'/oil',
+                        url:'/monthly',
                         data: {
                             busdropdown :$busdropdown.val(),
-                            engine :$engine.val(),
-                            mileage :$mileage.val(),
-                            gearBox : $gearBox.val(),
-                            backAxle : $backAxle.val(),
+                            currentKm :$currentKm.val(),
+                            fuelL :$fuelL.val(),
+                            fuelLk : $fuelLK.val(),
+                            oilL : $oilL.val(),
+                            oil : $oilLK.val(),
                             date : $date.val(),
-                            steering : $steering.val(),
                             remarks: $remarks.val(),
-
 
                         },
                         success: function (value){
@@ -66,17 +69,17 @@ $(function () {
                             // get the value in the partName element and create a new data cell
                             var busName = dataCell(bus.value);
                             tableRow.appendChild(busName);
-                            var Engine = dataCell(busEngine.value);
-                            tableRow.appendChild(Engine);
-                            var Gear_box = dataCell(busGear.value);
-                            tableRow.appendChild(Gear_box);
-                            var Back_Axle = dataCell(busBack.value);
-                            tableRow.appendChild(Back_Axle);
-                            var Steering = dataCell(busSteering.value);
-                            tableRow.appendChild(Steering);
-                            var Remarks = dataCell(busRemarks.value);
-                            tableRow.appendChild(Remarks);
-                            oilTableBody.appendChild(tableRow);
+                            var km = dataCell(busKm.value);
+                            tableRow.appendChild(km);
+                            var fuelLitres = dataCell(busFuelLitres.value);
+                            tableRow.appendChild(fuelLitres);
+                            var fuelLitresKm = dataCell(busFuelLitresKm.value);
+                            tableRow.appendChild(fuelLitresKm);
+                            var oilLitres = dataCell(busOilLitres.value);
+                            tableRow.appendChild(oilLitres);
+                            var oilLitresKm = dataCell(busFuelLitresKm.value);
+                            tableRow.appendChild(oilLitresKm);
+                            monthlyTableBody.appendChild(tableRow);
 
                         },
                         error: function (value) {
