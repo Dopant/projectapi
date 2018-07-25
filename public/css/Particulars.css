@@ -241,6 +241,7 @@
     content: "";
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
+    font-family: "Scope One", serif;
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
@@ -287,7 +288,7 @@
     background: #ffffff;
     margin: 10px auto;
     border-radius: 8px;
-    font-family: Georgia, "Times New Roman", Times, serif;
+
     font-weight: bold;
 }
 .form-style-5 fieldset{
@@ -360,7 +361,7 @@
 .form-style-5 input[type="url"],
 .form-style-5 textarea,
 .form-style-5 select {
-    font-family: Georgia, "Times New Roman", Times, serif;
+
     background: rgba(255,255,255,.1);
     border: none;
     border-radius: 4px;
@@ -454,6 +455,9 @@ body,html{
     padding: 0;
     width: 100%;
     box-sizing: border-box;
+    font: inherit;
+    font-family: "Scope One", serif;
+
 }
 
 .wrapper{

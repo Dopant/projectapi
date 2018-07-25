@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/Tyres.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/table.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/menuHover.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/form.css"/>
+
+    <link href="./vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="./vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="./vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+</head>
+<body>
+
+<header id="header">
+    <div class="logo"><a href="#">CONTROL-<span>TYRES</span></a></div>
+    <a href="#menu">Menu</a>
+</header>
+
+<div class="wrapper">
+    <div class="container">
+        <div class="form">
+            <div class="form-block">
+                <div class="input-field input-field--horizontal">
+                    <label class="input-field__label input-field__label--start">ENTER JOB CARD NUMBER</label>
+                    <input type="text" class="input-field__input input-field__input--small" id="jobCard"
+                           placeholder="Job card Number">
+                    <button class="input-field__button" id="search">SEARCH</button>
+                </div>
+
+
+
+                <div class="form-section">
+                    <div class="table-responsive m-b-40">
+                        <table class="table table-borderless table-data3">
+                            <thead>
+                            <tr>
+                                <th class="table__head">Job Card</th>
+                                <th class="table__head">Registry No</th>
+                                <th class="table__head">Tyre Brand</th>
+                                <th class="table__head">Date Fixed</th>
+                                <th class="table__head">Mileage Fixed</th>
+                                <th class="table__head">Date Removed</th>
+                                <th class="table__head">Mileage Removed</th>
+
+                            </tr>
+                            </thead>
+                            <tbody id="tyreUpdateTableBody">
+                            <tr>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="input-field input-field--horizontal">
+                            <div class="input-field__label--right">
+                                <button   class="input-field__button" id="updateTyreButton"> Update </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav id="menu">
+    <ul class="links">
+        <li><a href="/Particulars">Particulars of Vehicles</a></li>
+
+        <div class="dropdown">
+            <div class="name">
+                <li><a href="/Tyre">Tyres</a></li>
+            </div>
+            <div class="dropdown-content">
+                <a href="/updateTyre">Update tyres </a>
+            </div>
+        </div>
+        <li><a href="/Oil">Date of oil change</a></li>
+        <li><a href="/Monthly">Monthly Mileage and km/lt</a></li>
+        <li><a href="/controlReport">Report</a></li>
+        <li><a href="/grid">Home</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+
+<!-- Banner -->
+
+<!-- Scripts -->
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery.scrolly.min.js"></script>
+<script src="./js/jquery.scrollex.min.js"></script>
+<script src="./js/skel.min.js"></script>
+<script src="./js/util.js"></script>
+<script src="./js/main.js"></script>
+<script src="./js/sweetalert.min.js"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/control/tyresUpdate.js"></script>
+<script src="./js/control/UpdateTyreRecord.js"></script>
+
+
+</body>
+
+</html>

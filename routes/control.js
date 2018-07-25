@@ -45,6 +45,18 @@ router.get('/Tyre', function(req, resp, next) {
     // return next();
 });
 
+router.get('/updateTyre', function(req, resp, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    if (req.isAuthenticated()){
+        resp.sendFile(path.join(__dirname + '/control/tyresUpdate.html'))
+    }
+    else {
+        resp.render('login', { title: 'Please Login' });
+    }
+    // return next();
+});
+
 
 router.get('/Repairs', function(req, resp, next) {
     console.log(req.user);
@@ -83,6 +95,269 @@ router.get('/Monthly', function(req, resp, next) {
     // return next();
 });
 
+router.get('/controlReport', function(req, resp, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    if (req.isAuthenticated()){
+        resp.sendFile(path.join(__dirname + '/control/Report/controlReport.html'))
+    }
+    else {
+        resp.render('login', { title: 'Please Login' });
+    }
+    // return next();
+});
+
+router.get('/controlSetup', function(req, resp, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    if (req.isAuthenticated()){
+        resp.sendFile(path.join(__dirname + '/control/controlSetup.html'))
+    }
+    else {
+        resp.render('login', { title: 'Please Login' });
+    }
+    // return next();
+});
+
+router.get('/AddControlTyre', function(req, resp, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    if (req.isAuthenticated()){
+        resp.sendFile(path.join(__dirname + '/control/addControlTyre.html'))
+    }
+    else {
+        resp.render('login', { title: 'Please Login' });
+    }
+    // return next();
+});
+
+router.get('/controlTyreReport', function(req, resp, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    if (req.isAuthenticated()){
+        resp.sendFile(path.join(__dirname + '/control/Report/controlTyreReport.html'))
+    }
+    else {
+        resp.render('login', { title: 'Please Login' });
+    }
+    // return next();
+});
+
+router.get('/controlRepairReport', function(req, resp, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    if (req.isAuthenticated()){
+        resp.sendFile(path.join(__dirname + '/control/Report/controlRepairReport.html'))
+    }
+    else {
+        resp.render('login', { title: 'Please Login' });
+    }
+    // return next();
+});
+
+
+router.get('/tyreslist_control',function(req, resp, next){
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                conn.query('select * from tyreslist_control order by brand', function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+
+
+router.get('/controlOilReport', function(req, resp, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    if (req.isAuthenticated()){
+        resp.sendFile(path.join(__dirname + '/control/Report/controlOilReport.html'))
+    }
+    else {
+        resp.render('login', { title: 'Please Login' });
+    }
+    // return next();
+});
+
+router.get('/controlMonthlyReport', function(req, resp, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    if (req.isAuthenticated()){
+        resp.sendFile(path.join(__dirname + '/control/Report/controlMonthlyReport.html'))
+    }
+    else {
+        resp.render('login', { title: 'Please Login' });
+    }
+    // return next();
+});
+
+
+router.get('/tyreSearch' , function (req, resp, next) {
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql =  "select * from tyres_control where job_card ='"+req.query.jobCard+"'";
+                conn.query(sql, function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+router.get('/controlOilReport1' , function (req, resp, next) {
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql =  "select * from date_of_oil_change where date BETWEEN'"
+                    +req.query.from+"' AND '"+req.query.to+"' order by date desc ";
+                conn.query(sql, function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+router.get('/controlMaintenanceReport1' , function (req, resp, next) {
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql =  "select * from repairs_and_maintenance where date BETWEEN'"
+                    +req.query.from+"' AND '"+req.query.to+"' order by date desc ";
+                conn.query(sql, function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+
+router.get('/controlMonthlyReport1' , function (req, resp, next) {
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql =  "select * from monthly_mileage where date BETWEEN'"
+                    +req.query.from+"' AND '"+req.query.to+"' order by date desc ";
+                conn.query(sql, function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+
+router.get('/controlTyreReport1' , function (req, resp, next) {
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql =  "select * from tyres_control where Fitted_on_Date BETWEEN'"
+                    +req.query.from+"' AND '"+req.query.to+"' order by Fitted_on_Date desc ";
+                conn.query(sql, function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+
+
 
 router.post('/particulars',function(req, resp, next){
     try {
@@ -93,11 +368,11 @@ router.post('/particulars',function(req, resp, next){
                 return (err);
             } else {
                 var sql = " insert into particulars(registry_no," +
-                    "Engine_No,Chasis_No,Make_and_Year,Gross_Weight , " +
-                    "net_weight,persons_allowed,Amortised_Life,Rate_of_depreciation,Annual_Licence,Invoice_No," +
-                    "Suppliers,Date_Purchased,Price_Paid," +
-                    "Cost_of_BodyWork,Total_Cost,Date_Written_off,Date_Sold_or_Dismantled,"+
-                    "Amount_sold) values ('" + req.body.busdropdown + "','" +
+                    "engine_no,chasis_no,make_and_year,gross_weight , " +
+                    "net_weight,persons_allowed,amortised_life,rate_of_depreciation,annual_licence,invoice_no," +
+                    "suppliers,date_purchased,price_paid," +
+                    "cost_of_bodyWork,total_cost,date_written_off,date_sold_or_dismantled,"+
+                    "amount_sold) values ('" + req.body.busdropdown + "','" +
                     req.body.engine + "','" + req.body.chasis +
                     "','" + req.body.make + "','" + req.body.permissible + "','"+ req.body.net + "'," + req.body.person +
                     ",'" + req.body.amortised + "','" + req.body.rates + "','" + req.body.annual +
@@ -126,6 +401,35 @@ router.post('/particulars',function(req, resp, next){
 });
 
 
+router.post('/controlTyreAdd',function(req, resp, next){
+    try {
+        req.getConnection(function (err, con) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql = " insert into tyreslist_control( brand,price)values('" + req.body.tyre + "'," + req.body.price + ")" ;
+                con.query(sql, function (err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.redirect('/');
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+
 router.post('/capacities',function(req, resp, next){
     try {
 
@@ -137,6 +441,39 @@ router.post('/capacities',function(req, resp, next){
                 var sql = " insert into Capacities(registry_no,Engine,Gear_Box,Black_Axle,Radiator,Fuel_Tank)values('" + req.body.busdropdown +
                     "','" + req.body.engine_ + "','"  + req.body.gear + "','" + req.body.black +
                     "','"  + req.body.radiator +  "','" + req.body.fuel + "')";
+
+                con.query(sql, function (err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.redirect('/');
+                });
+
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+router.post('/updateTyreRecord',function(req, resp, next){
+    try {
+
+        req.getConnection(function (err, con) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                console.log(req.body.mileageDiff);
+                var sql = "update tyres_control set Taken_Off_Date ='" + req.body.date + "', Taken_Off_Mileage ='" +
+                    req.body.mileage + "', total_mileage ='" + req.body.mileageDiff+ "' where job_card = '" + req.body.jobCard +"'";
 
                 con.query(sql, function (err, rows, fields) {
                     if (err) {
@@ -273,7 +610,7 @@ router.post('/monthly',function(req, resp, next){
                 return (err);
             } else {
 
-                var sql1 = "select cumulative_mileage from monthly_mileage where id = (select max(id) from monthly_mileage)";
+                var sql1 = "select cumulative_mileage from monthly_mileage where id = (select max(id) from monthly_mileage where registry_no ='"+req.body.busdropdown+"')";
 
                 con.query(sql1, function (err, rows, fields) {
                     if (err) {

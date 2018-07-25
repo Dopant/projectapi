@@ -18,6 +18,12 @@ $(function () {
         var tyreMileageFixed = document.getElementById('mileageFixed');
         var tyreMileageRemoved = document.getElementById('mileageRemoved');
 
+
+
+
+
+
+
         var $busdropdown = $('#busdropdown');
         var $jobCard = $('#jobCard');
         var $tyredropdown =$('#tyredropdown');
@@ -26,7 +32,7 @@ $(function () {
         var $onMileage = $('#mileageFixed');
         var $offDate = $('#takenOffDate');
         var $offMileage = $('#mileageRemoved');
-        var $totalMileage =$('#totalMileage');
+        var $totalMileage = $('#totalMileage');
         var $remarks = $('#remarks');
 
 
@@ -65,6 +71,7 @@ $(function () {
                                 button: "ok",
                             });
 
+
                             function dataCell(value){
                                 var cell = document.createElement('td');
                                 var text = document.createTextNode(value);
@@ -81,10 +88,11 @@ $(function () {
                             tableRow.appendChild(brand);
                             var dateFixed = dataCell(tyreDateFixed.value);
                             tableRow.appendChild(dateFixed);
-                            var dateChanged = dataCell(tyreDateChanged.value);
-                            tableRow.appendChild(dateChanged);
                             var mileageFixed = dataCell(tyreMileageFixed.value);
                             tableRow.appendChild(mileageFixed);
+                            var dateChanged = dataCell(tyreDateChanged.value);
+                            tableRow.appendChild(dateChanged);
+
                             var mileageRemoved = dataCell(tyreMileageRemoved.value);
                             tableRow.appendChild(mileageRemoved);
 

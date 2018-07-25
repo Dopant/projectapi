@@ -5,14 +5,11 @@ body, html {
     margin: 0;
     padding: 0;
     width: 100%;
-
+    font: inherit;
+    font-family: "Scope One", serif;
     box-sizing: border-box;
 }
 
-
-/*
-new
- */
 
 #header {
     background: rgba(0, 0, 0, 0.75);

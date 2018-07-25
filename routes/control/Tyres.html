@@ -2,11 +2,17 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="./css/Tyres.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/table.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/menuHover.css"/>
+
+    <link href="./vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="./vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="./vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 </head>
 <body>
 
 <header id="header">
-    <div class="logo"><a href="index.html">CONTROL-<span>TYRES</span></a></div>
+    <div class="logo"><a href="#">CONTROL-<span>TYRES</span></a></div>
     <a href="#menu">Menu</a>
 </header>
 
@@ -173,8 +179,8 @@
                                     dropdown5.add(defaultOption5);
                                     dropdown5.selectedIndex = 0;
 
-                                    const url5 = 'https://eng-api.herokuapp.com/tyreslist';
-                                    //  const url5 = 'http://localhost:3000/tyreslist';
+                                    const url5 = 'https://eng-api.herokuapp.com/tyreslist_control';
+                                   //   const url5 = 'http://localhost:3000/tyreslist_control';
 
                                     fetch(url5)
                                         .then(
@@ -191,8 +197,8 @@
 
                                                     for (let i = 0; i < data.length; i++) {
                                                         option = document.createElement('option');
-                                                        option.text = data[i].tyres + " " + data[i].price;
-                                                        option.value = data[i].tyres;
+                                                        option.text = data[i].brand + " " + data[i].price;
+                                                        option.value = data[i].brand;
                                                         dropdown5.add(option);
                                                     }
                                                 });
@@ -254,7 +260,7 @@
                         <div class="input-field input-field--horizontal">
                             <label class="input-field__label input-field__label--start">Remarks</label>
                             <input type="text" class="input-field__input input-field__input--small" id="remarks"
-                                   placeholder="Mileage">
+                                   placeholder="remarks">
                         </div>
                     </div>
                 </div>
@@ -266,15 +272,15 @@
                     <button class="input-field__button" id="addTyreButton"> Save</button>
                 </div>
                 <div class="form-section">
-                    <div class="table-field">
-                        <table class="table">
+                    <div class="table-responsive m-b-40">
+                        <table class="table table-borderless table-data3">
                             <thead>
                             <tr>
                                 <th class="table__head">Reg. No</th>
                                 <th class="table__head">Tyre Brand</th>
                                 <th class="table__head">Date Fixed</th>
-                                <th class="table__head">Date Changed</th>
                                 <th class="table__head">Mileage Fixed</th>
+                                <th class="table__head">Date Changed</th>
                                 <th class="table__head">Mileage Removed</th>
 
                             </tr>
@@ -298,17 +304,41 @@
 
 <nav id="menu">
     <ul class="links">
-
+        <li><a href="/Repairs">Repairs and maintenance record</a></li>
         <li><a href="/Particulars">Particulars of Vehicles</a></li>
-        <li><a href="/Tyre">Tyres</a></li>
-        <li><a href="/Repairs">Report and maintenance record</a></li>
+
+        <div class="dropdown">
+            <div class="name">
+                <li><a href="/Tyre">Tyres</a></li>
+            </div>
+            <div class="dropdown-content">
+                <a href="/updateTyre">Update tyres </a>
+            </div>
+        </div>
         <li><a href="/Oil">Date of oil change</a></li>
         <li><a href="/Monthly">Monthly Mileage and km/lt</a></li>
-        <li><a href="#">Report</a></li>
+        <li><a href="/controlReport">Report</a></li>
         <li><a href="/grid">Home</a></li>
         <li><a href="/logout">Logout</a></li>
     </ul>
 </nav>
+
+<script>
+    var mileageInterval = document.getElementById('totalMileage');
+    var tyreMileageFixed = document.getElementById('mileageFixed');
+    var tyreMileageRemoved = document.getElementById('mileageRemoved');
+
+    mileageInterval.addEventListener('click', function () {
+        if (tyreMileageRemoved.value === ''){
+            mileageInterval.value = 0;
+        }else {
+            mileageInterval.value = +tyreMileageRemoved.value - +tyreMileageFixed.value;
+        }
+
+
+    });
+
+</script>
 
 <!-- Banner -->
 

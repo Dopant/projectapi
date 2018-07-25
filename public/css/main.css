@@ -15,7 +15,7 @@
 		padding: 0;
 		border: 0;
 		font-size: 100%;
-		font: inherit;
+		font-family: "Scope One", serif;
 		vertical-align: baseline;
 	}
 
@@ -3581,7 +3581,7 @@
 		right: 0;
 		top: 0;
 		visibility: hidden;
-		width: 20em;
+		width: 27em;
 		z-index: 10002;
 	}
 

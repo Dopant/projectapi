@@ -66,6 +66,7 @@ body, html {
     padding: 0;
     width: 100%;
     box-sizing: border-box;
+    font-family: "Scope One", serif;
 }
 
 /* set the styles for the wrapper element */

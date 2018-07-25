@@ -16,6 +16,7 @@
     top: 0;
     width: 100%;
     z-index: 10001;
+
 }
 
 #header > .logo {
@@ -243,6 +244,7 @@
     content: "";
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
+    font-family: "Scope One", serif;
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
@@ -288,6 +290,8 @@ body, html {
     padding: 0;
     width: 100%;
     box-sizing: border-box;
+    font: inherit;
+    font-family: "Scope One", serif;
 }
 
 /* set the styles for the wrapper element */

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./css/controlTyreReport.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/table.css"/>
+    <title>Monthly Mileage Report</title>
+</head>
+<body>
+<header id="header">
+    <div class="logo"><a href="#">ISTC <span> TECHNICAL</span></a></div>
+    <a href="#menu">Menu</a>
+</header>
+<div class="wrapper">
+    <div class="container">
+        <form class="form">
+
+            <!-- second block -->
+            <div class="form-block">
+                <div class="form-section form-section--horizontal">
+                    <div class="row">
+                        <div class="input-field input-field--horizontal">
+
+                            <select type="text" name="busdropdown" id="busdropdown"
+                                    class="input-field__input input-field__input--small">
+                                <script>
+                                    let dropdown = document.getElementById('busdropdown');
+                                    dropdown.length = 0;
+
+                                    let defaultOption = document.createElement('option');
+                                    defaultOption.text = 'Select Bus';
+
+                                    dropdown.add(defaultOption);
+                                    dropdown.selectedIndex = 0;
+
+                                      const url = 'https://eng-api.herokuapp.com/buslist';
+                                    //const url = 'http://localhost:3000/buslist';
+
+
+                                    fetch(url)
+                                        .then(
+                                            function (response) {
+                                                if (response.status !== 200) {
+                                                    console.warn('Looks like there was a problem. Status Code: ' +
+                                                        response.status);
+                                                    return;
+                                                }
+
+                                                // Examine the text in the response
+                                                response.json().then(function (data) {
+                                                    let option;
+
+                                                    for (let i = 0; i < data.length; i++) {
+                                                        option = document.createElement('option');
+                                                        option.text = data[i].registry_no;
+                                                        option.value = data[i].registry_no;
+                                                        dropdown.add(option);
+                                                    }
+                                                });
+                                            }
+                                        )
+                                        .catch(function (err) {
+                                            console.error('Fetch Error -', err);
+                                        });
+                                </script>
+                            </select>
+                            <input type="date" class="input-field__input input-field__input--small" name="date1"
+                                   id="date1" placeholder="Curdate">
+                            <input type="date" class="input-field__input input-field__input--small" name="date2"
+                                   id="date2" placeholder="Curdate">
+                            <button class="input-field__button" id="monthlyReportButton">Generate</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <div class="table-responsive m-b-40">
+                        <table class="table table-borderless table-data3">
+                            <thead>
+                            <tr>
+                                <th class="table__head">Registry No.</th>
+                                <th class="table__head">Current Mil.</th>
+                                <th class="table__head">Cumulative Mil.</th>
+                                <th class="table__head">Fuel(lts)</th>
+                                <th class="table__head">Fuel(Km/lt)</th>
+                                <th class="table__head">Oil(lts)</th>
+                                <th class="table__head">Oil(Km/lts)</th>
+                                <th class="table__head">Date</th>
+                            </tr>
+                            </thead>
+                            <tbody id="monthlyReportTableBody">
+                            <!-- remove the td when working with data. this is for only styling -->
+                            <!-- <tr>
+                                <td>Emma</td>
+                                <td>47</td>
+                                <td>1</td>
+                                <td>12</td>
+                            </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<nav id="menu">
+    <ul class="links">
+        <li><a href="/controlTyreReport">Tyres Report</a></li>
+        <li><a href="/controlRepairReport">Report and maintenance Report</a></li>
+        <li><a href="/controlOilReport">Date of oil change Report</a></li>
+        <li><a href="/controlMonthlyReport">Monthly Mileage and km/lt Report</a></li>
+        <li><a href="/grid">Home</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+
+<!-- Banner -->
+
+<!-- Scripts -->
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery.scrolly.min.js"></script>
+<script src="./js/jquery.scrollex.min.js"></script>
+<script src="./js/skel.min.js"></script>
+<script src="./js/util.js"></script>
+<script src="./js/main.js"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/control/report/monthlyReport.js"></script>
+<script src="./js/sweetalert.min.js"></script>
+</body>
+</html>

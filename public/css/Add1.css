@@ -1,4 +1,6 @@
 /* Style inputs, select elements and textareas */
+
+
 input[type=text], select, textarea{
     width: 100%;
     padding: 12px;
@@ -53,6 +55,8 @@ input[type=text], select, textarea{
     background-color: #f2f2f2;
     padding: 20px;
     position: center;
+    font: inherit;
+    font-family: "Scope One", serif;
   }
   
   /* Floating column for labels: 25% width */

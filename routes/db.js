@@ -126,41 +126,12 @@ connection.query(" create table lubricantslist(id int not null auto_increment pr
 });
 */
 
-/*
 
-connection.query("delete from maintenance where id = 77" ,function(error,fields){
-    if(error){
-        console.log(error)
-    }else {
-        console.log('Successful query');
-    }
-});
 
-connection.query("delete from maintenance where id = 78" ,function(error,fields){
-    if(error){
-        console.log(error)
-    }else {
-        console.log('Successful query');
-    }
-});
 
-connection.query("delete from maintenance where id = 79" ,function(error,fields){
-    if(error){
-        console.log(error)
-    }else {
-        console.log('Successful query');
-    }
-});
 
-connection.query("delete from parts where id = 172" ,function(error,fields){
-    if(error){
-        console.log(error)
-    }else {
-        console.log('Successful query');
-    }
-});
 
-*/
+
 
 
 

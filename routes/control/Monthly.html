@@ -2,12 +2,13 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="./css/Tyres.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/table.css"/>
 
 </head>
 
 <body>
 <header id="header">
-    <div class="logo"><a href="index.html">CONTROL- <span>MONTHLY MILEAGE AND KM/LT</span></a></div>
+    <div class="logo"><a href="#">CONTROL- <span>MONTHLY MILEAGE AND KM/LT</span></a></div>
 
     <a href="#menu">Menu</a>
 </header>
@@ -49,7 +50,7 @@
                                     }
 
 
-                                   // const url = 'http://localhost:3000/buslist';
+                                  //  const url = 'http://localhost:3000/buslist';
                                      const url = 'https://eng-api.herokuapp.com/buslist';
 
                                     let category = '';
@@ -216,8 +217,8 @@
                 </div>
 
                 <div class="form-section">
-                    <div class="table-field">
-                        <table class="table">
+                    <div class="table-responsive m-b-40">
+                        <table class="table table-borderless table-data3">
                             <thead>
                             <tr>
                                 <th class="table__head">Registry No</th>
@@ -251,10 +252,10 @@
 
         <li><a href="/Particulars">Particulars of Vehicles</a></li>
         <li><a href="/Tyre">Tyres</a></li>
-        <li><a href="/Repairs">Report and maintenance record</a></li>
+        <li><a href="/Repairs">Repairs and maintenance record</a></li>
         <li><a href="/Oil">Date of oil change</a></li>
         <li><a href="/Monthly">Monthly Mileage and km/lt</a></li>
-        <li><a href="#">Report</a></li>
+        <li><a href="/controlReport">Report</a></li>
         <li><a href="/grid">Home</a></li>
         <li><a href="/logout">Logout</a></li>
     </ul>
