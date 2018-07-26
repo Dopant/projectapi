@@ -258,7 +258,7 @@ router.get('/StationsTotal', function(req, resp, next) {
         resp.render('login', { title: 'Please Login' });
     }
 
-})
+});
 
 router.get('/test', function(req, resp, next) {
     console.log(req.user);
@@ -611,7 +611,7 @@ router.get('/maintenanceview' , function (req, resp, next) {
     }
 });
 
-router.get('/maintenance',function(req, resp, next){
+router.get('/maintenanceRecord',function(req, resp, next){
     try {
         req.getConnection(function(err, conn) {
             if (err) {

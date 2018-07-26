@@ -23,7 +23,7 @@ $(function () {
                 if (willDelete) {
                     $.ajax({
                         method: 'GET',
-                        url:'/maintenance',
+                        url:'/maintenanceRecord',
                         data:{
                             'from':from.value,
                             'to':to.value,

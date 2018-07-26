@@ -38,7 +38,7 @@ app.set('view engine', 'hbs');
       password:'Nm09fI-71-6X',
       database:'stcdb2',
 
-   // host:'127.0.0.1',
+  //  host:'127.0.0.1',
    // user:'root',
    // password:'',
    // database:'stcdb2'
