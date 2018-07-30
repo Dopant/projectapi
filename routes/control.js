@@ -45,7 +45,7 @@ router.get('/Tyre', function(req, resp, next) {
     // return next();
 });
 
-router.get('/updateTyre', function(req, resp, next) {
+router.get('/controlTyreUpdate', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
@@ -358,7 +358,6 @@ router.get('/controlTyreReport1' , function (req, resp, next) {
 
 
 
-
 router.post('/particulars',function(req, resp, next){
     try {
 
@@ -368,17 +367,17 @@ router.post('/particulars',function(req, resp, next){
                 return (err);
             } else {
                 var sql = " insert into particulars(registry_no," +
-                    "engine_no,chasis_no,make_and_year,gross_weight , " +
-                    "net_weight,persons_allowed,amortised_life,rate_of_depreciation,annual_licence,invoice_no," +
-                    "suppliers,date_purchased,price_paid," +
-                    "cost_of_bodyWork,total_cost,date_written_off,date_sold_or_dismantled,"+
-                    "amount_sold) values ('" + req.body.busdropdown + "','" +
+                    "Engine_No,Chasis_No,Make_and_Year,Gross_Weight , " +
+                    "net_weight,persons_allowed,Amortised_Life,Rate_of_depreciation,Annual_Licence,Invoice_No," +
+                    "Suppliers,Date_Purchased,Price_Paid," +
+                    "Cost_of_BodyWork,Total_Cost,Date_Written_off,Date_Sold_or_Dismantled,"+
+                    "Amount_sold) values ('" + req.body.busdropdown + "','" +
                     req.body.engine + "','" + req.body.chasis +
-                    "','" + req.body.make + "','" + req.body.permissible + "','"+ req.body.net + "'," + req.body.person +
-                    ",'" + req.body.amortised + "','" + req.body.rates + "','" + req.body.annual +
+                    "','" + req.body.make + "','" + req.body.permissible + "','"+ req.body.net + "','" + req.body.person +
+                    "','" + req.body.amortised + "','" + req.body.rates + "','" + req.body.annual +
                     "','" + req.body.indent + "','" + req.body.suppliers + "','" + req.body.date_purchased +
-                    "'," + req.body.price + "," + req.body.cost + "," + req.body.total_cost + ",'" + req.body.date_written +
-                    "','" + req.body.date_sold + "'," + req.body.amount_sold + ")" ;
+                    "','" + req.body.price + "','" + req.body.cost + "','" + req.body.total_cost + "','" + req.body.date_written +
+                    "','" + req.body.date_sold + "','" + req.body.amount_sold + "')" ;
                 con.query(sql, function (err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
@@ -399,7 +398,6 @@ router.post('/particulars',function(req, resp, next){
         return (ex);
     }
 });
-
 
 router.post('/controlTyreAdd',function(req, resp, next){
     try {

@@ -847,6 +847,36 @@
     var batteries_cost = document.getElementById('batteryCost');
     var lubricant_cost = document.getElementById('lubricantCost');
 
+    var partQuantity = document.getElementById('partOuantity');
+    var consumableQuantity = document.getElementById('consumableOuantity');
+    var tyreQuantity = document.getElementById('tyreOuantity');
+    var batteryQuantity = document.getElementById('batteryOuantity');
+    var lubricantQuantity = document.getElementById('lubricantOuantity');
+
+
+    var part_total = document.getElementById('partTotal');
+    var consumable_total = document.getElementById('consumableTotal');
+    var tyre_total = document.getElementById('tyreTotal');
+    var lubricant_total = document.getElementById('lubricantTotal');
+    var battery_total = document.getElementById('batteryTotal');
+
+    part_total.addEventListener('click', function (e) {
+        part_total.value = part_cost.value * partQuantity.value;
+    });
+    consumable_total.addEventListener('click', function (e) {
+        consumable_total.value = consumable_cost.value * consumableQuantity.value;
+    });
+    tyre_total.addEventListener('click', function (e) {
+        tyre_total.value = tyre_cost.value * tyreQuantity.value;
+    });
+    lubricant_total.addEventListener('click', function (e) {
+        lubricant_total.value = lubricant_cost.value * lubricantQuantity.value;
+    });
+    battery_total.addEventListener('click', function (e) {
+        battery_total.value = batteries_cost.value * batteryQuantity.value;
+    });
+
+
     //dates
     var maintenanceDate = document.getElementById('date');
 

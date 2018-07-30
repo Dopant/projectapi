@@ -6,6 +6,7 @@ var ath = require('./routes/index');
 var expressValidator = require('express-validator');
 var logger = require('morgan');
 
+
 //var cons = require('consolidate');
 
 var session = require('express-session');
@@ -14,6 +15,7 @@ var MySQLStore = require('express-mysql-session')(session);
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var control = require('./routes/control');
+var stores = require('./routes/stores');
 
 var mysql = require('mysql');
 
@@ -38,10 +40,10 @@ app.set('view engine', 'hbs');
       password:'Nm09fI-71-6X',
       database:'stcdb2',
 
-  //  host:'127.0.0.1',
+   // host:'127.0.0.1',
    // user:'root',
    // password:'',
-   // database:'stcdb2'
+   // database:'stcdb'
 
 };
 app.use(connection(mysql,db,'request'));
@@ -74,6 +76,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use( '/',control);
+app.use( '/',stores);
 app.use('/', indexRouter);
 
 app.use('/users', usersRouter);

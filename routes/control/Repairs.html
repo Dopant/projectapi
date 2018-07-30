@@ -271,6 +271,15 @@
 <script src="./js/jquery.js"></script>
 <script src="./js/control/Repairs.js"></script>
 <script src="./js/sweetalert.min.js"></script>
+<script>
+    var material = document.getElementById('material');
+    var labour = document.getElementById('labour');
+    var total = document.getElementById('total');
+
+    total.addEventListener('click',function (e) {
+        total.value = +labour.value + +material.value;
+    })
+</script>
 </body>
 
 </html>

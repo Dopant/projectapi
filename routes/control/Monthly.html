@@ -275,5 +275,22 @@
 <script src="./js/jquery.js"></script>
 <script src="./js/control/Monthly.js"></script>
 <script src="./js/sweetalert.min.js"></script>
+<script>
+    let currentKm = document.getElementById('currentKm');
+    let oilLitres = document.getElementById('oilLitres');
+    let fuelLitres = document.getElementById('fuelLitres');
+    let oilLitresKm = document.getElementById('oilLitresKm');
+    let fuelLitresKm = document.getElementById('fuelLitresKm');
+
+    oilLitresKm.addEventListener('click',function (e) {
+        oilLitresKm.value = currentKm.value/oilLitres.value;
+    });
+
+    fuelLitresKm.addEventListener('click',function (e) {
+        fuelLitresKm.value = currentKm.value/fuelLitres.value;
+    });
+
+
+</script>
 </body>
 </html>
