@@ -297,6 +297,35 @@ router.get('/controlMaintenanceReport1' , function (req, resp, next) {
 });
 
 
+router.get('/controlParticularsView' , function (req, resp, next) {
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql =  "select * from particulars";
+                conn.query(sql, function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+
 router.get('/controlMonthlyReport1' , function (req, resp, next) {
     try {
         req.getConnection(function(err, conn) {
