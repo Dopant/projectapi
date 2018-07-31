@@ -395,19 +395,13 @@ router.post('/particulars',function(req, resp, next){
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                var sql = " insert into particulars(registry_no," +
-                    "Engine_No,Chasis_No,Make_and_Year,Gross_Weight , " +
-                    "net_weight,persons_allowed,Amortised_Life,Rate_of_depreciation,Annual_Licence,Invoice_No," +
-                    "Suppliers,Date_Purchased,Price_Paid," +
-                    "Cost_of_BodyWork,Total_Cost,Date_Written_off,Date_Sold_or_Dismantled,"+
-                    "Amount_sold) values ('" + req.body.busdropdown + "','" +
-                    req.body.engine + "','" + req.body.chasis +
-                    "','" + req.body.make + "','" + req.body.permissible + "','"+ req.body.net + "','" + req.body.person +
-                    "','" + req.body.amortised + "','" + req.body.rates + "','" + req.body.annual +
-                    "','" + req.body.indent + "','" + req.body.suppliers + "','" + req.body.date_purchased +
-                    "','" + req.body.price + "','" + req.body.cost + "','" + req.body.total_cost + "','" + req.body.date_written +
-                    "','" + req.body.date_sold + "','" + req.body.amount_sold + "')" ;
-                con.query(sql, function (err, rows, fields) {
+                var data = {registry_no:req.body.busdropdown, engine_no:req.body.engine, chasis_no:req.body.chasis, make_and_year:req.body.make, gross_weight:req.body.permissible,
+                net_weight:req.body.net, persons_allowed:req.body.person, amortised_life:req.body.amortised, rate_of_depreciation:req.body.rates, annual_licence:req.body.annual,
+                invoice_no:req.body.indent, suppliers:req.body.suppliers, date_purchased: req.body.date_purchased, price_paid:req.body.price, cost_of_bodywork:req.body.cost,
+                total_cost:req.body.total_cost, date_written_off:req.body.date_written, date_sold_or_dismantled:req.body.date_sold, amount_sold:req.body.amount_sold
+                };
+                var sql = "INSERT INTO particulars SET ?";
+                con.query(sql, data, function (err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
                         return next(err);
