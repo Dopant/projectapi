@@ -38,15 +38,14 @@ $(function () {
                         method: 'POST',
                         url:'/monthly',
                         data: {
-                            busdropdown :$busdropdown.val(),
-                            currentKm :$currentKm.val(),
-                            fuelL :$fuelL.val(),
-                            fuelLk : $fuelLK.val(),
-                            oilL : $oilL.val(),
-                            oil : $oilLK.val(),
+                            registry_no :$busdropdown.val(),
+                            current_mileage :$currentKm.val(),
+                            fuel :$fuelL.val(),
+                            fuel_rate : $fuelLK.val(),
+                            oil : $oilL.val(),
+                            oil_rate : $oilLK.val(),
                             date : $date.val(),
                             remarks: $remarks.val(),
-
                         },
                         success: function (value){
                             console.log(value);

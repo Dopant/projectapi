@@ -30,8 +30,9 @@ $(function () {
                         data: {
                             date : $dateRemoved.val(),
                             mileage : $mileageRemoved.val(),
-                            jobCard : $jobNumber.val(),
                             mileageDiff : mileageInterval,
+                            jobCard : $jobNumber.val(),
+
 
                         },
                         success: function (value){

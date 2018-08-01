@@ -604,12 +604,23 @@ router.post('/capacities',function(req, resp, next){
             if (err) {
                 console.error('SQL Connection error: ', err);
                 return (err);
-            } else {
-                var sql = " insert into Capacities(registry_no,Engine,Gear_Box,Black_Axle,Radiator,Fuel_Tank)values('" + req.body.busdropdown +
-                    "','" + req.body.engine_ + "','"  + req.body.gear + "','" + req.body.black +
-                    "','"  + req.body.radiator +  "','" + req.body.fuel + "')";
 
-                con.query(sql, function (err, rows, fields) {
+
+            } else {
+                var myVal = {};
+                // console.log(req.body);
+                for (var nam in req.body) {
+                    if (req.body.hasOwnProperty(nam)) {
+                        if(!(req.body[nam] === '') ){
+                            console.log(nam+':'+req.body[nam]);
+                            myVal[nam] = req.body[nam];
+                        }
+                    }
+                }
+
+                var sql = " insert into Capacities set ?";
+
+                con.query(sql,myVal, function (err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
                         return next(err);
@@ -638,11 +649,23 @@ router.post('/updateTyreRecord',function(req, resp, next){
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                console.log(req.body.mileageDiff);
-                var sql = "update tyres_control set Taken_Off_Date ='" + req.body.date + "', Taken_Off_Mileage ='" +
-                    req.body.mileage + "', total_mileage ='" + req.body.mileageDiff+ "' where job_card = '" + req.body.jobCard +"'";
 
-                con.query(sql, function (err, rows, fields) {
+                var myVal = [];
+                // console.log(req.body);
+                for (var nam in req.body) {
+                    if (req.body.hasOwnProperty(nam)) {
+
+                            console.log(nam+':'+req.body[nam]);
+                            myVal.push(req.body[nam]);
+
+                    }
+                }
+
+                console.log(req.body.mileageDiff);
+                console.log(myVal);
+                var sql = "update tyres_control set Taken_Off_Date = ?, Taken_Off_Mileage = ?, total_mileage = ? where job_card = ?";
+
+                con.query(sql,myVal, function (err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
                         return next(err);
@@ -672,13 +695,21 @@ router.post('/tyres_control',function(req, resp, next){
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                var sql = " insert into tyres_control(registry_no,job_card,brand,serial_no,fitted_on_date," +
-                    "fitted_on_mileage,taken_off_date,taken_off_mileage,total_mileage,remarks)values('" + req.body.busdropdown  +
-                    "','" + req.body.jobCard + "','"  + req.body.tyredropdown + "','" + req.body.serialNumber +
-                    "','"  + req.body.onDate +  "','" +req.body.onMileage + "','" +req.body.offDate + "','" +
-                      req.body.offMileage + "','" + req.body.totalMileage + "','" +req.body.remarks +  "')" ;
 
-                con.query(sql, function (err, rows, fields) {
+                var myVal = {};
+                // console.log(req.body);
+                for (var nam in req.body) {
+                    if (req.body.hasOwnProperty(nam)) {
+                        if(!(req.body[nam] === '') ){
+                            console.log(nam+':'+req.body[nam]);
+                            myVal[nam] = req.body[nam];
+                        }
+                    }
+                }
+
+                var sql = "insert into tyres_control set ?";
+
+                con.query(sql,myVal, function (err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
                         return next(err);
@@ -708,11 +739,21 @@ router.post('/repairs',function(req, resp, next){
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                var sql = " insert into repairs_and_maintenance(registry_no, Job_Number, Mileage, Material, Date, Labour, Nature_of_Repairs, Total) "+" values ('" +req.body.busdropdown+
-                    "','" +req.body.jobNumber+ "','"  +req.body.mileage+ "','" + req.body.material+
-                    "','"  +req.body.date+  "','" +req.body.labour+ "','" +req.body.nature+ "','" +req.body.total+  "')" ;
 
-                con.query(sql, function (err, rows, fields) {
+                var myVal = {};
+                // console.log(req.body);
+                for (var nam in req.body) {
+                    if (req.body.hasOwnProperty(nam)) {
+                        if(!(req.body[nam] === '') ){
+                            console.log(nam+':'+req.body[nam]);
+                            myVal[nam] = req.body[nam];
+                        }
+                    }
+                }
+
+                var sql = " insert into repairs_and_maintenance set ?" ;
+
+                con.query(sql,myVal, function (err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
                         return next(err);
@@ -741,11 +782,21 @@ router.post('/oil',function(req, resp, next){
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                var sql = " insert into date_of_oil_change(registry_no, Engine, Mileage, Gear_Box, Back_Axle, Date, Steering,Remarks) "+" values ('" +req.body.busdropdown+
-                    "','" +req.body.engine+ "','"  +req.body.mileage+ "','" + req.body.gearBox+
-                    "','"  +req.body.backAxle+  "','" +req.body.date+ "','" +req.body.steering+ "','" +req.body.remarks+  "')" ;
 
-                con.query(sql, function (err, rows, fields) {
+                var myVal = {};
+                // console.log(req.body);
+                for (var nam in req.body) {
+                    if (req.body.hasOwnProperty(nam)) {
+                        if(!(req.body[nam] === '') ){
+                            console.log(nam+':'+req.body[nam]);
+                            myVal[nam] = req.body[nam];
+                        }
+                    }
+                }
+
+                var sql = " insert into date_of_oil_change set ?" ;
+
+                con.query(sql,myVal, function (err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
                         return next(err);
@@ -777,7 +828,7 @@ router.post('/monthly',function(req, resp, next){
                 return (err);
             } else {
 
-                var sql1 = "select cumulative_mileage from monthly_mileage where id = (select max(id) from monthly_mileage where registry_no ='"+req.body.busdropdown+"')";
+                var sql1 = "select cumulative_mileage from monthly_mileage where id = (select max(id) from monthly_mileage where registry_no ='"+req.body.registry_no+"')";
 
                 con.query(sql1, function (err, rows, fields) {
                     if (err) {
@@ -799,13 +850,21 @@ router.post('/monthly',function(req, resp, next){
                         console.log(req.body.oil);
                     }
 
+                    var myVal = {};
+                    // console.log(req.body);
+                    for (var nam in req.body) {
+                        if (req.body.hasOwnProperty(nam)) {
+                            if(!(req.body[nam] === '') ){
+                                console.log(nam+':'+req.body[nam]);
+                                myVal[nam] = req.body[nam];
+                            }
+                        }
+                    }
+                    myVal.cumulative_mileage = +cumMileage + +req.body.current_mileage;
 
-                    var sql2 = " insert into monthly_mileage(registry_no,current_mileage,cumulative_mileage,fuel,fuel_rate,oil,oil_rate,date,Remarks)"
-                        + " values ('" + req.body.busdropdown + "'," + req.body.currentKm + "," + (+cumMileage + +req.body.currentKm)  +
-                        "," + req.body.fuelL + ","  + req.body.fuelLk + "," + req.body.oilL +
-                        ","  + req.body.oil +  ",'" + req.body.date + "','" + req.body.remarks + "')" ;
+                    var sql2 = " insert into monthly_mileage set ?" ;
 
-                    con.query(sql2, function (err, rows, fields) {
+                    con.query(sql2,myVal, function (err, rows, fields) {
                         if (err) {
                             console.error('SQL error: ', err);
                             return next(err);
@@ -819,13 +878,7 @@ router.post('/monthly',function(req, resp, next){
 
                     });
 
-
                 });
-
-
-
-
-
             }
         });
     } catch (ex) {

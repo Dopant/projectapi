@@ -23,12 +23,12 @@ $(function () {
                         method: 'POST',
                         url:'/capacities',
                         data: {
-                            busdropdown :$busdropdown.val(),
-                            engine_ :$engine_.val(),
-                            gear : $gear.val(),
-                            black : $black.val(),
+                            registry_no :$busdropdown.val(),
+                            engine :$engine_.val(),
+                            gear_box : $gear.val(),
+                            black_axle : $black.val(),
                             radiator : $radiator.val(),
-                            fuel : $fuel.val(),
+                            fuel_tank : $fuel.val(),
 
                         },
                         success: function (value){

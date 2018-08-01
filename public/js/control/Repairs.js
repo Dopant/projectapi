@@ -36,15 +36,14 @@ $(function () {
                         method: 'POST',
                         url:'/repairs',
                         data: {
-                            busdropdown :$busReg.val(),
-                            jobNumber :$jobNumber.val(),
+                            registry_no :$busReg.val(),
+                            job_number :$jobNumber.val(),
                             mileage : $mileage.val(),
                             material : $material.val(),
                             date : $date.val(),
                             labour : $labour.val(),
-                            nature : $nature.val(),
+                            nature_of_repairs : $nature.val(),
                             total : $total.val(),
-
 
                         },
                         success: function (value){

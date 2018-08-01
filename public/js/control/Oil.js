@@ -34,15 +34,14 @@ $(function () {
                         method: 'POST',
                         url:'/oil',
                         data: {
-                            busdropdown :$busdropdown.val(),
+                            registry_no :$busdropdown.val(),
                             engine :$engine.val(),
                             mileage :$mileage.val(),
-                            gearBox : $gearBox.val(),
-                            backAxle : $backAxle.val(),
+                            gear_box : $gearBox.val(),
+                            back_axle : $backAxle.val(),
                             date : $date.val(),
                             steering : $steering.val(),
                             remarks: $remarks.val(),
-
 
                         },
                         success: function (value){
