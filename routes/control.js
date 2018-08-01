@@ -156,6 +156,200 @@ router.get('/controlRepairReport', function(req, resp, next) {
 });
 
 
+
+router.get('/controlOilReport', function(req, resp, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    if (req.isAuthenticated()){
+        resp.sendFile(path.join(__dirname + '/control/Report/controlOilReport.html'))
+    }
+    else {
+        resp.render('login', { title: 'Please Login' });
+    }
+    // return next();
+});
+
+router.get('/controlMonthlyReport', function(req, resp, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    if (req.isAuthenticated()){
+        resp.sendFile(path.join(__dirname + '/control/Report/controlMonthlyReport.html'))
+    }
+    else {
+        resp.render('login', { title: 'Please Login' });
+    }
+    // return next();
+});
+
+
+router.get('/controlParticularsView' , function (req, resp, next) {
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql =  "select * from particulars ";
+                conn.query(sql, function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+router.get('/controlTyreView' , function (req, resp, next) {
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql =  "select * from tyres_control ";
+                conn.query(sql, function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+router.get('/controlmonthlyView' , function (req, resp, next) {
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql =  "select * from monthly_mileage ";
+                conn.query(sql, function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+router.get('/controlOilView' , function (req, resp, next) {
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql =  "select * from date_of_oil_change ";
+                conn.query(sql, function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+router.get('/controlRepairsView' , function (req, resp, next) {
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql =  "select * from repairs_and_maintenance ";
+                conn.query(sql, function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+router.get('/controlCapacitiesView' , function (req, resp, next) {
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql =  "select * from capacities ";
+                conn.query(sql, function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
 router.get('/tyreslist_control',function(req, resp, next){
     try {
         req.getConnection(function(err, conn) {
@@ -182,33 +376,6 @@ router.get('/tyreslist_control',function(req, resp, next){
         return (ex);
     }
 });
-
-
-
-router.get('/controlOilReport', function(req, resp, next) {
-    console.log(req.user);
-    console.log(req.isAuthenticated());
-    if (req.isAuthenticated()){
-        resp.sendFile(path.join(__dirname + '/control/Report/controlOilReport.html'))
-    }
-    else {
-        resp.render('login', { title: 'Please Login' });
-    }
-    // return next();
-});
-
-router.get('/controlMonthlyReport', function(req, resp, next) {
-    console.log(req.user);
-    console.log(req.isAuthenticated());
-    if (req.isAuthenticated()){
-        resp.sendFile(path.join(__dirname + '/control/Report/controlMonthlyReport.html'))
-    }
-    else {
-        resp.render('login', { title: 'Please Login' });
-    }
-    // return next();
-});
-
 
 router.get('/tyreSearch' , function (req, resp, next) {
     try {
@@ -297,33 +464,6 @@ router.get('/controlMaintenanceReport1' , function (req, resp, next) {
 });
 
 
-router.get('/controlParticularsView' , function (req, resp, next) {
-    try {
-        req.getConnection(function(err, conn) {
-            if (err) {
-                console.error('SQL Connection error: ', err);
-                return (err);
-            } else {
-                var sql =  "select * from particulars";
-                conn.query(sql, function(err, rows, fields) {
-                    if (err) {
-                        console.error('SQL error: ', err);
-                        return next(err);
-                    }
-                    var resEmp = [];
-                    for (var newsIndex in rows) {
-                        var newsObj = rows[newsIndex];
-                        resEmp.push(newsObj);
-                    }
-                    resp.json(resEmp);
-                });
-            }
-        });
-    } catch (ex) {
-        console.error("Internal error:" + ex);
-        return (ex);
-    }
-});
 
 
 router.get('/controlMonthlyReport1' , function (req, resp, next) {
@@ -354,6 +494,8 @@ router.get('/controlMonthlyReport1' , function (req, resp, next) {
         return (ex);
     }
 });
+
+
 
 
 router.get('/controlTyreReport1' , function (req, resp, next) {
@@ -395,13 +537,18 @@ router.post('/particulars',function(req, resp, next){
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                var data = {registry_no:req.body.busdropdown, engine_no:req.body.engine, chasis_no:req.body.chasis, make_and_year:req.body.make, gross_weight:req.body.permissible,
-                net_weight:req.body.net, persons_allowed:req.body.person, amortised_life:req.body.amortised, rate_of_depreciation:req.body.rates, annual_licence:req.body.annual,
-                invoice_no:req.body.indent, suppliers:req.body.suppliers, date_purchased: req.body.date_purchased, price_paid:req.body.price, cost_of_bodywork:req.body.cost,
-                total_cost:req.body.total_cost, date_written_off:req.body.date_written, date_sold_or_dismantled:req.body.date_sold, amount_sold:req.body.amount_sold
-                };
+                var myVal = {};
+                // console.log(req.body);
+                for (var nam in req.body) {
+                    if (req.body.hasOwnProperty(nam)) {
+                        if(!(req.body[nam] === '') ){
+                            console.log(nam+':'+req.body[nam]);
+                            myVal[nam] = req.body[nam];
+                        }
+                    }
+                }
                 var sql = "INSERT INTO particulars SET ?";
-                con.query(sql, data, function (err, rows, fields) {
+                con.query(sql, myVal, function (err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
                         return next(err);
@@ -413,7 +560,6 @@ router.post('/particulars',function(req, resp, next){
                     }
                     resp.redirect('/');
                 });
-
             }
         });
     } catch (ex) {

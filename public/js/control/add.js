@@ -9,6 +9,7 @@ $(function () {
         var $make = $('#make');
         var $permissible = $('#permissible');
         var $net = $('#net');
+        var $start_mileage = $('#start_mileage');
         var $person = $('#person');
         var $amortised = $('#amortised');
         var $rate = $('#rate');
@@ -37,27 +38,26 @@ $(function () {
                         method: 'POST',
                         url:'/particulars',
                         data: {
-                            busdropdown : $busdropdown.val(),
-                            engine : $engine.val(),
-                            chasis : $chasis.val(),
-                            make  : $make.val(),
-                            permissible: $permissible.val(),
-                            net : $net.val(),
-                            person : $person.val(),
-                            amortised : $amortised.val(),
-                            rates : $rate.val(),
-                            annual : $annual.val(),
-                            indent : $indent.val(),
+                            registry_no : $busdropdown.val(),
+                            engine_no : $engine.val(),
+                            chasis_no : $chasis.val(),
+                            make_and_year  : $make.val(),
+                            gross_weight: $permissible.val(),
+                            net_weight : $net.val(),
+                            start_mileage : $start_mileage.val(),
+                            persons_allowed : $person.val(),
+                            amortised_life : $amortised.val(),
+                            rate_of_depreciation : $rate.val(),
+                            annual_licence : $annual.val(),
+                            invoice_no : $indent.val(),
                             suppliers : $suppliers.val(),
                             date_purchased : $date_purchased.val(),
-                            price : $price.val(),
-                            cost : $cost.val(),
+                            price_paid : $price.val(),
+                            cost_of_bodywork : $cost.val(),
                             total_cost : $total.val(),
-                            date_written : $date_written.val(),
-                            date_sold : $date_sold.val(),
+                            date_written_off : $date_written.val(),
+                            date_sold_or_dismantled : $date_sold.val(),
                             amount_sold: $amount_sold.val(),
-
-
                         },
                         success: function (value){
                             console.log(value);

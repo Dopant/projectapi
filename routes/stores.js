@@ -88,7 +88,7 @@ router.get('/storesAddConsumable', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
-        resp.sendFile(path.join(__dirname + '/stores/storesUpdate.html'))
+        resp.sendFile(path.join(__dirname + '/stores/add/addConsumable.html'))
     }
     else {
         resp.render('login', { title: 'Please Login' });
@@ -100,7 +100,7 @@ router.get('/storesAddBattery', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
-        resp.sendFile(path.join(__dirname + '/stores/storesUpdate.html'))
+        resp.sendFile(path.join(__dirname + '/stores/add/addTyre.html'))
     }
     else {
         resp.render('login', { title: 'Please Login' });
@@ -112,7 +112,7 @@ router.get('/storesAddTyre', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
-        resp.sendFile(path.join(__dirname + '/stores/storesUpdate.html'))
+        resp.sendFile(path.join(__dirname + '/stores/add/addBattery.html'))
     }
     else {
         resp.render('login', { title: 'Please Login' });
@@ -124,7 +124,7 @@ router.get('/storesAddLubricant', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
-        resp.sendFile(path.join(__dirname + '/stores/storesUpdate.html'))
+        resp.sendFile(path.join(__dirname + '/stores/add/addLubricant.html'))
     }
     else {
         resp.render('login', { title: 'Please Login' });
@@ -136,7 +136,7 @@ router.get('/storesUpdatePart', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
-        resp.sendFile(path.join(__dirname + '/stores/storesUpdate.html'))
+        resp.sendFile(path.join(__dirname + '/stores/update/updatePart.html'))
     }
     else {
         resp.render('login', { title: 'Please Login' });
@@ -148,7 +148,7 @@ router.get('/storesUpdateConsumable', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
-        resp.sendFile(path.join(__dirname + '/stores/storesUpdate.html'))
+        resp.sendFile(path.join(__dirname + '/stores/update/updateConsumable.html'))
     }
     else {
         resp.render('login', { title: 'Please Login' });
@@ -160,7 +160,7 @@ router.get('/storesUpdateTyre', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
-        resp.sendFile(path.join(__dirname + '/stores/storesUpdate.html'))
+        resp.sendFile(path.join(__dirname + '/stores/update/updateTyre.html'))
     }
     else {
         resp.render('login', { title: 'Please Login' });
@@ -172,7 +172,7 @@ router.get('/storesUpdateBattery', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
-        resp.sendFile(path.join(__dirname + '/stores/storesUpdate.html'))
+        resp.sendFile(path.join(__dirname + '/stores/update/updateBattery.html'))
     }
     else {
         resp.render('login', { title: 'Please Login' });
@@ -184,7 +184,7 @@ router.get('/storesUpdateLubricant', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
-        resp.sendFile(path.join(__dirname + '/stores/storesUpdate.html'))
+        resp.sendFile(path.join(__dirname + '/stores/update/updateLubricant.html'))
     }
     else {
         resp.render('login', { title: 'Please Login' });
@@ -196,7 +196,7 @@ router.get('/storesDeletePart', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
-        resp.sendFile(path.join(__dirname + '/stores/storesUpdate.html'))
+        resp.sendFile(path.join(__dirname + '/stores/delete/deletePart.html'))
     }
     else {
         resp.render('login', { title: 'Please Login' });
@@ -208,7 +208,7 @@ router.get('/storesDeleteConsumable', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
-        resp.sendFile(path.join(__dirname + '/stores/storesUpdate.html'))
+        resp.sendFile(path.join(__dirname + '/stores/delete/deleteConsumable.html'))
     }
     else {
         resp.render('login', { title: 'Please Login' });
@@ -220,7 +220,7 @@ router.get('/storesDeleteTyre', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
-        resp.sendFile(path.join(__dirname + '/stores/storesUpdate.html'))
+        resp.sendFile(path.join(__dirname + '/stores/delete/deleteTyre.html'))
     }
     else {
         resp.render('login', { title: 'Please Login' });
@@ -233,7 +233,7 @@ router.get('/storesDeleteBattery', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
-        resp.sendFile(path.join(__dirname + '/stores/storesUpdate.html'))
+        resp.sendFile(path.join(__dirname + '/stores/delete/deleteBattery.html'))
     }
     else {
         resp.render('login', { title: 'Please Login' });
@@ -245,7 +245,7 @@ router.get('/storesDeleteLubricant', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
-        resp.sendFile(path.join(__dirname + '/stores/storesUpdate.html'))
+        resp.sendFile(path.join(__dirname + '/stores/delete/deleteLubricant.html'))
     }
     else {
         resp.render('login', { title: 'Please Login' });
