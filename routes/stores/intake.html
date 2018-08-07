@@ -36,6 +36,7 @@
                             <option value="BATTERY">BATTERY</option>
                             <option value="LUBRICANT">LUBRICANT</option>
                             <option value="STATIONERY">STATIONERY</option>
+                            <option value="EQUIPMENT">EQUIPMENT</option>
 
                         </select>
                         <label class="input-field__label input-field__label--start">Transaction ID</label>
@@ -422,6 +423,46 @@
                 .catch(function(err) {
                     console.error('Fetch Error -', err);
                 });
+        }else if(itemType.value === 'EQUIPMENT'){
+            var itemName6 = document.getElementById('itemName');
+            itemName6.length = 0;
+
+
+
+            removeOptions(itemName6);
+            let defaultOption9 = document.createElement('option');
+            defaultOption9.text = 'Select Equipment';
+
+            itemName6.add(defaultOption9);
+            itemName6.selectedIndex = 0;
+
+             //  const url9 = 'http://localhost:3000/equipmentslist_stores';
+            const url9 = 'https://eng-api.herokuapp.com/equipmentslist_stores';
+            fetch(url9)
+                .then(
+                    function(response) {
+                        if (response.status !== 200) {
+                            console.warn('Looks like there was a problem. Status Code: ' +
+                                response.status);
+                            return;
+                        }
+
+                        // Examine the text in the response
+                        response.json().then(function(data) {
+                            let option9;
+
+                            for (let i = 0; i < data.length; i++) {
+                                option9 = document.createElement('option');
+                                option9.text =  data[i].equipment + " " + data[i].price;
+                                option9.value = data[i].equipment;
+                                itemName6.add(option9);
+                            }
+                        });
+                    }
+                )
+                .catch(function(err) {
+                    console.error('Fetch Error -', err);
+                });
         }
     });
 
@@ -561,6 +602,30 @@
                         response.json().then(function(data) {
                             for (let i = 0; i < data.length; i++) {
                                 if ( name.value === data[i].stationery){
+                                    cost.value = data[i].price;
+                                }
+                            }
+                        });
+                    }
+                )
+                .catch(function(err) {
+                    console.error('Fetch Error -', err);
+                });
+        }else if(itemType.value === 'EQUIPMENT'){
+            fetch('https://eng-api.herokuapp.com/equipmentslist_stores')
+            //fetch('http://localhost:3000/equipmentslist_stores')
+                .then(
+                    function(response) {
+                        if (response.status !== 200) {
+                            console.warn('Looks like there was a problem. Status Code: ' +
+                                response.status);
+                            return;
+                        }
+
+                        // Examine the text in the response
+                        response.json().then(function(data) {
+                            for (let i = 0; i < data.length; i++) {
+                                if ( name.value === data[i].equipment){
                                     cost.value = data[i].price;
                                 }
                             }

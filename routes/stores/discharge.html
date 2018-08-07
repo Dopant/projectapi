@@ -36,6 +36,7 @@
                             <option value="BATTERY">BATTERY</option>
                             <option value="LUBRICANT">LUBRICANT</option>
                             <option value="STATIONERY">STATIONERY</option>
+                            <option value="EQUIPMENT">EQUIPMENT</option>
 
                         </select>
                         <label class="input-field__label input-field__label--start">Transaction ID</label>
@@ -49,48 +50,11 @@
                 </div>
                 <div class="form-section form-section--horizontal">
                     <div class="input-field input-field--horizontal">
-                        <label class="input-field__label input-field__label--start">Registry No.</label>
+                        <label class="input-field__label input-field__label--start" id="label1">Registry No.</label>
                         <select type="text" name="busdropdown" id="busdropdown"
                                 class="input-field__input input-field__input--small">
                             <script>
-                                let dropdown = document.getElementById('busdropdown');
-                                dropdown.length = 0;
 
-                                let defaultOption = document.createElement('option');
-                                defaultOption.text = 'Select Bus';
-
-                                dropdown.add(defaultOption);
-                                dropdown.selectedIndex = 0;
-
-                                  const url = 'https://eng-api.herokuapp.com/buslist';
-                               // const url = 'http://localhost:3000/buslist';
-
-
-                                fetch(url)
-                                    .then(
-                                        function (response) {
-                                            if (response.status !== 200) {
-                                                console.warn('Looks like there was a problem. Status Code: ' +
-                                                    response.status);
-                                                return;
-                                            }
-
-                                            // Examine the text in the response
-                                            response.json().then(function (data) {
-                                                let option;
-
-                                                for (let i = 0; i < data.length; i++) {
-                                                    option = document.createElement('option');
-                                                    option.text = data[i].registry_no;
-                                                    option.value = data[i].registry_no;
-                                                    dropdown.add(option);
-                                                }
-                                            });
-                                        }
-                                    )
-                                    .catch(function (err) {
-                                        console.error('Fetch Error -', err);
-                                    });
                             </script>
                         </select>
 
@@ -233,11 +197,77 @@
     }
 
     itemType.addEventListener('change',function(e) {
+        if ( !(itemType.value === 'STATIONERY' || itemType.value === 'EQUIPMENT') ){
+            let dropdown = document.getElementById('busdropdown');
+            dropdown.length = 0;
+
+            let defaultOption = document.createElement('option');
+            defaultOption.text = 'Select Bus';
+
+            dropdown.add(defaultOption);
+            dropdown.selectedIndex = 0;
+
+            const url = 'https://eng-api.herokuapp.com/buslist';
+           //  const url = 'http://localhost:3000/buslist';
+
+
+            fetch(url)
+                .then(
+                    function (response) {
+                        if (response.status !== 200) {
+                            console.warn('Looks like there was a problem. Status Code: ' +
+                                response.status);
+                            return;
+                        }
+
+                        // Examine the text in the response
+                        response.json().then(function (data) {
+                            let option;
+
+                            for (let i = 0; i < data.length; i++) {
+                                option = document.createElement('option');
+                                option.text = data[i].registry_no;
+                                option.value = data[i].registry_no;
+                                dropdown.add(option);
+                            }
+                        });
+                    }
+                )
+                .catch(function (err) {
+                    console.error('Fetch Error -', err);
+                });
+        } else{
+            let dropdown = document.getElementById('busdropdown');
+
+            dropdown.length = 0;
+
+            let defaultOption = document.createElement('option');
+            defaultOption.text = 'Select Department';
+
+            dropdown.add(defaultOption);
+            dropdown.selectedIndex = 0;
+
+            let departments = ['MARKETING','IT','PROCUREMENT','VALUATION','PARCELS' +
+            'AUDIT','ACCOUNTS','WAGES','HUMAN RESOURCE','ESTATE','STORES','OPERATIONS'];
+
+            for (let i=0;i<10;i++){
+                let option;
+                option = document.createElement('option');
+                option.text = departments[i];
+                option.value = departments[i];
+                dropdown.add(option);
+            }
+        }
+
+
+
 
          if (itemType.value === 'PART'){
 
              var itemName = document.getElementById('itemName');
              itemName.length = 0;
+
+             let label1 = document.getElementById('label1').innerHTML = 'Registry. No';
 
              removeOptions(itemName);
 
@@ -317,6 +347,8 @@
              var itemName2 = document.getElementById('itemName');
              itemName2.length = 0;
 
+             let label1 = document.getElementById('label1').innerHTML = 'Registry. No';
+
              removeOptions(itemName2);
              let defaultOption5 = document.createElement('option');
              defaultOption5.text = 'Select Tyre';
@@ -354,6 +386,8 @@
          }else if(itemType.value === 'BATTERY'){
              var itemName3 = document.getElementById('itemName');
              itemName3.length = 0;
+
+             let label1 = document.getElementById('label1').innerHTML = 'Registry. No';
 
              removeOptions(itemName3);
              let defaultOption6 = document.createElement('option');
@@ -393,6 +427,8 @@
              var itemName4 = document.getElementById('itemName');
              itemName4.length = 0;
 
+             let label1 = document.getElementById('label1').innerHTML = 'Registry. No';
+
              removeOptions(itemName4);
              let defaultOption7 = document.createElement('option');
              defaultOption7.text = 'Select Lubricant';
@@ -431,6 +467,8 @@
              var itemName5 = document.getElementById('itemName');
              itemName5.length = 0;
 
+             let label1 = document.getElementById('label1').innerHTML = 'Department';
+
              removeOptions(itemName5);
              let defaultOption8 = document.createElement('option');
              defaultOption8.text = 'Select Stationery';
@@ -458,6 +496,46 @@
                                  option8.text =  data[i].stationery + " " + data[i].price;
                                  option8.value = data[i].stationery;
                                  itemName5.add(option8);
+                             }
+                         });
+                     }
+                 )
+                 .catch(function(err) {
+                     console.error('Fetch Error -', err);
+                 });
+         }else if(itemType.value === 'EQUIPMENT'){
+             var itemName6 = document.getElementById('itemName');
+             itemName6.length = 0;
+
+             let label1 = document.getElementById('label1').innerHTML = 'Department';
+
+             removeOptions(itemName6);
+             let defaultOption9 = document.createElement('option');
+             defaultOption9.text = 'Select Equipment';
+
+             itemName6.add(defaultOption9);
+             itemName6.selectedIndex = 0;
+
+             //   const url9 = 'http://localhost:3000/equipmentslist_stores';
+             const url9 = 'https://eng-api.herokuapp.com/equipmentslist_stores';
+             fetch(url9)
+                 .then(
+                     function(response) {
+                         if (response.status !== 200) {
+                             console.warn('Looks like there was a problem. Status Code: ' +
+                                 response.status);
+                             return;
+                         }
+
+                         // Examine the text in the response
+                         response.json().then(function(data) {
+                             let option9;
+
+                             for (let i = 0; i < data.length; i++) {
+                                 option9 = document.createElement('option');
+                                 option9.text =  data[i].equipment + " " + data[i].price;
+                                 option9.value = data[i].equipment;
+                                 itemName6.add(option9);
                              }
                          });
                      }
@@ -604,6 +682,30 @@
                         response.json().then(function(data) {
                             for (let i = 0; i < data.length; i++) {
                                 if ( name.value === data[i].stationery){
+                                    cost.value = data[i].price;
+                                }
+                            }
+                        });
+                    }
+                )
+                .catch(function(err) {
+                    console.error('Fetch Error -', err);
+                });
+        }else if(itemType.value === 'EQUIPMENT'){
+            fetch('https://eng-api.herokuapp.com/equipmentslist_stores')
+            //  fetch('http://localhost:3000/equipmentslist_stores')
+                .then(
+                    function(response) {
+                        if (response.status !== 200) {
+                            console.warn('Looks like there was a problem. Status Code: ' +
+                                response.status);
+                            return;
+                        }
+
+                        // Examine the text in the response
+                        response.json().then(function(data) {
+                            for (let i = 0; i < data.length; i++) {
+                                if ( name.value === data[i].equipment){
                                     cost.value = data[i].price;
                                 }
                             }

@@ -144,6 +144,19 @@ router.get('/storesAddStationery', function(req, resp, next) {
     // return next();
 });
 
+router.get('/storesAddEquipment', function(req, resp, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    if (req.isAuthenticated()){
+        resp.sendFile(path.join(__dirname + '/stores/add/addEquipment.html'))
+    }
+    else {
+        resp.render('login', { title: 'Please Login' });
+    }
+    // return next();
+});
+
+
 
 router.get('/storesUpdatePart', function(req, resp, next) {
     console.log(req.user);
@@ -217,6 +230,18 @@ router.get('/storesUpdateStationery', function(req, resp, next) {
     // return next();
 });
 
+router.get('/storesUpdateEquipment', function(req, resp, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    if (req.isAuthenticated()){
+        resp.sendFile(path.join(__dirname + '/stores/update/updateEquipment.html'))
+    }
+    else {
+        resp.render('login', { title: 'Please Login' });
+    }
+    // return next();
+});
+
 router.get('/storesDeletePart', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
@@ -283,6 +308,19 @@ router.get('/storesDeleteStationery', function(req, resp, next) {
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
         resp.sendFile(path.join(__dirname + '/stores/delete/deleteStationery.html'))
+    }
+    else {
+        resp.render('login', { title: 'Please Login' });
+    }
+    // return next();
+});
+
+
+router.get('/storesDeleteEquipment', function(req, resp, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    if (req.isAuthenticated()){
+        resp.sendFile(path.join(__dirname + '/stores/delete/deleteEquipment.html'))
     }
     else {
         resp.render('login', { title: 'Please Login' });
@@ -387,6 +425,7 @@ router.get('/checkApi' , function (req, resp, next) {
                     " Union select tyre as name, tyres_no as no ,cardex_no as cardex, price as price , quantity_in_stock as quantity from tyrelist_stores " +
                     " Union select battery as name, batteries_no as no,cardex_no as cardex, price as price , quantity_in_stock as quantity from batterylist_stores" +
                     " Union select stationery as name, stationery_no as no,cardex_no as cardex, price as price , quantity_in_stock as quantity from stationerylist_stores" +
+                    " Union select equipment as name, equipment_no as no,cardex_no as cardex, price as price , quantity_in_stock as quantity from equipmentlist_stores" +
                     " Union select lubricant as name, lubricants_no as no,cardex_no as cardex, price as price , quantity_in_stock as quantity from lubricantlist_stores order by name";
                 conn.query(sql, function(err, rows, fields) {
                     if (err) {
@@ -620,6 +659,35 @@ router.post('/stationeriesStoresDelete',function(req, resp, next){
     }
 });
 
+router.post('/equipmentsStoresDelete',function(req, resp, next){
+    try {
+        req.getConnection(function (err, con) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                console.log(req.body.equipment);
+                var sql = "delete from equipmentlist_stores where equipment = '"+req.body.equipment+"'";
+                con.query(sql, function (err, rows,fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.redirect('/');
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
 
 router.post('/storesPartUpdate',function(req, resp, next){
     try {
@@ -802,6 +870,36 @@ router.post('/storesStationeryUpdate',function(req, resp, next){
 });
 
 
+router.post('/storesEquipmentUpdate',function(req, resp, next){
+    try {
+        req.getConnection(function (err, con) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                console.log(req.body.equipment);
+                console.log(req.body.cost);
+                var sql = "update equipmentlist_stores set price = " + req.body.cost + " where equipment = '" + req.body.equipment + "'";
+                con.query(sql, function (err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.redirect('/');
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
 router.get('/storesIntakeReport' , function (req, resp, next) {
     try {
         req.getConnection(function(err, conn) {
@@ -865,6 +963,73 @@ router.get('/storesDischargeReport' , function (req, resp, next) {
     }
 });
 
+
+/*
+views
+ */
+
+router.get('/dischargeView' , function (req, resp, next) {
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql =  "select * from discharge_stores  ";
+                conn.query(sql, function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+
+router.get('/intakeView' , function (req, resp, next) {
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql =  "select * from intake_stores  ";
+                conn.query(sql, function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+/*
+views
+ */
 
 router.get('/consumableslist_stores' , function (req, resp, next) {
     try {
@@ -990,6 +1155,35 @@ router.get('/stationerieslist_stores' , function (req, resp, next) {
                 return (err);
             } else {
                 var sql = "select * from stationerylist_stores";
+                conn.query(sql, function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+router.get('/equipmentslist_stores' , function (req, resp, next) {
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql = "select * from equipmentlist_stores";
                 conn.query(sql, function(err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
@@ -1236,6 +1430,47 @@ router.post('/storesStationeryAdd',function(req, resp, next){
                     }
                 }
                 var sql ="insert into stationerylist_stores set ?";
+
+                con.query(sql,myVal, function (err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.redirect('/');
+                });
+
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+router.post('/storesEquipmentAdd',function(req, resp, next){
+    try {
+
+        req.getConnection(function (err, con) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var myVal = {};
+                // console.log(req.body);
+                for (var nam in req.body) {
+                    if (req.body.hasOwnProperty(nam)) {
+                        if(!(req.body[nam] === '') ){
+                            console.log(nam+':'+req.body[nam]);
+                            myVal[nam] = req.body[nam];
+                        }
+                    }
+                }
+                var sql ="insert into equipmentlist_stores set ?";
 
                 con.query(sql,myVal, function (err, rows, fields) {
                     if (err) {

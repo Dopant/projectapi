@@ -133,6 +133,14 @@ connection.query("",function(error,fields){
         console.log('Successful query');
     }
 });
+
+connection.query("delete from intake_stores where id = 1",function(error,fields){
+    if(error){
+        console.log(error)
+    }else {
+        console.log('Successful query');
+    }
+});
 */
 
 
