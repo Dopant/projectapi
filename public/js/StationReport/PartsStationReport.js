@@ -23,6 +23,7 @@ $(function () {
         })
             .then((willDelete) => {
                 if (willDelete) {
+                    $('#partReportTableBody').html('');
                     $.ajax({
                         method: 'GET',
                         url:'/parts',

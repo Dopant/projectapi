@@ -1,5 +1,4 @@
 $(function () {
-
     $('#batteryAddButton ').on('click',function (event) {
         event.preventDefault();
 

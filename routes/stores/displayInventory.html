@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/Tyres.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/table.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/dup.css"/>
+
+    <link href="./css/font-face.css" rel="stylesheet" media="all">
+    <link href="./vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="./vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="./vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+
+</head>
+
+<body>
+<header id="header">
+    <div class="logo"><a href="#">STORES-<span>DISPLAY ALL INVENTORY</span></a></div>
+    <a href="#menu">Menu</a>
+</header>
+
+<div class="wrapper">
+    <div class="container">
+        <div class="form">
+            <div class="form-block">
+                <div class="form-section form-section--horizontal">
+                    <div class="input-field input-field--horizontal">
+                        <button  id="displayAllInventory"  name="displayAllInventory" class="input-field__button part"> Display </button>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <div class="table-responsive m-b-40">
+                        <table class="table table-borderless table-data3">
+                            <thead>
+                            <tr>
+
+                                <th class="table__head"> Item </th>
+                                <th class="table__head"> Serial Number</th>
+                                <th class="table__head"> Cardex Number</th>
+                                <th class="table__head"> Price (GhC)</th>
+                                <th class="table__head"> Quantity-In-Stock</th>
+
+                            </tr>
+                            </thead>
+                            <tbody id="inventoryTableBody">
+                            <!-- remove the td when working with data. this is for only styling -->
+                            <!-- <tr>
+                                <td>Emma</td>
+                                <td>47</td>
+                                <td>1</td>
+                                <td>12</td>
+                            </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<nav id="menu">
+    <ul class="links">
+        <li><a href="/storesSetup">Setup</a></li>
+        <li><a href="/checkStockAvailable">Check Stock Availability</a></li>
+        <li><a href="/storesDischarge">Discharge</a></li>
+        <li><a href="/storesIntake">Intake</a></li>
+        <li><a href="/displayStoresInventory">Display All Inventory</a></li>
+        <li><a href="/storesReport">Report</a></li>
+        <li><a href="/grid">Home</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+
+<!-- Banner -->
+
+<!-- Scripts -->
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery.scrolly.min.js"></script>
+<script src="./js/jquery.scrollex.min.js"></script>
+<script src="./js/skel.min.js"></script>
+<script src="./js/util.js"></script>
+<script src="./js/main.js"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/sweetalert.min.js"></script>
+<script src="./js/stores/displayInventory.js"></script>
+
+<script>
+    /*
+        var checkTableBody = document.getElementById('checkTableBody');
+        function dataCell(value){
+            var cell = document.createElement('td');
+            var text = document.createTextNode(value);
+            cell.appendChild(text);
+            return cell;
+        }
+        $(document).ready(function () {
+            $('#search').keyup(function () {
+                var search = $('#search').val();
+                var regex = new RegExp(search ,'i ');
+
+                fetch('http://localhost:3000/checkapi')
+                // fetch('http://localhost:3000/partslist')
+                    .then(
+                        function(response) {
+                            if (response.status !== 200) {
+                                console.warn('Looks like there was a problem. Status Code: ' +
+                                    response.status);
+                                return;
+                            }
+                            // Examine the text in the response
+                            response.json().then(function(data) {
+                                for (let i = 0; i < data.length; i++) {
+
+
+                                    // create a table row to hold the new data inputted
+                                    var tableRow = document.createElement('tr');
+                                    // create a data column for each input data
+                                    // get the value in the partName element and create a new data cell
+                                    var id = dataCell(data[i].id);
+                                    tableRow.appendChild(id);
+                                    var item = dataCell(data[i].parts);
+                                    tableRow.appendChild(item);
+                                    var number = dataCell(data[i].parts_no);
+                                    tableRow.appendChild(number);
+                                    var price = dataCell(data[i].price);
+                                    tableRow.appendChild(price);
+                                    var quantity = dataCell(data[i].quantity_in_stock);
+                                    tableRow.appendChild(quantity);
+                                    checkTableBody.appendChild(tableRow);
+
+                                }
+                            });
+                        }
+                    )
+                    .catch(function(err) {
+                        console.error('Fetch Error -', err);
+                    });
+
+
+            });
+        });
+    */
+</script>
+</body>
+
+</html>

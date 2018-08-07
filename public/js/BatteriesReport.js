@@ -23,6 +23,7 @@ $(function () {
         })
             .then((willDelete) => {
                 if (willDelete) {
+                    $('#batteryReportTableBody').html('');
                     $.ajax({
                         method: 'GET',
                         url:'/batteries',

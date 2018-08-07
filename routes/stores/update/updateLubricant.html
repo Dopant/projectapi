@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang = "en">
+<html ng-app="Demo"></html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/AddPart.css"/>
+</head>
+<body>
+<div class="headerMenu">
+    <h2>Intercity STC Coaches Ltd. -Engineering </h2>
+</div>
+<br><br><br><br>
+<div class="container">
+
+    <div class="row">
+        <div class="col-25">
+            <label for="pname"> Select Lubricant</label>
+        </div>
+        <div class="col-75">
+            <select name="lubricantdropdown" id="lubricantdropdown" class="input-field__input input-field__input--small-fixed">
+                <script>
+                    let dropdown3 = document.getElementById('lubricantdropdown');
+                    dropdown3.length = 0;
+
+                    let defaultOption3 = document.createElement('option');
+                    defaultOption3.text = 'Select Lubricant';
+
+
+                    dropdown3.add(defaultOption3);
+                    dropdown3.selectedIndex = 0;
+
+                   //  const url3 = 'http://localhost:3000/lubricantslist_stores';
+                    const url3 = 'https://eng-api.herokuapp.com/lubricantslist_stores';
+                    fetch(url3)
+                        .then(
+                            function(response) {
+                                if (response.status !== 200) {
+                                    console.warn('Looks like there was a problem. Status Code: ' +
+                                        response.status);
+                                    return;
+                                }
+
+                                // Examine the text in the response
+                                response.json().then(function(data) {
+                                    let option;
+
+                                    for (let i = 0; i < data.length; i++) {
+                                        option = document.createElement('option');
+                                        option.text =  data[i].lubricant;
+                                        option.value = data[i].lubricant;
+                                        dropdown3.add(option);
+                                    }
+                                });
+                            }
+                        )
+                        .catch(function(err) {
+                            console.error('Fetch Error -', err);
+                        });
+                </script>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-25">
+            <label for="lname">Input New Cost </label>
+        </div>
+        <div class="col-75">
+            <input type="text" id="lubricantCost" name="lubricantCost" placeholder="Input New Cost">
+        </div>
+    </div>
+
+    <div class="row">
+        <button id="lubricantUpdateButton" name="lubricantUpdateButton" class="input-field__button">Update Lubricant</button>
+    </div>
+</div>
+
+
+<script>
+    var lubricantName = document.getElementById('lubricantdropdown');
+    var lubricantcost = document.getElementById('lubricantCost');
+
+    lubricantName.addEventListener('click', function (e) {
+        fetch('https://eng-api.herokuapp.com/lubricantslist_stores')
+        // fetch('http://localhost:3000/lubricantslist_stores')
+            .then(
+                function(response) {
+                    if (response.status !== 200) {
+                        console.warn('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                        return;
+                    }
+
+                    // Examine the text in the response
+                    response.json().then(function(data) {
+                        for (let i = 0; i < data.length; i++) {
+                            if ( lubricantName.value === data[i].lubricant){
+                                lubricantcost.value = data[i].price;
+                            }
+                        }
+                    });
+                }
+            )
+            .catch(function(err) {
+                console.error('Fetch Error -', err);
+            });
+    });
+</script>
+
+<script src ="./js/jquery.js"></script>
+<script src = "./js/main.js"></script>
+<script src = "./js/sweetalert.min.js"></script>
+<script src = "./js/stores/setup/update/updateLubricant.js"></script>
+</body>
+</html>

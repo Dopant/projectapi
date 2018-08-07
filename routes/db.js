@@ -124,6 +124,15 @@ connection.query(" create table lubricantslist(id int not null auto_increment pr
         console.log('Successful query');
     }
 });
+
+
+connection.query("",function(error,fields){
+    if(error){
+        console.log(error)
+    }else {
+        console.log('Successful query');
+    }
+});
 */
 
 

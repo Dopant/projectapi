@@ -1,5 +1,8 @@
 .table {
-    margin: 0;
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #dddddd;
+    box-sizing: border-box;
 }
 
 .table-responsive.table--no-card {
@@ -13,14 +16,19 @@
 
 .table-earning thead th {
     background: #333;
-    font-size: 16px;
+
     color: #fff;
     vertical-align: middle;
     font-weight: 400;
     text-transform: capitalize;
     line-height: 1;
-    padding: 22px 40px;
+
     white-space: nowrap;
+    border: 1px solid #dddddd;
+    font-size: 1.12rem;
+    padding: 0.4rem 0 0.2rem;
+    box-sizing: border-box;
+
 }
 
 .table-earning thead th.text-right {
@@ -446,6 +454,7 @@
 
 .table-data3 thead {
     background: #333;
+
 }
 
 .table-data3 thead tr th {

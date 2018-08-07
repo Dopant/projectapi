@@ -18,6 +18,7 @@ $(function () {
         })
             .then((willDelete) => {
                 if (willDelete) {
+                    $('#oilReportTableBody').html('');
                     $.ajax({
                         method: 'GET',
                         url:'/controlOilReport1',

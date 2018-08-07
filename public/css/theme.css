@@ -278,7 +278,7 @@ section {
 }
 
 .page-container {
-    background: #e5e5e5;
+    background: gray url(../Images/kente.jpg) repeat 0 0;;
     padding-left: 300px;
 }
 

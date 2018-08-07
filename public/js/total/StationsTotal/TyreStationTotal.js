@@ -22,6 +22,7 @@ $(function () {
         })
             .then((willDelete) => {
                 if (willDelete) {
+                    $('#tyreReportTableBody').html('');
                     $.ajax({
                         method: 'GET',
                         url:'/tyres',

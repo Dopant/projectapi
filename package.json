@@ -17,7 +17,7 @@
     "express-myconnection": "~1.0.4",
     "express-mysql-session": "^2.0.0",
     "express-session": "^1.15.6",
-    "express-validator": "^5.2.0",
+    "express-validator": "^5.3.0",
     "flash": "^1.1.0",
     "git-cli": "^0.10.0",
     "hbs": "^4.0.1",

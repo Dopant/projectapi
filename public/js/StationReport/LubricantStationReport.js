@@ -23,6 +23,7 @@ $(function () {
         })
             .then((willDelete) => {
                 if (willDelete) {
+                    $('#lubricantReportTableBody').html('');
                     $.ajax({
                         method: 'GET',
                         url:'/lubricants',

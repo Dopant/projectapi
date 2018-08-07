@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/Tyres.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/table.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/menuHover.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/form.css"/>
+    <link href="./css/theme.css" rel="stylesheet" media="all">
+    <link href="./css/dup.css" rel="stylesheet" media="all">
+    <link href="./css/nav.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" type="text/css" href="./css/table.css"/>
+
+    <link href="./vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="./vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="./vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+</head>
+<body>
+
+<header id="header">
+    <div class="logo"><a href="#">CONTROL-<span>TYRES</span></a></div>
+    <a href="#menu">Menu</a>
+</header>
+
+<div class="wrapper">
+    <div class="container">
+        <div class="form">
+            <div class="form-block">
+                <div class="form-section form-section--horizontal">
+                    <form class="form-header" action="" method="POST">
+                        <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for item" />
+                        <button class="au-btn--submit" type="submit">
+                            <i class="zmdi zmdi-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="form-section">
+                    <div class="table-responsive m-b-40">
+                        <table class="table table-borderless table-data3">
+                            <thead>
+                            <tr>
+                                <th class="table__head">Item</th>
+                                <th class="table__head">Price(Current)</th>
+                                <th class="table__head">Quantity In Stock</th>
+
+                            </tr>
+                            </thead>
+                            <tbody id="lubricantTableBody">
+                            <tr>
+                                <!-- remove the td when working with data. this is for only styling -->
+                                <!-- <td>Emma</td>
+                                <td>47</td>
+                                <td>1</td>
+                                <td>12</td> -->
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav id="menu">
+    <ul class="links">
+        <li><a href="/Particulars">Particulars of Vehicles</a></li>
+
+        <div class="dropdown">
+            <div class="name">
+                <li><a href="/Tyre">Tyres</a></li>
+            </div>
+            <div class="dropdown-content">
+                <a href="/controlTyreUpdate">Update tyres </a>
+            </div>
+        </div>
+        <li><a href="/Oil">Date of oil change</a></li>
+        <li><a href="/Monthly">Monthly Mileage and km/lt</a></li>
+        <li><a href="/controlReport">Report</a></li>
+        <li><a href="/grid">Home</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+
+<!-- Banner -->
+
+<!-- Scripts -->
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery.scrolly.min.js"></script>
+<script src="./js/jquery.scrollex.min.js"></script>
+<script src="./js/skel.min.js"></script>
+<script src="./js/util.js"></script>
+<script src="./js/main.js"></script>
+<script src="./js/sweetalert.min.js"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/control/tyresUpdate.js"></script>
+<script src="./js/control/UpdateTyreRecord.js"></script>
+
+
+</body>
+
+</html>

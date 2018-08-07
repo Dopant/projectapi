@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/Tyres.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/table.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/dup.css"/>
+
+    <link href="./css/font-face.css" rel="stylesheet" media="all">
+    <link href="./vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="./vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="./vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+
+</head>
+
+<body>
+<header id="header">
+    <div class="logo"><a href="#">CENTRAL STORES-<span>DISCHARGE RECORD</span></a></div>
+    <a href="#menu">Menu</a>
+</header>
+
+<div class="wrapper">
+    <div class="container">
+        <div class="form">
+            <div class="form-block">
+                <div class="form-section form-section--horizontal">
+                    <div class="input-field input-field--horizontal">
+                        <label class="input-field__label input-field__label--start">Item Type</label>
+                        <select type="text" name="itemType" id="itemType"
+                                class="input-field__input input-field__input--small">
+                            <option SELECTED DISABLED> SELECT ITEM TYPE</option>
+                            <option value="PART">PART</option>
+                            <option value="CONSUMABLE">CONSUMABLE</option>
+                            <option value="TYRE">TYRE</option>
+                            <option value="BATTERY">BATTERY</option>
+                            <option value="LUBRICANT">LUBRICANT</option>
+                            <option value="STATIONERY">STATIONERY</option>
+
+                        </select>
+                        <label class="input-field__label input-field__label--start">Transaction ID</label>
+                        <input type="" class="input-field__input input-field__input--small" name="transactionId" id="transactionId"
+                               placeholder="Transaction ID">
+
+                        <label class="input-field__label input-field__label--start">Date</label>
+                        <input type="date" class="input-field__input input-field__input--small" name="date" id="date"
+                               placeholder="Curdate">
+                    </div>
+                </div>
+                <div class="form-section form-section--horizontal">
+                    <div class="input-field input-field--horizontal">
+                        <label class="input-field__label input-field__label--start">Registry No.</label>
+                        <select type="text" name="busdropdown" id="busdropdown"
+                                class="input-field__input input-field__input--small">
+                            <script>
+                                let dropdown = document.getElementById('busdropdown');
+                                dropdown.length = 0;
+
+                                let defaultOption = document.createElement('option');
+                                defaultOption.text = 'Select Bus';
+
+                                dropdown.add(defaultOption);
+                                dropdown.selectedIndex = 0;
+
+                                  const url = 'https://eng-api.herokuapp.com/buslist';
+                               // const url = 'http://localhost:3000/buslist';
+
+
+                                fetch(url)
+                                    .then(
+                                        function (response) {
+                                            if (response.status !== 200) {
+                                                console.warn('Looks like there was a problem. Status Code: ' +
+                                                    response.status);
+                                                return;
+                                            }
+
+                                            // Examine the text in the response
+                                            response.json().then(function (data) {
+                                                let option;
+
+                                                for (let i = 0; i < data.length; i++) {
+                                                    option = document.createElement('option');
+                                                    option.text = data[i].registry_no;
+                                                    option.value = data[i].registry_no;
+                                                    dropdown.add(option);
+                                                }
+                                            });
+                                        }
+                                    )
+                                    .catch(function (err) {
+                                        console.error('Fetch Error -', err);
+                                    });
+                            </script>
+                        </select>
+
+                        <label class="input-field__label input-field__label--start">Name of Person</label>
+                        <input type="text" class="input-field__input input-field__input--small" name="date" id="person"
+                               placeholder="Name">
+
+                        <label class="input-field__label input-field__label--start"> Station </label>
+                        <select name="stationdropdown" type="text" name="" id="stationdropdown" class="input-field__input input-field__input--small">
+                            <script>
+                                let dropdown2 = document.getElementById('stationdropdown');
+                                dropdown2.length = 0;
+
+                                let defaultOption2 = document.createElement('option');
+                                defaultOption2.text = 'Select Station';
+
+                                dropdown2.add(defaultOption2);
+                                dropdown2.selectedIndex = 0;
+
+                                const url2 = 'https://eng-api.herokuapp.com/stationlist';
+                               //   const url2 = 'http://localhost:3000/stationlist';
+                                fetch(url2)
+                                    .then(
+                                        function(response) {
+                                            if (response.status !== 200) {
+                                                console.warn('Looks like there was a problem. Status Code: ' +
+                                                    response.status);
+                                                return;
+                                            }
+
+                                            // Examine the text in the response
+                                            response.json().then(function(data) {
+                                                let option;
+
+                                                for (let i = 0; i < data.length; i++) {
+                                                    option = document.createElement('option');
+                                                    option.text = data[i].station;
+                                                    option.value = data[i].station;
+                                                    dropdown2.add(option);
+                                                }
+                                            });
+                                        }
+                                    )
+                                    .catch(function(err) {
+                                        console.error('Fetch Error -', err);
+                                    });
+                            </script>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-section form-section--horizontal">
+                    <div class="input-field input-field--horizontal">
+                        <label class="input-field__label input-field__label--start">Item Name</label>
+                        <select name="itemName" id="itemName" class="input-field__input input-field__input--small-fixed">
+
+                        </select>
+                    </div>
+                    <div class="input-field input-field--horizontal">
+                        <label class="input-field__label input-field__label--right">Cost</label>
+                        <input name="partCost" type="number" id="cost" class="input-field__input input-field__input--tiny-fixed">
+                    </div>
+                    <div class="input-field input-field--horizontal">
+                        <label class="input-field__label input-field__label--right">Quantity</label>
+                        <input name="parts_quantity" type="number" id="quantity" class="input-field__input input-field__input--tiny-fixed">
+                    </div>
+                    <div class="input-field input-field--horizontal">
+                        <label class="input-field__label input-field__label--right">Total</label>
+                        <input name="parts_total" type="number" id="total" class="input-field__input input-field__input--tiny-fixed">
+                    </div>
+                    <div class="input-field input-field--horizontal input-field--center">
+                        <button  id="addDischargeButton"  name="submit" class="input-field__button part"> Add </button>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="table-responsive m-b-40">
+                        <table class="table table-borderless table-data3">
+                            <thead>
+                            <tr>
+                                <th class="table__head">Item Name</th>
+                                <th class="table__head">Cost</th>
+                                <th class="table__head">Quantity</th>
+                                <th class="table__head">Total (GhC)</th>
+                            </tr>
+                            </thead>
+                            <tbody id="dischargeTableBody">
+                            <!-- remove the td when working with data. this is for only styling -->
+                            <!-- <tr>
+                                <td>Emma</td>
+                                <td>47</td>
+                                <td>1</td>
+                                <td>12</td>
+                            </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<nav id="menu">
+    <ul class="links">
+        <li><a href="/storesSetup">Setup</a></li>
+        <li><a href="/checkStockAvailable">Check Stock Availability</a></li>
+        <li><a href="/storesDischarge">Discharge</a></li>
+        <li><a href="/storesIntake">Intake</a></li>
+        <li><a href="/displayStoresInventory">Display All Inventory</a></li>
+        <li><a href="/storesReport">Report</a></li>
+        <li><a href="/grid">Home</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+
+<!-- Banner -->
+
+<!-- Scripts -->
+<script>
+
+
+
+
+    var itemType = document.getElementById('itemType');
+    let  name = document.getElementById('itemName');
+    let cost = document.getElementById('cost');
+    let total = document.getElementById('total');
+    let quantity = document.getElementById('quantity');
+
+    total.addEventListener('click',function (e) {
+        total.value = quantity.value * cost.value;
+    });
+
+    function removeOptions(selectbox){
+        for (let i = 0; i < selectbox.length; i++){
+            selectbox.remove(i);
+        }
+    }
+
+    itemType.addEventListener('change',function(e) {
+
+         if (itemType.value === 'PART'){
+
+             var itemName = document.getElementById('itemName');
+             itemName.length = 0;
+
+             removeOptions(itemName);
+
+             let defaultOption3 = document.createElement('option');
+             defaultOption3.text = 'Select Part';
+
+             itemName.add(defaultOption3);
+             itemName.selectedIndex = 0;
+
+             const url3 = 'https://eng-api.herokuapp.com/partslist_stores';
+         //      const url3 = 'http://localhost:3000/partslist_stores';
+        fetch(url3)
+            .then(
+                function(response) {
+                    if (response.status !== 200) {
+                        console.warn('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                        return;
+                    }
+
+                    // Examine the text in the response
+                    response.json().then(function(data) {
+                        let option3;
+
+                        for (let i = 0; i < data.length; i++) {
+                            option3 = document.createElement('option');
+                            option3.text =  data[i].part + " " + data[i].price;
+                            option3.value = data[i].part;
+                            itemName.add(option3);
+                        }
+                    });
+                }
+            )
+            .catch(function(err) {
+                console.error('Fetch Error -', err);
+            });
+           }else if (itemType.value === 'CONSUMABLE'){
+
+             var itemName1 = document.getElementById('itemName');
+             itemName1.length = 0;
+
+             removeOptions(itemName1);
+             let defaultOption4 = document.createElement('option');
+             defaultOption4.text = 'Select Consumable';
+
+             itemName1.add(defaultOption4);
+             itemName1.selectedIndex = 0;
+
+          //   const url4 = 'http://localhost:3000/consumableslist_stores';
+             const url4 = 'https://eng-api.herokuapp.com/consumableslist_stores';
+             fetch(url4)
+                 .then(
+                     function(response) {
+                         if (response.status !== 200) {
+                             console.warn('Looks like there was a problem. Status Code: ' +
+                                 response.status);
+                             return;
+                         }
+
+                         // Examine the text in the response
+                         response.json().then(function(data) {
+                             let option4;
+
+                             for (let i = 0; i < data.length; i++) {
+                                 option4 = document.createElement('option');
+                                 option4.text =  data[i].consumable + " " + data[i].price;
+                                 option4.value = data[i].consumable;
+                                 itemName1.add(option4);
+                             }
+                         });
+                     }
+                 )
+                 .catch(function(err) {
+                     console.error('Fetch Error -', err);
+                 });
+         }else if(itemType.value === 'TYRE'){
+             var itemName2 = document.getElementById('itemName');
+             itemName2.length = 0;
+
+             removeOptions(itemName2);
+             let defaultOption5 = document.createElement('option');
+             defaultOption5.text = 'Select Tyre';
+
+             itemName2.add(defaultOption5);
+             itemName2.selectedIndex = 0;
+
+           //  const url5 = 'http://localhost:3000/tyreslist_stores';
+             const url5 = 'https://eng-api.herokuapp.com/tyreslist_stores';
+             fetch(url5)
+                 .then(
+                     function(response) {
+                         if (response.status !== 200) {
+                             console.warn('Looks like there was a problem. Status Code: ' +
+                                 response.status);
+                             return;
+                         }
+
+                         // Examine the text in the response
+                         response.json().then(function(data) {
+                             let option5;
+
+                             for (let i = 0; i < data.length; i++) {
+                                 option5 = document.createElement('option');
+                                 option5.text =  data[i].tyre + " " + data[i].price;
+                                 option5.value = data[i].tyre;
+                                 itemName2.add(option5);
+                             }
+                         });
+                     }
+                 )
+                 .catch(function(err) {
+                     console.error('Fetch Error -', err);
+                 });
+         }else if(itemType.value === 'BATTERY'){
+             var itemName3 = document.getElementById('itemName');
+             itemName3.length = 0;
+
+             removeOptions(itemName3);
+             let defaultOption6 = document.createElement('option');
+             defaultOption6.text = 'Select Battery';
+
+             itemName3.add(defaultOption6);
+             itemName3.selectedIndex = 0;
+
+            // const url6 = 'http://localhost:3000/batterieslist_stores';
+             const url6 = 'https://eng-api.herokuapp.com/batterieslist_stores';
+             fetch(url6)
+                 .then(
+                     function(response) {
+                         if (response.status !== 200) {
+                             console.warn('Looks like there was a problem. Status Code: ' +
+                                 response.status);
+                             return;
+                         }
+
+                         // Examine the text in the response
+                         response.json().then(function(data) {
+                             let option6;
+
+                             for (let i = 0; i < data.length; i++) {
+                                 option6 = document.createElement('option');
+                                 option6.text =  data[i].battery + " " + data[i].price;
+                                 option6.value = data[i].battery;
+                                 itemName3.add(option6);
+                             }
+                         });
+                     }
+                 )
+                 .catch(function(err) {
+                     console.error('Fetch Error -', err);
+                 });
+         }else if(itemType.value === 'LUBRICANT'){
+             var itemName4 = document.getElementById('itemName');
+             itemName4.length = 0;
+
+             removeOptions(itemName4);
+             let defaultOption7 = document.createElement('option');
+             defaultOption7.text = 'Select Lubricant';
+
+             itemName4.add(defaultOption7);
+             itemName4.selectedIndex = 0;
+
+           //  const url7 = 'http://localhost:3000/lubricantslist_stores';
+             const url7 = 'https://eng-api.herokuapp.com/lubricantslist_stores';
+             fetch(url7)
+                 .then(
+                     function(response) {
+                         if (response.status !== 200) {
+                             console.warn('Looks like there was a problem. Status Code: ' +
+                                 response.status);
+                             return;
+                         }
+
+                         // Examine the text in the response
+                         response.json().then(function(data) {
+                             let option7;
+
+                             for (let i = 0; i < data.length; i++) {
+                                 option7 = document.createElement('option');
+                                 option7.text =  data[i].lubricant + " " + data[i].price;
+                                 option7.value = data[i].lubricant;
+                                 itemName4.add(option7);
+                             }
+                         });
+                     }
+                 )
+                 .catch(function(err) {
+                     console.error('Fetch Error -', err);
+                 });
+         }else if(itemType.value === 'STATIONERY'){
+             var itemName5 = document.getElementById('itemName');
+             itemName5.length = 0;
+
+             removeOptions(itemName5);
+             let defaultOption8 = document.createElement('option');
+             defaultOption8.text = 'Select Stationery';
+
+             itemName5.add(defaultOption8);
+             itemName5.selectedIndex = 0;
+
+          //   const url8 = 'http://localhost:3000/stationerieslist_stores';
+             const url8 = 'https://eng-api.herokuapp.com/stationerieslist_stores';
+             fetch(url8)
+                 .then(
+                     function(response) {
+                         if (response.status !== 200) {
+                             console.warn('Looks like there was a problem. Status Code: ' +
+                                 response.status);
+                             return;
+                         }
+
+                         // Examine the text in the response
+                         response.json().then(function(data) {
+                             let option8;
+
+                             for (let i = 0; i < data.length; i++) {
+                                 option8 = document.createElement('option');
+                                 option8.text =  data[i].stationery + " " + data[i].price;
+                                 option8.value = data[i].stationery;
+                                 itemName5.add(option8);
+                             }
+                         });
+                     }
+                 )
+                 .catch(function(err) {
+                     console.error('Fetch Error -', err);
+                 });
+         }
+    });
+
+    name.addEventListener('click',function (e) {
+        if(itemType.value === 'PART'){
+            fetch('https://eng-api.herokuapp.com/partslist_stores')
+            // fetch('http://localhost:3000/partslist_stores')
+                .then(
+                    function(response) {
+                        if (response.status !== 200) {
+                            console.warn('Looks like there was a problem. Status Code: ' +
+                                response.status);
+                            return;
+                        }
+
+                        // Examine the text in the response
+                        response.json().then(function(data) {
+                            for (let i = 0; i < data.length; i++) {
+                                if ( name.value === data[i].part){
+                                    cost.value = data[i].price;
+                                }
+                            }
+                        });
+                    }
+                )
+                .catch(function(err) {
+                    console.error('Fetch Error -', err);
+                });
+        }else if(itemType.value === 'CONSUMABLE'){
+            fetch('https://eng-api.herokuapp.com/consumableslist_stores')
+           // fetch('http://localhost:3000/consumableslist_stores')
+                .then(
+                    function(response) {
+                        if (response.status !== 200) {
+                            console.warn('Looks like there was a problem. Status Code: ' +
+                                response.status);
+                            return;
+                        }
+
+                        // Examine the text in the response
+                        response.json().then(function(data) {
+                            for (let i = 0; i < data.length; i++) {
+                                if ( name.value === data[i].consumable){
+                                    cost.value = data[i].price;
+                                }
+                            }
+                        });
+                    }
+                )
+                .catch(function(err) {
+                    console.error('Fetch Error -', err);
+                });
+        }else if(itemType.value === 'TYRE'){
+            fetch('https://eng-api.herokuapp.com/tyreslist_stores')
+           // fetch('http://localhost:3000/tyreslist_stores')
+                .then(
+                    function(response) {
+                        if (response.status !== 200) {
+                            console.warn('Looks like there was a problem. Status Code: ' +
+                                response.status);
+                            return;
+                        }
+
+                        // Examine the text in the response
+                        response.json().then(function(data) {
+                            for (let i = 0; i < data.length; i++) {
+                                if ( name.value === data[i].tyre){
+                                    cost.value = data[i].price;
+                                }
+                            }
+                        });
+                    }
+                )
+                .catch(function(err) {
+                    console.error('Fetch Error -', err);
+                });
+        }else if(itemType.value === 'BATTERY'){
+            fetch('https://eng-api.herokuapp.com/batterieslist_stores')
+            //fetch('http://localhost:3000/batterieslist_stores')
+                .then(
+                    function(response) {
+                        if (response.status !== 200) {
+                            console.warn('Looks like there was a problem. Status Code: ' +
+                                response.status);
+                            return;
+                        }
+
+                        // Examine the text in the response
+                        response.json().then(function(data) {
+                            for (let i = 0; i < data.length; i++) {
+                                if ( name.value === data[i].battery){
+                                    cost.value = data[i].price;
+                                }
+                            }
+                        });
+                    }
+                )
+                .catch(function(err) {
+                    console.error('Fetch Error -', err);
+                });
+        }else if(itemType.value === 'LUBRICANT'){
+            fetch('https://eng-api.herokuapp.com/lubricantslist_stores')
+            //fetch('http://localhost:3000/lubricantslist_stores')
+                .then(
+                    function(response) {
+                        if (response.status !== 200) {
+                            console.warn('Looks like there was a problem. Status Code: ' +
+                                response.status);
+                            return;
+                        }
+
+                        // Examine the text in the response
+                        response.json().then(function(data) {
+                            for (let i = 0; i < data.length; i++) {
+                                if ( name.value === data[i].lubricant){
+                                    cost.value = data[i].price;
+                                }
+                            }
+                        });
+                    }
+                )
+                .catch(function(err) {
+                    console.error('Fetch Error -', err);
+                });
+        }else if(itemType.value === 'STATIONERY'){
+            fetch('https://eng-api.herokuapp.com/stationerieslist_stores')
+          //  fetch('http://localhost:3000/stationerieslist_stores')
+                .then(
+                    function(response) {
+                        if (response.status !== 200) {
+                            console.warn('Looks like there was a problem. Status Code: ' +
+                                response.status);
+                            return;
+                        }
+
+                        // Examine the text in the response
+                        response.json().then(function(data) {
+                            for (let i = 0; i < data.length; i++) {
+                                if ( name.value === data[i].stationery){
+                                    cost.value = data[i].price;
+                                }
+                            }
+                        });
+                    }
+                )
+                .catch(function(err) {
+                    console.error('Fetch Error -', err);
+                });
+        }
+    });
+
+
+</script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery.scrolly.min.js"></script>
+<script src="./js/jquery.scrollex.min.js"></script>
+<script src="./js/skel.min.js"></script>
+<script src="./js/util.js"></script>
+<script src="./js/main.js"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/sweetalert.min.js"></script>
+<script src="./js/stores/discharge.js"></script>
+
+</body>
+
+</html>

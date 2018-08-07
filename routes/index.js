@@ -436,11 +436,11 @@ router.get('/updateBattery', function(req, resp, next) {
     }
 });
 
-router.get('/updateLubricant', function(req, resp, next) {
+router.get('/updateLubricant.js', function(req, resp, next) {
     console.log(req.user);
     console.log(req.isAuthenticated());
     if (req.isAuthenticated()){
-        resp.sendFile(path.join(__dirname + '/update/updateLubricant.html'))
+        resp.sendFile(path.join(__dirname + '/update/updateLubricant.js.html'))
     }
     else {
         resp.render('login', { title: 'Please Login' });

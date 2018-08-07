@@ -21,6 +21,7 @@ $(function () {
         })
             .then((willDelete) => {
                 if (willDelete) {
+                    $('#maintenanceReportTableBody').html('');
                     $.ajax({
                         method: 'GET',
                         url:'/maintenanceRecord',

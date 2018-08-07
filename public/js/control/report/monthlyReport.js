@@ -18,6 +18,7 @@ $(function () {
         })
             .then((willDelete) => {
                 if (willDelete) {
+                    $('#monthlyReportTableBody').html('');
                     $.ajax({
                         method: 'GET',
                         url:'/controlMonthlyReport1',

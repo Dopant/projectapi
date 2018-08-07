@@ -23,6 +23,7 @@ $(function () {
         })
             .then((willDelete) => {
                 if (willDelete) {
+                    $('#consumableReportTableBody').html('');
                     $.ajax({
                         method: 'GET',
                         url:'/consumables',
