@@ -43,7 +43,7 @@ app.set('view engine', 'hbs');
    //   host:'127.0.0.1',
    //   user:'root',
    //   password:'',
-   //   database:'stcdb'
+    //  database:'stcdb'
 
 };
 app.use(connection(mysql,db,'request'));

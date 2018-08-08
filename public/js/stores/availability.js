@@ -1,5 +1,7 @@
 
     $('#search').keyup(function () {
+
+
         var checkTableBody = document.getElementById('checkTableBody');
         var search = document.getElementById('search').value;
         var regex = new RegExp(search ,'i');
@@ -9,14 +11,14 @@
             return;
           }
 
-         $('#checkTableBody').html('');
+
          let output;
           $.ajax({
             method: 'GET',
             url:'/checkApi',
             success: function (data){
                 console.log(data);
-
+                $('#checkTableBody').html('');
                 for ( let i = 0 ; i < data.length; i++ ){
                     if( (data[i].name.search(regex) !== -1) || (data[i].no.search(regex) !== -1 ) ){
                         function dataCell(value){

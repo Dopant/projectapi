@@ -134,7 +134,7 @@ connection.query("",function(error,fields){
     }
 });
 
-connection.query("delete from intake_stores where id = 1",function(error,fields){
+connection.query("",function(error,fields){
     if(error){
         console.log(error)
     }else {
