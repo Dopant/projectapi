@@ -46,8 +46,7 @@
                 }
             },
             error: function (value) {
-                //alert('Data sending Failed');
-                swal("Oh No!", "The  request failed!", "error");
+
             },
         });
 
