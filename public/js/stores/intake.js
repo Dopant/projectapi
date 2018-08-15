@@ -19,6 +19,7 @@ $(function () {
         var $person= $('#person');
         var $station = $('#stationdropdown');
         var $itemName = $('#itemName');
+        var $itemCost = $('#cost');
         var $quantity = $('#quantity');
         var $total = $('#total');
 
@@ -26,6 +27,7 @@ $(function () {
             transaction_id : $transactionId.val(),
             item_type : $itemType.val(),
             item : $itemName.val(),
+            unit_cost : $itemCost.val(),
             quantity :$quantity.val(),
             total_cost : $total.val(),
             company : $company.val(),

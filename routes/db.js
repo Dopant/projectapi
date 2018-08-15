@@ -134,13 +134,8 @@ connection.query("",function(error,fields){
     }
 });
 
-connection.query("",function(error,fields){
-    if(error){
-        console.log(error)
-    }else {
-        console.log('Successful query');
-    }
-});
+
+
 */
 
 

@@ -413,6 +413,18 @@ router.get('/dischargeReport', function(req, resp, next) {
     // return next();
 });
 
+router.get('/storesReportSummary', function(req, resp, next) {
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    if (req.isAuthenticated()){
+        resp.sendFile(path.join(__dirname + '/stores/report/storesReportSummary.html'))
+    }
+    else {
+        resp.render('login', { title: 'Please Login' });
+    }
+    // return next();
+});
+
 router.get('/checkApi' , function (req, resp, next) {
     try {
         req.getConnection(function(err, conn) {
@@ -427,6 +439,74 @@ router.get('/checkApi' , function (req, resp, next) {
                     " Union select stationery as name, stationery_no as no,cardex_no as cardex, price as price , quantity_in_stock as quantity from stationerylist_stores" +
                     " Union select equipment as name, equipment_no as no,cardex_no as cardex, price as price , quantity_in_stock as quantity from equipmentlist_stores" +
                     " Union select lubricant as name, lubricants_no as no,cardex_no as cardex, price as price , quantity_in_stock as quantity from lubricantlist_stores order by name";
+                conn.query(sql, function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+router.get('/reportSummary' , function (req, resp, next) {
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql = "select transaction_id as criv_no, type as type, item_type as item_type,item as item, unit_cost as unit_cost," +
+                    "quantity as quantity,total_cost as total_cost,company as comp_bus,person as person,station as station,date as date from intake_stores " +
+                    "where (item = '"+ req.query.item+"') && ( date BETWEEN '"+req.query.from+"' AND '"+req.query.to+"') union " +
+                    "select transaction_id as criv_no, type as type, item_type as item_type,item as item, unit_cost as unit_cost," +
+                    "quantity as quantity,total_cost as total_cost,registry_no as comp_bus,person as person,station as station,date as date from discharge_stores " +
+                    "where (item = '"+ req.query.item+"') && ( date BETWEEN '"+req.query.from+"'AND'"+req.query.to+"') order by date desc";
+                conn.query(sql, function(err, rows, fields) {
+                    if (err) {
+                        console.error('SQL error: ', err);
+                        return next(err);
+
+                    }
+                    var resEmp = [];
+                    for (var newsIndex in rows) {
+                        var newsObj = rows[newsIndex];
+                        resEmp.push(newsObj);
+                    }
+                    resp.json(resEmp);
+                });
+            }
+        });
+    } catch (ex) {
+        console.error("Internal error:" + ex);
+        return (ex);
+    }
+});
+
+router.get('/summaryView' , function (req, resp, next) {
+    try {
+        req.getConnection(function(err, conn) {
+            if (err) {
+                console.error('SQL Connection error: ', err);
+                return (err);
+            } else {
+                var sql = "select transaction_id as criv_no, type as type, item_type as item_type,item as item, unit_cost as unit_cost," +
+                    "quantity as quantity,total_cost as total_cost,company as comp_bus,person as person,station as station,date as date from intake_stores " +
+                    " union " +
+                    "select transaction_id as criv_no, type as type, item_type as item_type,item as item, unit_cost as unit_cost," +
+                    "quantity as quantity,total_cost as total_cost,registry_no as comp_bus,person as person,station as station,date as date from discharge_stores " +
+                    " order by date desc";
                 conn.query(sql, function(err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);

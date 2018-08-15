@@ -16,7 +16,7 @@
 
 <body>
 <header id="header">
-    <div class="logo"><a href="#">CENTRAL STORES-<span>DISCHARGE RECORD</span></a></div>
+    <div class="logo"><a href="#">CENTRAL STORES-<span>ISSUE RECORD</span></a></div>
     <a href="#menu">Menu</a>
 </header>
 
@@ -39,9 +39,9 @@
                             <option value="EQUIPMENT">EQUIPMENT</option>
 
                         </select>
-                        <label class="input-field__label input-field__label--start">Transaction ID</label>
+                        <label class="input-field__label input-field__label--start">CRIV/TIV NUMBER</label>
                         <input type="" class="input-field__input input-field__input--small" name="transactionId" id="transactionId"
-                               placeholder="Transaction ID">
+                               placeholder="CRIV NUMBER">
 
                         <label class="input-field__label input-field__label--start">Date</label>
                         <input type="date" class="input-field__input input-field__input--small" name="date" id="date"
@@ -75,7 +75,7 @@
                                 dropdown2.selectedIndex = 0;
 
                                 const url2 = 'https://eng-api.herokuapp.com/stationlist';
-                               //   const url2 = 'http://localhost:3000/stationlist';
+                                //  const url2 = 'http://localhost:3000/stationlist';
                                 fetch(url2)
                                     .then(
                                         function(response) {
@@ -162,12 +162,12 @@
 <nav id="menu">
     <ul class="links">
         <li><a href="/storesSetup">Setup</a></li>
-        <li><a href="/checkStockAvailable">Check Stock Availability</a></li>
-        <li><a href="/storesDischarge">Discharge</a></li>
-        <li><a href="/storesIntake">Intake</a></li>
+        <li><a href="/checkStockAvailable">Check Inventory Availability</a></li>
+        <li><a href="/storesDischarge">Issue</a></li>
+        <li><a href="/storesIntake">Receivable</a></li>
         <li><a href="/displayStoresInventory">Display All Inventory</a></li>
         <li><a href="/storesReport">Report</a></li>
-        <li><a href="/grid">Home</a></li>
+        <li><a href="/stores">Home</a></li>
         <li><a href="/logout">Logout</a></li>
     </ul>
 </nav>
@@ -195,6 +195,16 @@
             selectbox.remove(i);
         }
     }
+/*
+let busDropdown = document.getElementById('busdropdown');
+    busDropdown.addEventListener('click', function (e) {
+        if (busDropdown.value === 'OUT-STATION'){
+
+        }
+    });
+
+ */
+
 
     itemType.addEventListener('change',function(e) {
         if ( !(itemType.value === 'STATIONERY' || itemType.value === 'EQUIPMENT') ){
@@ -207,8 +217,13 @@
             dropdown.add(defaultOption);
             dropdown.selectedIndex = 0;
 
+            let outStation = document.createElement('option');
+            outStation.text = 'OUT-STATION';
+            outStation.value = 'OUT-STATION';
+            dropdown.add(outStation);
+
             const url = 'https://eng-api.herokuapp.com/buslist';
-           //  const url = 'http://localhost:3000/buslist';
+          //   const url = 'http://localhost:3000/buslist';
 
 
             fetch(url)
@@ -247,7 +262,7 @@
             dropdown.add(defaultOption);
             dropdown.selectedIndex = 0;
 
-            let departments = ['MARKETING','IT','PROCUREMENT','VALUATION','PARCELS' +
+            let departments = ['MARKETING','IT','PROCUREMENT','VALUATION','PARCELS' ,
             'AUDIT','ACCOUNTS','WAGES','HUMAN RESOURCE','ESTATE','STORES','OPERATIONS'];
 
             for (let i=0;i<10;i++){
@@ -278,7 +293,7 @@
              itemName.selectedIndex = 0;
 
              const url3 = 'https://eng-api.herokuapp.com/partslist_stores';
-         //      const url3 = 'http://localhost:3000/partslist_stores';
+           //   const url3 = 'http://localhost:3000/partslist_stores';
         fetch(url3)
             .then(
                 function(response) {
@@ -356,7 +371,7 @@
              itemName2.add(defaultOption5);
              itemName2.selectedIndex = 0;
 
-           //  const url5 = 'http://localhost:3000/tyreslist_stores';
+         //    const url5 = 'http://localhost:3000/tyreslist_stores';
              const url5 = 'https://eng-api.herokuapp.com/tyreslist_stores';
              fetch(url5)
                  .then(
@@ -516,7 +531,7 @@
              itemName6.add(defaultOption9);
              itemName6.selectedIndex = 0;
 
-             //   const url9 = 'http://localhost:3000/equipmentslist_stores';
+            //    const url9 = 'http://localhost:3000/equipmentslist_stores';
              const url9 = 'https://eng-api.herokuapp.com/equipmentslist_stores';
              fetch(url9)
                  .then(
@@ -549,7 +564,7 @@
     name.addEventListener('click',function (e) {
         if(itemType.value === 'PART'){
             fetch('https://eng-api.herokuapp.com/partslist_stores')
-            // fetch('http://localhost:3000/partslist_stores')
+          //   fetch('http://localhost:3000/partslist_stores')
                 .then(
                     function(response) {
                         if (response.status !== 200) {
@@ -573,7 +588,7 @@
                 });
         }else if(itemType.value === 'CONSUMABLE'){
             fetch('https://eng-api.herokuapp.com/consumableslist_stores')
-           // fetch('http://localhost:3000/consumableslist_stores')
+          //  fetch('http://localhost:3000/consumableslist_stores')
                 .then(
                     function(response) {
                         if (response.status !== 200) {
@@ -597,7 +612,7 @@
                 });
         }else if(itemType.value === 'TYRE'){
             fetch('https://eng-api.herokuapp.com/tyreslist_stores')
-           // fetch('http://localhost:3000/tyreslist_stores')
+          //  fetch('http://localhost:3000/tyreslist_stores')
                 .then(
                     function(response) {
                         if (response.status !== 200) {
@@ -621,7 +636,7 @@
                 });
         }else if(itemType.value === 'BATTERY'){
             fetch('https://eng-api.herokuapp.com/batterieslist_stores')
-            //fetch('http://localhost:3000/batterieslist_stores')
+          //  fetch('http://localhost:3000/batterieslist_stores')
                 .then(
                     function(response) {
                         if (response.status !== 200) {
@@ -645,7 +660,7 @@
                 });
         }else if(itemType.value === 'LUBRICANT'){
             fetch('https://eng-api.herokuapp.com/lubricantslist_stores')
-            //fetch('http://localhost:3000/lubricantslist_stores')
+          //  fetch('http://localhost:3000/lubricantslist_stores')
                 .then(
                     function(response) {
                         if (response.status !== 200) {
@@ -669,7 +684,7 @@
                 });
         }else if(itemType.value === 'STATIONERY'){
             fetch('https://eng-api.herokuapp.com/stationerieslist_stores')
-          //  fetch('http://localhost:3000/stationerieslist_stores')
+           // fetch('http://localhost:3000/stationerieslist_stores')
                 .then(
                     function(response) {
                         if (response.status !== 200) {
@@ -693,7 +708,7 @@
                 });
         }else if(itemType.value === 'EQUIPMENT'){
             fetch('https://eng-api.herokuapp.com/equipmentslist_stores')
-            //  fetch('http://localhost:3000/equipmentslist_stores')
+           //   fetch('http://localhost:3000/equipmentslist_stores')
                 .then(
                     function(response) {
                         if (response.status !== 200) {

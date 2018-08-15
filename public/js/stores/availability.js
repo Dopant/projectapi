@@ -1,7 +1,6 @@
 
     $('#search').keyup(function () {
 
-
         var checkTableBody = document.getElementById('checkTableBody');
         var search = document.getElementById('search').value;
         var regex = new RegExp(search ,'i');

@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+.tableColor{
+    background: #949994;
+}
+
 .table-responsive.table--no-card {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -521,6 +525,11 @@
     padding-right: 10px;
     font-family: "Scope One", serif;
 }
+/*
+
+ */
+
+
 
 .table-data3 tbody td.process {
     color: #00ad5f;
