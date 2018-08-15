@@ -44,8 +44,8 @@ $(function () {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    let url = 'http://localhost:3000/checkapi';
-                 //   let url = 'https://eng-api.herokuapp.com/checkapi';
+                 //   let url = 'http://localhost:3000/checkapi';
+                    let url = 'https://eng-api.herokuapp.com/checkapi';
                     fetch(url)
                         .then(
                             function(response) {
