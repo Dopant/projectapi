@@ -647,7 +647,7 @@ router.get('/parts',function(req, resp,next){
                 console.error('SQL Connection error: ', err);
                 return(err);
             } else {
-                conn.query("select id,registry_no,station,parts,quantity,total_cost,date_format(date,'%Y %M %D') as date" +
+                conn.query("select id,registry_no,station,parts,quantity,total_cost,date(date) as date" +
                     " from parts where date BETWEEN '"+req.query.from+"'AND'"+req.query.to+"'order by date desc", function(err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
