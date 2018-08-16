@@ -468,11 +468,11 @@ router.get('/reportSummary' , function (req, resp, next) {
                 return (err);
             } else {
                 var sql = "select transaction_id as criv_no, type as type, item_type as item_type,item as item, unit_cost as unit_cost," +
-                    "quantity as quantity,total_cost as total_cost,company as comp_bus,person as person,station as station,date_format(date,'%D %M %Y') as date from intake_stores " +
+                    "quantity as quantity,total_cost as total_cost,company as comp_bus,person as person,station as station,date_format(date,'%Y-%c-%d') as date from intake_stores " +
                     "where (item = '"+ req.query.item+"') && ( date BETWEEN '"+req.query.from+"' AND '"+req.query.to+"') union " +
                     "select transaction_id as criv_no, type as type, item_type as item_type,item as item, unit_cost as unit_cost," +
-                    "quantity as quantity,total_cost as total_cost,registry_no as comp_bus,person as person,station as station,date_format(date,'%D %M %Y') as date from discharge_stores " +
-                    "where (item = '"+ req.query.item+"') && ( date BETWEEN '"+req.query.from+"'AND'"+req.query.to+"') order by date desc";
+                    "quantity as quantity,total_cost as total_cost,registry_no as comp_bus,person as person,station as station,date_format(date,'%Y-%c-%d') as date from discharge_stores " +
+                    "where (item = '"+ req.query.item+"') && ( date BETWEEN '"+req.query.from+"'AND'"+req.query.to+"') order by date ";
                 conn.query(sql, function(err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
@@ -502,10 +502,10 @@ router.get('/summaryView' , function (req, resp, next) {
                 return (err);
             } else {
                 var sql = "select transaction_id as criv_no, type as type, item_type as item_type,item as item, unit_cost as unit_cost," +
-                    "quantity as quantity,total_cost as total_cost,company as comp_bus,person as person,station as station,date_format(date,'%D %M %Y') as date from intake_stores " +
+                    "quantity as quantity,total_cost as total_cost,company as comp_bus,person as person,station as station,date_format(date,'%Y-%c-%d') as date from intake_stores " +
                     " union " +
                     "select transaction_id as criv_no, type as type, item_type as item_type,item as item, unit_cost as unit_cost," +
-                    "quantity as quantity,total_cost as total_cost,registry_no as comp_bus,person as person,station as station,date_format(date,'%D %M %Y') as date from discharge_stores " +
+                    "quantity as quantity,total_cost as total_cost,registry_no as comp_bus,person as person,station as station,date_format(date,'%Y-%c-%d') as date from discharge_stores " +
                     " order by date desc";
                 conn.query(sql, function(err, rows, fields) {
                     if (err) {
@@ -988,7 +988,7 @@ router.get('/storesIntakeReport' , function (req, resp, next) {
                 return (err);
             } else {
                 var sql =  "select id,transaction_id,type,item_type,item,unit_cost," +
-                    "quantity,total_cost,company,person,station,date_format(date,'%D %M %Y') as date" +
+                    "quantity,total_cost,company,person,station,date_format(date,'%Y-%c-%d') as date" +
                     " from intake_stores where ( (item_type = '"+req.query.item_type+"') && (date BETWEEN'"
                     +req.query.from+"' AND '"+req.query.to+"')) order by date desc ";
                 conn.query(sql, function(err, rows, fields) {
@@ -1023,7 +1023,7 @@ router.get('/storesDischargeReport' , function (req, resp, next) {
                 return (err);
             } else {
                 var sql =  "select  id,transaction_id,type,item_type,item,unit_cost,quantity,total_cost,registry_no," +
-                    "person,station, date_format(date,'%D %M %Y') as date from discharge_stores where" +
+                    "person,station, date_format(date,'%Y-%c-%d') as date from discharge_stores where" +
                     " ( (item_type = '"+req.query.item_type+"') && (date BETWEEN'"
                     +req.query.from+"' AND '"+req.query.to+"')) order by date desc ";
                 conn.query(sql, function(err, rows, fields) {

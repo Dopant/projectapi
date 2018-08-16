@@ -385,8 +385,8 @@ router.get('/tyreSearch' , function (req, resp, next) {
                 return (err);
             } else {
                 var sql =  "select id,registry_no,job_card,brand,serial_no," +
-                    "date_format(fitted_on_date,'%D %M %Y') as fitted_on_date,fitted_on_mileage," +
-                    "date_format(taken_off_date,'%D %M %Y') as taken_off_date,taken_off_mileage," +
+                    "date_format(fitted_on_date,'%Y-%c-%d') as fitted_on_date,fitted_on_mileage," +
+                    "date_format(taken_off_date,'%Y-%c-%d') as taken_off_date,taken_off_mileage," +
                     "total_mileage,remarks from tyres_control where job_card ='"+req.query.jobCard+"'";
                 conn.query(sql, function(err, rows, fields) {
                     if (err) {
@@ -415,7 +415,7 @@ router.get('/controlOilReport1' , function (req, resp, next) {
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                var sql =  "select id,registry_no,engine,mileage,gear_box,back_axle,date_format(date,'%D %M %Y') as date," +
+                var sql =  "select id,registry_no,engine,mileage,gear_box,back_axle,date_format(date,'%Y-%c-%d') as date," +
                     "steering,remarks from date_of_oil_change where date BETWEEN'"
                     +req.query.from+"' AND '"+req.query.to+"' order by date desc ";
                 conn.query(sql, function(err, rows, fields) {
@@ -445,7 +445,7 @@ router.get('/controlMaintenanceReport1' , function (req, resp, next) {
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                var sql =  "select id,registry_no,job_number,mileage,material,date_format(date,'%D %M %Y') as date," +
+                var sql =  "select id,registry_no,job_number,mileage,material,date_format(date,'%Y-%c-%d') as date," +
                     "labour,nature_of_repairs,total from repairs_and_maintenance where date BETWEEN'"
                     +req.query.from+"' AND '"+req.query.to+"' order by date desc ";
                 conn.query(sql, function(err, rows, fields) {
@@ -479,7 +479,7 @@ router.get('/controlMonthlyReport1' , function (req, resp, next) {
                 return (err);
             } else {
                 var sql =  "select id,registry_no,current_mileage,cumulative_mileage,fuel," +
-                    "fuel_rate,oil,oil_rate,date_format(date,'%D %M %Y') as date,remarks" +
+                    "fuel_rate,oil,oil_rate,date_format(date,'%Y-%c-%d') as date,remarks" +
                     " from monthly_mileage where date BETWEEN'"
                     +req.query.from+"' AND '"+req.query.to+"' order by date desc ";
                 conn.query(sql, function(err, rows, fields) {
@@ -513,8 +513,8 @@ router.get('/controlTyreReport1' , function (req, resp, next) {
                 return (err);
             } else {
                 var sql =  "select id,registry_no,job_card,brand,serial_no," +
-                    "date_format(fitted_on_date,'%D %M %Y') as fitted_on_date,fitted_on_mileage," +
-                    "date_format(taken_off_date,'%D %M %Y') as taken_off_date,taken_off_mileage," +
+                    "date_format(fitted_on_date,'%Y-%c-%d') as fitted_on_date,fitted_on_mileage," +
+                    "date_format(taken_off_date,'%Y-%c-%d') as taken_off_date,taken_off_mileage," +
                     "total_mileage,remarks from tyres_control where Fitted_on_Date BETWEEN'"
                     +req.query.from+"' AND '"+req.query.to+"' order by Fitted_on_Date desc ";
                 conn.query(sql, function(err, rows, fields) {
