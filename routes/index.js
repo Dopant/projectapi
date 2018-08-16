@@ -618,7 +618,7 @@ router.get('/maintenanceRecord',function(req, resp, next){
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                conn.query("select id,registry_no,maintenance_type,station,current_mileage,extra_contract,date_format(date,'%D %M %Y') as date" +
+                conn.query("select id,registry_no,maintenance_type,station,current_milleage,extra_contract,date_format(date,'%D %M %Y') as date" +
                     " from maintenance where date BETWEEN '"+req.query.from+"'AND'"+req.query.to+"'order by date desc", function(err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
