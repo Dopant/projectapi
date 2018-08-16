@@ -987,7 +987,9 @@ router.get('/storesIntakeReport' , function (req, resp, next) {
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                var sql =  "select * from intake_stores where ( (item_type = '"+req.query.item_type+"') && (date BETWEEN'"
+                var sql =  "select id,transaction_id,type,item_type,item,unit_cost," +
+                    "quantity,total_cost,company,person,station,date_format(date,'%D %M %Y') as date" +
+                    " from intake_stores where ( (item_type = '"+req.query.item_type+"') && (date BETWEEN'"
                     +req.query.from+"' AND '"+req.query.to+"')) order by date desc ";
                 conn.query(sql, function(err, rows, fields) {
                     if (err) {
@@ -1020,7 +1022,9 @@ router.get('/storesDischargeReport' , function (req, resp, next) {
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                var sql =  "select * from discharge_stores where ( (item_type = '"+req.query.item_type+"') && (date BETWEEN'"
+                var sql =  "select  id,transaction_id,type,item_type,item,unit_cost,quantity,total_cost,registry_no," +
+                    "person,station, date_format(date,'%D %M %Y') as date from discharge_stores where" +
+                    " ( (item_type = '"+req.query.item_type+"') && (date BETWEEN'"
                     +req.query.from+"' AND '"+req.query.to+"')) order by date desc ";
                 conn.query(sql, function(err, rows, fields) {
                     if (err) {
@@ -1055,7 +1059,7 @@ router.get('/dischargeView' , function (req, resp, next) {
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                var sql =  "select * from discharge_stores  ";
+                var sql =  "select * from discharge_stores";
                 conn.query(sql, function(err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);

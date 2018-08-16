@@ -618,7 +618,8 @@ router.get('/maintenanceRecord',function(req, resp, next){
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                conn.query("select * from maintenance where date BETWEEN '"+req.query.from+"'AND'"+req.query.to+"'order by date desc", function(err, rows, fields) {
+                conn.query("select id,registry_no,maintenance_type,station,current_mileage,extra_contract,date_format(date,'%D %M %Y') as date" +
+                    " from maintenance where date BETWEEN '"+req.query.from+"'AND'"+req.query.to+"'order by date desc", function(err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
                         return next(err);
@@ -646,7 +647,8 @@ router.get('/parts',function(req, resp,next){
                 console.error('SQL Connection error: ', err);
                 return(err);
             } else {
-                conn.query("select * from parts where date BETWEEN '"+req.query.from+"'AND'"+req.query.to+"'order by date desc", function(err, rows, fields) {
+                conn.query("select id,registry_no,station,parts,quantity,total_cost,date_format(date,'%D %M %Y') as date" +
+                    " from parts where date BETWEEN '"+req.query.from+"'AND'"+req.query.to+"'order by date desc", function(err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
                         return next(err);
@@ -673,7 +675,8 @@ router.get('/consumables',function(req, resp ,next){
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                conn.query("select * from consumables where date BETWEEN '"+req.query.from+"'AND'"+req.query.to+"'order by date desc", function(err, rows, fields) {
+                conn.query("select  id,registry_no,station,consumables,quantity,total_cost,date_format(date,'%D %M %Y') as date" +
+                    " from consumables where date BETWEEN '"+req.query.from+"'AND'"+req.query.to+"'order by date desc", function(err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
                         return next(err);
@@ -700,7 +703,8 @@ router.get('/batteries',function(req, resp, next){
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                conn.query("select * from batteries where date BETWEEN '"+req.query.from+"'AND'"+req.query.to+"'order by date desc", function(err, rows, fields) {
+                conn.query("select  id,registry_no,station,batteries,quantity,total_cost,date_format(date,'%D %M %Y') as date" +
+                    " from batteries where date BETWEEN '"+req.query.from+"'AND'"+req.query.to+"'order by date desc", function(err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
                         return next(err);
@@ -727,7 +731,8 @@ router.get('/tyres',function(req, resp, next){
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                conn.query("select * from tyres where date BETWEEN '"+req.query.from+"'AND'"+req.query.to+"'order by date desc", function(err, rows, fields) {
+                conn.query("select  id,registry_no,station,tyres,quantity,total_cost,date_format(date,'%D %M %Y') as date" +
+                    " from tyres where date BETWEEN '"+req.query.from+"'AND'"+req.query.to+"'order by date desc", function(err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
                         return next(err);
@@ -754,7 +759,8 @@ router.get('/lubricants',function(req, resp, next){
                 console.error('SQL Connection error: ', err);
                 return (err);
             } else {
-                conn.query("select * from lubricants where date BETWEEN '"+req.query.from+"'AND'"+req.query.to+"'order by date desc", function(err, rows, fields) {
+                conn.query("select  id,registry_no,station,lubricants,quantity,total_cost,date_format(date,'%D %M %Y') as date" +
+                    " from lubricants where date BETWEEN '"+req.query.from+"'AND'"+req.query.to+"'order by date desc", function(err, rows, fields) {
                     if (err) {
                         console.error('SQL error: ', err);
                         return next(err);
