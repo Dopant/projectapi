@@ -1914,7 +1914,7 @@ router.post('/registry',function(req, resp, next){
             } else {
 
                 try{
-                    var key = '1234';
+                    var key = '2006GkAsTechS';
                     req.checkBody('userName' ,'username field cannot be empty').notEmpty();
                     req.checkBody('firstName' ,'First name field cannot be empty').notEmpty();
                     req.checkBody('lastName' ,'Last name field cannot be empty').notEmpty();
